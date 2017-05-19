@@ -1,0 +1,98 @@
+Object,Description
+1100,Certificated Teachers' Salaries
+1200,Certificated Pupil Support Salaries
+1300,Certificated Supervisors' and Administrators' Salaries
+1900,Other Certificated Salaries
+2100,Noncertificated Instructional Salaries
+2200,Noncertificated Support Salaries
+2300,Noncertificated Supervisors' and Administrators' Salaries
+2400,Clerical and Office Staff Salaries
+2900,Other Noncertificated Salaries
+3101-3102,STRS
+3201-3202,PERS
+3301-3302,OASDI / Medicare / Alternative
+3401-3402,Health and Welfare Benefits
+3501-3502,Unemployment Insurance
+3601-3602,Workers' Compensation Insurance
+3701-3702,"OPEB, Allocated"
+3751-3752,"OPEB, Active Employees"
+3801-3802,PERS Reduction (for revenue limit funded charter schools)
+3901-3902,Other Employee Benefits
+4100,Approved Textbooks and Core Curricula Materials
+4200,Books and Other Reference Materials
+4300,Materials and Supplies
+4400,Noncapitalized Equipment
+4700,Food
+5100,Subagreements for Services
+5200,Travel and Conferences
+5300,Dues and Memberships
+5400,Insurance
+5500,Operations and Housekeeping Services
+5600,"Rentals, Leases, Repairs, and Noncapitalized Improvements"
+5800,Professional/Consulting Services and Operating Expenditures
+5900,Communications
+6100-6170,Land and Land Improvements
+6200,Buildings and Improvements of Buildings
+6300,Books and Media for New School Libraries or Major Expansion of School Libraries
+6400,Equipment
+6500,Equipment Replacement
+6900,Depreciation Expense (for accrual basis only)
+7110-7143,Tuition to Other Schools
+7211-7213,Transfers of Pass-Through Revenues to Other LEAs
+7221-7223AO,Transfers of Apportionments to Other LEAs - All Other
+7221-7223SE,Transfers of Apportionments to Other LEAs - Spec. Ed.
+7281-7299,All Other Transfers
+7438,Interest
+7439,Principal (for modified accrual basis only)
+7630-7699,Other Uses
+8011,State Aid - Current Year
+8015,Charter Schools General Purpose Entitlement - State Aid
+8019,State Aid - Prior Years
+8020-8039,Tax Relief Subventions (for revenue limit funded schools)
+8040-8079,County and District Taxes (for revenue limit funded schools)
+8080-8089,Miscellaneous Funds (for revenue limit funded schools)
+"8091, 8097",Other Revenue Limit Transfers
+8092,PERS Reduction Transfer
+8096,Transfers to Charter Schools in Lieu of Property Taxes
+"8110, 8260-8299",Other Federal Revenues
+"8181, 8182",Special Education - Federal
+8220,Child Nutrition - Federal
+8290,No Child Left Behind
+8930-8979,Other Sources
+8980-8999,Contributions Between Unrestricted and Restricted Accounts
+9110,Cash in County Treasury
+9111,Fair Value Adjustment to Cash in County Treasury
+9120,Cash in Bank(s)
+9130,Cash in Revolving Fund
+9135,Cash with Fiscal Agent/Trustee
+9140,Cash Collections Awaiting Deposit
+9150,Investments
+9200,Accounts Receivable
+9290,Due from Grantor Governments
+9320,Stores
+9330,Prepaid Expenditures (Expenses)
+9340,Other Current Assets
+9400-9499,Capital Assets (for accrual basis only)
+9500,Accounts Payable
+9590,Due to Grantor Governments
+9640,Current Loans
+9650,Deferred Revenue
+9660-9669,Long-Term Liabilities (for accrual basis only)
+9711,Reserve for Revolving Cash (equals object 9130)
+9712,Reserve for Stores (equals object 9320)
+9713,Reserve for Prepaid Expenditures (Expenses) (equals object 9330)
+9719,Reserve for All Others
+9740,Restricted
+9750,Stabilization Arrangements
+9760,Other Commitments
+9780,Assigned
+9789,Reserve for Economic Uncertainties
+9790A,Unrestricted Net Position
+9790M,Unassigned/Unappropriated Amount
+9791,"Beginning Fund Balance, as of July 1"
+"9793, 9795",Adjustments/Restatements to Beginning Balance
+9796,Net Investment in Capital Assets
+9797,Restricted Net Position
+LocalRevAO,All Other Local Revenues
+StateRevAO,All Other State Revenues
+StateRevSE,Special Education - State
