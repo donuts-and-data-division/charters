@@ -1,4 +1,5 @@
 import pandas as pd 
+from os import system
 
 
 csv_list = ['Cohort2009-10.csv', 'Cohort2010-11.csv', 'Cohort2011-12.csv', 'Cohort2012-13.csv', \
@@ -7,7 +8,7 @@ csv_list = ['Cohort2009-10.csv', 'Cohort2010-11.csv', 'Cohort2011-12.csv', 'Coho
 csv_list2 = ['Cohort2009-10.csv']
 
 
-for csv in csv_list2: 
+for csv in csv_list: 
 
 	df = pd.read_csv(csv)
 	df.replace(['*'], [None], inplace=True)
@@ -23,8 +24,11 @@ for csv in csv_list2:
 
 	df.columns = newcols
 
+	newcsv = 'clean' + csv 
 
+	df.to_csv(newcsv, index = False)
 
+	system("""csvsql --db "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"  --insert {} --overwrite""".format(newcsv))
 
 
 
