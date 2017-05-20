@@ -1,5 +1,5 @@
-database: "testdb"
-host: "127.0.0.1"
+database: "capp30254_project1"
+host: "pg.rcc.uchicago.edu"
 port: 5432
-user: "cappuser"
-password: "capprocks"
+user: "capp30254_project1_user"
+password: "bokMatofAtt."
