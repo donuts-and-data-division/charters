@@ -1,0 +1,11 @@
+import pandas as pd 
+
+
+csv_name = ''
+pd = pd.read_csv(csv_name)
+pd.replace(['*'], [None], inplace=True)
+
+pd2 = pd[pd['Name'] != 'Statewide']
+
+
+	
