@@ -1,0 +1,103 @@
+Object,Description,source
+1100,Certificated Teachers' Salaries,1011
+1200,Certificated Pupil Support Salaries,1011
+1300,Certificated Supervisors' and Administrators' Salaries,1011
+1900,Other Certificated Salaries,1011
+2100,Noncertificated Instructional Salaries,1011
+2200,Noncertificated Support Salaries,1011
+2300,Noncertificated Supervisors' and Administrators' Salaries,1011
+2400,Clerical and Office Staff Salaries,1011
+2900,Other Noncertificated Salaries,1011
+3101-3102,STRS,1011
+3201-3202,PERS,1011
+3301-3302,OASDI / Medicare / Alternative,1011
+3401-3402,Health and Welfare Benefits,1011
+3501-3502,Unemployment Insurance,1011
+3601-3602,Workers' Compensation Insurance,1011
+3701-3702,"OPEB, Allocated",1011
+3751-3752,"OPEB, Active Employees",1011
+3801-3802,PERS Reduction (for revenue limit funded charter schools),1011
+3901-3902,Other Employee Benefits,1011
+4100,Approved Textbooks and Core Curricula Materials,1011
+4200,Books and Other Reference Materials,1011
+4300,Materials and Supplies,1011
+4400,Noncapitalized Equipment,1011
+4700,Food,1011
+5100,Subagreements for Services,1011
+5200,Travel and Conferences,1011
+5300,Dues and Memberships,1011
+5400,Insurance,1011
+5500,Operations and Housekeeping Services,1011
+5600,"Rentals, Leases, Repairs, and Noncapitalized Improvements",1011
+5800,Professional/Consulting Services and Operating Expenditures,1011
+5900,Communications,1011
+6100-6170,Land and Land Improvements,1011
+6200,Buildings and Improvements of Buildings,1011
+6300,Books and Media for New School Libraries or Major Expansion of School Libraries,1011
+6400,Equipment,1011
+6500,Equipment Replacement,1011
+6900,Depreciation Expense (for accrual basis only),1011
+7110-7143,Tuition to Other Schools,1011
+7211-7213,Transfers of Pass-Through Revenues to Other LEAs,1011
+7221-7223AO,Transfers of Apportionments to Other LEAs - All Other,1011
+7221-7223SE,Transfers of Apportionments to Other LEAs - Spec. Ed.,1011
+7281-7299,All Other Transfers,1011
+7438,Debt Service Interest,1011
+7439,Debt Service Principal (for modified accrual basis only),1011
+7630-7699,Other Uses,1011
+8011,State Aid - Current Year,1011
+8015,Charter Schools Gen. Purpose Entitlement - State Aid,1011
+8019,State Aid - Prior Years,1011
+8020-8039,Tax Relief Subventions (for rev. limit funded schools),1011
+8040-8079,County and District Taxes (for rev. limit funded schools),1011
+8080-8089,Miscellaneous Funds (for rev. limit funded schools),1011
+"8091, 8097",Other Revenue Limit Transfers,1011
+8092,PERS Reduction Transfer,1011
+8096,Transfers to Charter Schools in Lieu of Property Taxes,1011
+"8110, 8260-8299",Other Federal Revenues,1011
+"8181, 8182",Special Education - Federal,1011
+8220,Child Nutrition - Federal,1011
+8290,No Child Left Behind,1011
+8930-8979,Other Sources,1011
+8980-8999,Contributions Between Unrestricted and Restricted Accounts,1011
+9110,Cash in County Treasury,1011
+9111,Fair Value Adjustment to Cash in County Treasury,1011
+9120,Cash in Bank(s),1011
+9130,Cash in Revolving Fund,1011
+9135,Cash with Fiscal Agent/Trustee,1011
+9140,Cash Collections Awaiting Deposit,1011
+9150,Investments,1011
+9200,Accounts Receivable,1011
+9290,Due from Grantor Governments,1011
+9320,Stores,1011
+9330,Prepaid Expenditures (Expenses),1011
+9340,Other Current Assets,1011
+9400-9499,Capital Assets (for accrual basis only),1011
+9500,Accounts Payable,1011
+9590,Due to Grantor Governments,1011
+9640,Current Loans,1011
+9650,Deferred Revenue,1011
+9660-9669,Long-Term Liabilities (for accrual basis only),1011
+9711,Reserve for Revolving Cash (equals object 9130),1011
+9712,Reserve for Stores (equals object 9320),1011
+9713,Reserve for Prepaid Expenditures (Expenses) (equals object 9330),1011
+9719,Reserve for All Others,1011
+9730,General Reserve,1011
+9740,Legally Restricted Balance,1011
+9770,Designated for Economic Uncertainties,1011
+"9775, 9780",Other Designations,1011
+9790,Undesignated / Unappropriated Amount,1011
+9791,"Beginning Fund Balance, as of July 1",1011
+"9793, 9795",Adjustments/Restatements to Beginning Balance,1011
+LocalRevAO,All Other Local Revenues,1011
+StateRevAO,All Other State Revenues,1011
+StateRevSE,Special Education - State,1011
+9750,Stabilization Arrangements,1112
+9760,Other Commitments,1112
+9780,Assigned,1112
+9789,Reserve for Economic Uncertainties,1112
+9790A,Unrestricted Net Position,1112
+9790M,Unassigned/Unappropriated Amount,1112
+9796,Net Investment in Capital Assets,1112
+9797,Restricted Net Position,1112
+8012,Education Protection Account State Aid - Current Year,1213
