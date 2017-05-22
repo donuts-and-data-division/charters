@@ -55,3 +55,18 @@ RENAME COLUMN "pupil/teacher_ratio_public_school_2010-11"
 TO "pupil_teacher_ratio_2010-11";
 
 
+--changing asian/pacific_islander columns to remove slash
+ALTER TABLE "nces_complete"
+RENAME COLUMN "asian_or_pacific_islander_students_public_school_2012-13"
+TO "asian_or_pacific_islander_students_public_school_2012-13";
+
+ALTER TABLE "nces_complete"
+RENAME COLUMN "asian_or_pacific_islander_students_public_school_2011-12"
+TO "asian_or_pacific_islander_students_public_school_2011-12";
+
+ALTER TABLE "nces_complete"
+RENAME COLUMN "asian_or_asian/pacific_islander_students_public_school_2010-11"
+TO "asian_or_pacific_islander_students_public_school_2010-11";
+
+
+
