@@ -1,13 +1,8 @@
 from sqlalchemy import create_engine
-import sys
 import pandas as pd
 import numpy as np
-from config import *
-from cleaning import *
-from model import *
-from features import *
-from explore import *
-from sklearn.cross_validation import train_test_split
+from db_config import *
+
 
 def select_statement():
     db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
@@ -70,21 +65,3 @@ def percentages(row, category_column, total_column):
         return percent
 
 
-def pipeline(df):
-    explore(df)
-    
-    df = clean(df)
-    X_train, X_test, y_train, y_test = train_test_split(df[FEATURE_COLS], df[OUTCOME_VAR], test_size=TEST_SIZE, random_state=0)
-    X_train = feature_eng(X_train)
-    X_test = feature_eng(X_test)
-    results = classifiers_loop(X_train, X_test, y_train, y_test)
-    results.to_csv('results.csv')
-    
-    return results, y_test
-
-
-if __name__=="__main__":
-    
-    df = select_statement()
-    create_features()
-    results, y_test = pipeline(df)
