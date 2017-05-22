@@ -7,10 +7,23 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 
 # name of outcome feature
-OUTCOME_VAR = 'closedyear'
+OUTCOME_VAR = 'closeddate'
 
 # list of features to include in model
-FEATURE_COLS = []
+FEATURE_COLS = [#"charter_authorizer", 
+    #"afilliated_organization", 
+    #"site_type", 
+    #"start_type",
+    'percent_female_2012-13',
+    'percent_female_2011-12',
+    'percent_female_2010-11',
+    'percent_white_2012-13',
+    'percent_white_2011-12',
+    'percent_white_2010-11',
+    'percent_freelunch_2012-13',
+    'percent_freelunch_2011-12',
+    'percent_freelunch_2010-11'
+    ]
 
 # percent split for training vs teseting
 TEST_SIZE = .20
@@ -20,7 +33,6 @@ TO_INT = []
 TO_FLOAT = []
 TO_STR = []
 TO_BOOL = []
-TO_DATETIME = ['closeddate']
 
 # columns with extreme values that need capping
 EXTREME_COLS = []
@@ -39,6 +51,21 @@ CATEGORICAL = []
 
 # indicator for whether to normalize columns
 NORMALIZE = False
+
+# features that should be converted to percents
+PERCENTAGE_FEATURES = {'percent_female_2012-13': ['female_students_public_school_2012-13', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
+                           'percent_female_2011-12': ['female_students_public_school_2011-12', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
+                           'percent_female_2010-11': ['female_students_public_school_2010-11', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
+
+                           'percent_white_2012-13': ['white_students_public_school_2012-13', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
+                           'percent_white_2011-12': ['white_students_public_school_2011-12', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
+                           'percent_white_2010-11': ['white_students_public_school_2010-11', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
+
+                           'percent_freelunch_2012-13': ['free_and_reduced_lunch_students_public_school_2012-13', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
+                           'percent_freelunch_2011-12': ['free_and_reduced_lunch_students_public_school_2011-12', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
+                           'percent_freelunch_2010-11': ['free_and_reduced_lunch_students_public_school_2010-11', 'total_students_all_grades_excludes_ae_public_school_2012-13']
+                           }
+
 
 # NOTE: the below is based on Rayid's magicloops code: https://github.com/rayidghani/magicloops/blob/master/magicloops.py
 # all classifiers and their default params

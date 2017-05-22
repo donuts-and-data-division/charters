@@ -4,10 +4,10 @@ import pandas as pd
 import numpy as np
 from config import *
 from select_stuff import *
-from cleaning import *
-from model import *
-from features import *
 from explore import *
+from cleaning import *
+from features import *
+from model import *
 from sklearn.cross_validation import train_test_split
 
 
@@ -20,12 +20,12 @@ def pipeline(df):
     results = classifiers_loop(X_train, X_test, y_train, y_test)
     results.to_csv('results.csv')
 
-    #return results, y_test
-    return df
+    return results, y_test
+    #return df
     
     return df
 if __name__=="__main__":
     
     df = select_statement()
-    #results, y_test = pipeline(df)
-    df = pipeline(df)
+    results, y_test = pipeline(df)
+    #df = pipeline(df)

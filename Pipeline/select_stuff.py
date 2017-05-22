@@ -37,31 +37,5 @@ def select_statement():
     df = pd.read_sql_query(string, engine)
     return df
 
-def create_features():
-
-    percentage_features = {'percent_female_2012-13': ['female_students_public_school_2012-13', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
-                           'percent_female_2011-12': ['female_students_public_school_2011-12', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
-                           'percent_female_2010-11': ['female_students_public_school_2010-11', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
-
-                           'percent_white_2012-13': ['white_students_public_school_2012-13', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
-                           'percent_white_2011-12': ['white_students_public_school_2011-12', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
-                           'percent_white_2010-11': ['white_students_public_school_2010-11', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
-
-                           'percent_freelunch_2012-13': ['free_and_reduced_lunch_students_public_school_2012-13', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
-                           'percent_freelunch_2011-12': ['free_and_reduced_lunch_students_public_school_2011-12', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
-                           'percent_freelunch_2010-11': ['free_and_reduced_lunch_students_public_school_2010-11', 'total_students_all_grades_excludes_ae_public_school_2012-13']
-                           }
-
-    for feature, columns in percentage_features.items():
-        df[feature] = df.apply(lambda row: percentages(row, columns[0], columns[1]), axis=1)
-
-
-def percentages(row, category_column, total_column):
-    if row[category_column] == None:
-        return 0
-    
-    else:
-        percent = float(row[category_column]) / float(row[total_column])
-        return percent
 
 

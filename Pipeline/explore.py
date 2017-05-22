@@ -11,7 +11,8 @@ def explore(df):
     print("Summary statistics: \n", df.describe(), '\n')
     print("Percent null per column: \n", df.isnull().sum()/df.shape[0], '\n')
     #print("Proportion of", OUTCOME_VAR, ': \n', df[OUTCOME_VAR].value_counts(normalize=True), '\n')
-
+    return df
+    
 def summary_by_outcome(df, col, round_to=2):
 	'''
 	'''
