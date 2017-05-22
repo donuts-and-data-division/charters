@@ -33,9 +33,9 @@ def select_statement():
             "charter_authorizer", "afilliated_organization", "site_type", "start_type"
 
         FROM "ca_pubschls_new"
-        JOIN "ca_to_nces" ON ca_pubschls_new.cdscode = ca_to_nces."CDSCode"
-        JOIN "nces_complete" ON nces_complete.nces_id = ca_to_nces."NCESCode"
-        JOIN "2015-16_AllCACharterSchools_new" ON "2015-16_AllCACharterSchools_new".cds_code = ca_to_nces."CDSCode"
+        JOIN "ca_to_nces" ON "ca_pubschls_new"."cdscode" = "ca_to_nces"."CDSCode"
+        JOIN "nces_complete" ON "nces_complete"."nces_id" = "ca_to_nces"."NCESCode"
+        JOIN "2015-16_AllCACharterSchools_new" ON "2015-16_AllCACharterSchools_new"."cds_code" = "ca_to_nces"."CDSCode"
         ;"""
 
     df = pd.read_sql_query(string, engine)
@@ -56,4 +56,3 @@ if __name__=="__main__":
     
     df = select_statement()
     results, y_test = pipeline(df)
-
