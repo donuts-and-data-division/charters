@@ -1,3 +1,5 @@
+--this file is no longer needed (added to mod_tables.sql)
+
 ALTER TABLE nces_download2_new DROP COLUMN "a";
 ALTER TABLE nces_download3_new DROP COLUMN "a";
 ALTER TABLE nces_download2_new RENAME COLUMN "school_id_-_nces_assigned_public_school_latest_available_year" TO "nces_id";
