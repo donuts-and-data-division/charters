@@ -26,7 +26,7 @@ def select_statement():
             "full-time_equivalent_fte_teachers_public_school_2011-12", "full-time_equivalent_fte_teachers_public_school_2010-11", 
             "pupil_teacher_ratio_2012-13", "pupil_teacher_ratio_2011-12", "pupil_teacher_ratio_2010-11",
             
-            "charter_authorizer", "afilliated_organization", "site_type", "start_type"
+            "charter_authorizer", "afilliated_organization", "site_type", "start_type", "located_within_district"
 
         FROM "ca_pubschls_new"
         JOIN "ca_to_nces" ON "ca_pubschls_new"."cdscode" = "ca_to_nces"."CDSCode"
