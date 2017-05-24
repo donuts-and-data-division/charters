@@ -12,6 +12,7 @@ def clean(df):
     #create outcome feature column
     #df['closedyear'] = df['closeddate'].dt.year
     #df['closedyear'] = df['closedyear'].astype(str)
+    df = replace_none(df)
     df = create_percentages(df)
     return df
 
@@ -34,8 +35,8 @@ def convert_types(df):
     return df
 
 def setup_outcome(df):
-    df.closedyear = pd.to_datetime(df.closeddate, errors = "raise").dt.year.astype(str)
-    df = get_dummies(df.closedyear,auxdf = df, prefix = "closed")
+    df["closedyear"] = pd.to_datetime(df.closeddate, errors = "raise").dt.year.astype(str)
+    df = get_dummies(df["closedyear"],auxdf = df, prefix = "closed")
     #df['closedyear'] = pd.to_datetime(df['closeddate'][open_schools], errors='raise').dt.year
         #df['closedyear'] = df['closedyear'].apply(lambda x: int(x))
     # NOT WORKING!!!
@@ -76,8 +77,21 @@ def get_dummies(data,auxdf=None, prefix=None, prefix_sep='_', dummy_na=False, co
         array-like object
     '''
 
-    dummies = pd.get_dummies(data, prefix=None, prefix_sep='_', dummy_na=False, columns=None, sparse=False, drop_first=False).astype(np.int8)
-    if isinstance(auxdf, pd.DataFrame):
+
+    dummies = pd.get_dummies(data, prefix=prefix, prefix_sep='_', dummy_na=False, columns=None, sparse=False, drop_first=False).astype(np.int8)
+    if isinstance(auxdf, pd.DataFrame):    
         df = pd.concat([auxdf, dummies],axis=1)
+        print(df.columns)
         return df
     return dummies
+
+
+def replace_none(df, REP_NONE=REP_NONE, fill="Unknown"):
+    for colname in REP_NONE:
+        try:
+            print("Replacing None in ", colname)
+
+            df[colname].fillna(value=fill, inplace=True)
+        except:
+            print(colname, " not in df")
+    return df

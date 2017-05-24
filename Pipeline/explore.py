@@ -3,14 +3,14 @@ import seaborn as sns
 import numpy as np
 import pandas as pd
 import math
-
+from config import *
 
 def explore(df):
     print("Shape: \n", df.shape, '\n')
     print("Data types: \n", df.dtypes, '\n')
     print("Summary statistics: \n", df.describe(), '\n')
     print("Percent null per column: \n", df.isnull().sum()/df.shape[0], '\n')
-    #print("Proportion of", OUTCOME_VAR, ': \n', df[OUTCOME_VAR].value_counts(normalize=True), '\n')
+    print("Proportion of", OUTCOME_VAR, ': \n', df[OUTCOME_VAR].value_counts(normalize=True), '\n')
     return df
     
 def summary_by_outcome(df, col, round_to=2):

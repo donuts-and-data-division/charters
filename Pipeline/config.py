@@ -10,10 +10,11 @@ from sklearn.neighbors import KNeighborsClassifier
 OUTCOME_VAR = 'closed_2014.0'
 
 # list of features to include in model
-FEATURE_COLS = [#"charter_authorizer", 
+FEATURE_COLS = ["charter_authorizer", 
     "afilliated_organization", 
     "site_type", 
     "start_type",
+    "fundingtype",
     'percent_female_2012-13',
     'percent_female_2011-12',
     'percent_female_2010-11',
@@ -80,6 +81,16 @@ CATEGORICAL = ['fundingtype', 'soctype', 'eilname', 'site_type', 'start_type']
 
 # indicator for whether to normalize columns
 NORMALIZE = False
+
+# replace Nones in string feature with "Unknown"
+REP_NONE = ["charter_authorizer", 
+    "afilliated_organization", 
+    "site_type", 
+    "start_type",
+    "fundingtype"]
+
+# string variables to be encoded
+LABEL_ENCODE = REP_NONE
 
 # features that should be converted to percents
 PERCENTAGE_FEATURES = {'percent_female_2012-13': ['female_students_public_school_2012-13', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
