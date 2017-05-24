@@ -41,13 +41,42 @@ EXTREME_COLS = []
 CAP = 0.99
 
 # continuous variables that need discretizing; not necessary for credit data
-BUCKETING_COLS = []
+BUCKETING_COLS = ['percent_female_2012-13', 'percent_female_2011-12', 'percent_female_2010-11',
+                  'percent_white_2012-13', 'percent_white_2011-12', 'percent_white_2010-12',
+                  'percent_black_2012-13', 'percent_black_2011-12', 'percent_black_2010-11',
+                  'percent_hispanic_2012-13', 'percent_hispanic_2011-12', 'percent_hispanic_2010-11',
+                  'percent_asian_pi_2012-13', 'percent_asian_pi_2011-12', 'percent_asian_pi_2010-11',
+                  'percent_freelunch_2012-13', 'percent_freelunch_2011-12', 'percent_freelunch_2010-11',
+                  'total_students_all_grades_excludes_ae_public_school_2012-13',
+                  'total_students_all_grades_excludes_ae_public_school_2011-12',
+                  'total_students_all_grades_excludes_ae_public_school_2010-11',
+                  'pupil_teacher_ratio_2012-13', 'pupil_teacher_ratio_2011-12',
+                  'full-time_equivalent_fte_teachers_public_school_2012-13',
+                  'full-time_equivalent_fte_teachers_public_school_2011-12'
+                  ]
+
+                  #maybe make a dictionary if we want varying numbers of buckets
+
+# variables to bucket by district
+DISTRICT_BUCKETING = ['percent_female_2012-13', 'percent_female_2011-12', 'percent_female_2010-11',
+                  'percent_white_2012-13', 'percent_white_2011-12', 'percent_white_2010-12',
+                  'percent_black_2012-13', 'percent_black_2011-12', 'percent_black_2010-11',
+                  'percent_hispanic_2012-13', 'percent_hispanic_2011-12', 'percent_hispanic_2010-11',
+                  'percent_asian_pi_2012-13', 'percent_asian_pi_2011-12', 'percent_asian_pi_2010-11',
+                  'percent_freelunch_2012-13', 'percent_freelunch_2011-12', 'percent_freelunch_2010-11',
+                  'total_students_all_grades_excludes_ae_public_school_2012-13',
+                  'total_students_all_grades_excludes_ae_public_school_2011-12',
+                  'total_students_all_grades_excludes_ae_public_school_2010-11',
+                  'pupil_teacher_ratio_2012-13', 'pupil_teacher_ratio_2011-12',
+                  'full-time_equivalent_fte_teachers_public_school_2012-13',
+                  'full-time_equivalent_fte_teachers_public_school_2011-12'
+                  ]
 
 # number of buckets to cut the BUCKETING_COLS into
 Q = 10
 
 # categorical variables to be turned into dummies
-CATEGORICAL = []
+CATEGORICAL = ['fundingtype', 'soctype', 'eilname', 'site_type', 'start_type']
 
 # indicator for whether to normalize columns
 NORMALIZE = False
@@ -60,6 +89,18 @@ PERCENTAGE_FEATURES = {'percent_female_2012-13': ['female_students_public_school
                            'percent_white_2012-13': ['white_students_public_school_2012-13', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
                            'percent_white_2011-12': ['white_students_public_school_2011-12', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
                            'percent_white_2010-11': ['white_students_public_school_2010-11', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
+
+                           'percent_black_2012-13': ['black_students_public_school_2012-13', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
+                           'percent_black_2011-12': ['black_students_public_school_2011-12', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
+                           'percent_black_2010-11': ['black_students_public_school_2010-11', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
+
+                           'percent_hispanic_2012-13': ['hispanic_students_public_school_2012-13', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
+                           'percent_hispanic_2011-12': ['hispanic_students_public_school_2011-12', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
+                           'percent_hispanic_2010-11': ['hispanic_students_public_school_2010-11', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
+
+                           'percent_asian_pi_2012-13': ['asian_or_pacific_islander_students_public_school_2012-13', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
+                           'percent_asian_pi_2011-12': ['asian_or_pacific_islander_students_public_school_2011-12', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
+                           'percent_asian_pi_2010-11': ['asian_or_pacific_islander_students_public_school_2010-11', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
 
                            'percent_freelunch_2012-13': ['free_and_reduced_lunch_students_public_school_2012-13', 'total_students_all_grades_excludes_ae_public_school_2012-13'],
                            'percent_freelunch_2011-12': ['free_and_reduced_lunch_students_public_school_2011-12', 'total_students_all_grades_excludes_ae_public_school_2012-13'],

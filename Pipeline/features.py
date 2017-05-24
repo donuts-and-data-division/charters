@@ -58,11 +58,25 @@ def discretize(df):
     '''
     for c in BUCKETING_COLS:
         # special bucketing for age 
-        if c == 'age':
-            agebins = [0] + list(range(20,80,5)) + [110]
-            df['bins_age'] = pd.cut(df['age'],bins=agebins, include_lowest=True)
-        else:
-            df['bins_' + c] = pd.qcut(df[c], q=Q)
+        #if c == 'age':
+            #agebins = [0] + list(range(20,80,5)) + [110]
+            #df['bins_age'] = pd.cut(df['age'],bins=agebins, include_lowest=True)
+        #else:
+        df['bins_' + c] = pd.qcut(df[c], q=Q)
+
+    for c in DISTRICT_BUCKETING:
+
+        districts = df.located_within_district.unique()
+
+        for district in districts:
+
+            new_column_name = c + '_percentile'
+
+            df.set_value(df['located_within_district'] == district, new_column_name, \
+                value=pd.qcut(df[c], q=4, labels=[1, 2, 3, 4]))
+
+            df[new_column_name].fillna(0, inplace=True) #fill missing values with category 0
+
     return df
 
 def normalize(df):
