@@ -12,6 +12,7 @@ def clean(df):
     #create outcome feature column
     #df['closedyear'] = df['closeddate'].dt.year
     #df['closedyear'] = df['closedyear'].astype(str)
+    df = replace_none(df)
     df = create_percentages(df)
     return df
 
@@ -79,16 +80,17 @@ def get_dummies(data,auxdf=None, prefix=None, prefix_sep='_', dummy_na=False, co
 
     dummies = pd.get_dummies(data, prefix=prefix, prefix_sep='_', dummy_na=False, columns=None, sparse=False, drop_first=False).astype(np.int8)
     if isinstance(auxdf, pd.DataFrame):    
-        print("in the if")
         df = pd.concat([auxdf, dummies],axis=1)
         print(df.columns)
         return df
     return dummies
 
 
-def replace_none(df, REP_NONE, fill="Unknown"):
+def replace_none(df, REP_NONE=REP_NONE, fill="Unknown"):
     for colname in REP_NONE:
         try:
+            print("Replacing None in ", colname)
+
             df[colname].fillna(value=fill, inplace=True)
         except:
             print(colname, " not in df")

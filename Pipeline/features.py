@@ -9,7 +9,7 @@ def feature_eng(df):
     df = cap_extreme(df)
     df = discretize(df)
     df = normalize(df)
-    df = make_dummies(df)
+    df = label_encode(df)
 
     return df
 
@@ -35,6 +35,8 @@ def fill_missing(df):
         else:
             sys.exit('check irregular data types')
     return df
+
+
 
 def cap_extreme(df):
     '''
@@ -79,10 +81,14 @@ def make_dummies(df):
     '''
     Function to make dummy features from categorical variables and concatenate with df
     '''
-    '''for c in CATEGORICAL:
-        dummies = pd.get_dummies(df[c], prefix=c)
-        df = pd.concat([df, dummies], axis=1)
-    return df'''
+    return df
 
-    oh.
+def label_encode(df):
+    for c in LABEL_ENCODE:
+        le = preprocessing.LabelEncoder()
+        le.fit(df[c])
+        df[c] = le.transform(df[c])
+    
+    return df
+    
 
