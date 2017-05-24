@@ -8,7 +8,7 @@ def clean(df):
     Clean df to prepare for modeling
     '''
     df = convert_types(df)
-    #df = setup_outcome(df)
+    df = setup_outcome(df)
     #create outcome feature column
     #df['closedyear'] = df['closeddate'].dt.year
     #df['closedyear'] = df['closedyear'].astype(str)
@@ -34,10 +34,9 @@ def convert_types(df):
     return df
 
 def setup_outcome(df):
-    df['closedyear'] = 'Not closed'
-
-    open_schools = df.ix[df.ix[:,'closeddate'].isnull()]
-    df['closedyear'] = pd.to_datetime(df['closeddate'][open_schools], errors='raise').dt.year
+    df.closedyear = pd.to_datetime(df.closeddate, errors = "raise").dt.year.astype(str)
+    df = get_dummies(df.closedyear,auxdf = df, prefix = "closed")
+    #df['closedyear'] = pd.to_datetime(df['closeddate'][open_schools], errors='raise').dt.year
         #df['closedyear'] = df['closedyear'].apply(lambda x: int(x))
     # NOT WORKING!!!
 
@@ -61,3 +60,24 @@ def percentages(row, category_column, total_column):
     else:
         percent = float(row[category_column]) / float(row[total_column])
         return percent
+
+
+
+def get_dummies(data,auxdf=None, prefix=None, prefix_sep='_', dummy_na=False, columns=None, sparse=False, drop_first=False):
+    '''
+    convert categorical values (set of k) to dummy variables (in k columns)
+
+    inputs:
+        data (array-like)
+        auxdf (dataFrame)
+        other args (built on top of pandas get_dummies see pandas docummentation for more detail)
+
+    returns:
+        array-like object
+    '''
+
+    dummies = pd.get_dummies(data, prefix=None, prefix_sep='_', dummy_na=False, columns=None, sparse=False, drop_first=False).astype(np.int8)
+    if isinstance(auxdf, pd.DataFrame):
+        df = pd.concat([auxdf, dummies],axis=1)
+        return df
+    return dummies

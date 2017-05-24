@@ -7,13 +7,13 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 
 # name of outcome feature
-OUTCOME_VAR = 'closeddate'
+OUTCOME_VAR = 'closed_2014.0'
 
 # list of features to include in model
 FEATURE_COLS = [#"charter_authorizer", 
-    #"afilliated_organization", 
-    #"site_type", 
-    #"start_type",
+    "afilliated_organization", 
+    "site_type", 
+    "start_type",
     'percent_female_2012-13',
     'percent_female_2011-12',
     'percent_female_2010-11',
