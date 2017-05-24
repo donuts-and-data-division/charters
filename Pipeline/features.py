@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import normalize
+from sklearn.preprocessing import LabelEncoder as le
 from config import *
 
 def feature_eng(df):
@@ -9,6 +10,7 @@ def feature_eng(df):
     df = discretize(df)
     df = normalize(df)
     df = make_dummies(df)
+
     return df
 
 def fill_missing(df):
@@ -77,7 +79,10 @@ def make_dummies(df):
     '''
     Function to make dummy features from categorical variables and concatenate with df
     '''
-    for c in CATEGORICAL:
+    '''for c in CATEGORICAL:
         dummies = pd.get_dummies(df[c], prefix=c)
         df = pd.concat([df, dummies], axis=1)
-    return df
+    return df'''
+
+    oh.
+

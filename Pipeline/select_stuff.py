@@ -10,7 +10,7 @@ def select_statement():
 
     string = """
 
-        SELECT ca_to_nces."CDSCode", ca_to_nces."NCESCode", "closeddate", "opendate", zip", "fundingtype", "soctype", "eilname", "gsoffered", "latitude", "longitude",
+        SELECT ca_to_nces."CDSCode", ca_to_nces."NCESCode", "closeddate", "opendate", "zip", "fundingtype", "soctype", "eilname", "gsoffered", "latitude", "longitude",
                
             "school_level_code_public_school_2012-13", "school_level_code_public_school_2011-12", "school_level_code_public_school_2010-11",
             "total_students_all_grades_excludes_ae_public_school_2012-13", "total_students_all_grades_excludes_ae_public_school_2011-12",
