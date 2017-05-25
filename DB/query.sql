@@ -1,3 +1,5 @@
+CREATE TABLE selected_features AS (
+
 SELECT ca_to_nces."CDSCode", ca_to_nces."NCESCode", "closeddate", "opendate", "zip", "fundingtype", "soctype", "eilname", "gsoffered", "latitude", "longitude",
                
             "school_level_code_public_school_2012-13", "school_level_code_public_school_2011-12", "school_level_code_public_school_2010-11",
@@ -20,4 +22,6 @@ SELECT ca_to_nces."CDSCode", ca_to_nces."NCESCode", "closeddate", "opendate", "z
         LEFT JOIN "ca_pubschls_new" ON "ca_pubschls_new"."cdscode" = "ca_to_nces"."CDSCode"
         LEFT JOIN "nces_complete" ON "nces_complete"."nces_id" = "ca_to_nces"."NCESCode"
         LEFT JOIN "2015-16_AllCACharterSchools_new" ON "2015-16_AllCACharterSchools_new"."cds_code" = "ca_to_nces"."CDSCode"
-        ;
+        
+
+);
