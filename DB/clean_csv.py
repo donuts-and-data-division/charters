@@ -74,7 +74,7 @@ def clean(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING):
 
 def make_schema(outname, instructions = "-i postgresql --no-constraints", type_dict = TYPE_DICT):
     
-    table_name = ouname[:-4]
+    table_name = outname[:-4]
     schema = 'DROP TABLE IF EXISTS {}; \n CREATE TABLE {} ('.format(table_name,table_name)
     system('''head -n 1000 {} | csvsql {} > temp.txt'''.format(filepath,instructions))
     f = open("temp.txt")

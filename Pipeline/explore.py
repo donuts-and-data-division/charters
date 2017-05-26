@@ -10,16 +10,17 @@ def explore(df):
     print("Data types: \n", df.dtypes, '\n')
     print("Summary statistics: \n", df.describe(), '\n')
     print("Percent null per column: \n", df.isnull().sum()/df.shape[0], '\n')
-    print("Proportion of", OUTCOME_VAR, ': \n', df[OUTCOME_VAR].value_counts(normalize=True), '\n')
+    #print("Proportion of", OUTCOME_VAR, ': \n', df[OUTCOME_VAR].value_counts(normalize=True), '\n')
     return df
-    
+
+### Additional exploration functions below not currently being called. Which ones are helpful?? ###
+  
 def summary_by_outcome(df, col, round_to=2):
 	'''
 	'''
 	split_data = df.groupby(col)
 
 	return round(split_data.describe(percentiles=[.5]),round_to).T
-
 
 
 def correlation_plot(df):

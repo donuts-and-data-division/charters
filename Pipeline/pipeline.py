@@ -26,14 +26,13 @@ def pipeline(df):
     
 if __name__=="__main__":
     df = select_statement()
-    print("Clean DF:")
-    df = clean(df)
     explore(df)
-    
-    X_train, X_test, y_train, y_test = train_test_split(df[FEATURE_COLS], df[OUTCOME_VAR], test_size=TEST_SIZE, random_state=0)
-    X_train = feature_eng(X_train)
-    X_test = feature_eng(X_test)
-    results = classifiers_loop(X_train, X_test, y_train, y_test)
-    results.to_csv('results.csv')
-
-     #df = pipeline(df)
+    df = clean(df)
+    """
+                X_train, X_test, y_train, y_test = train_test_split(df[FEATURE_COLS], df[OUTCOME_VAR], test_size=TEST_SIZE, random_state=0)
+                X_train = feature_eng(X_train)
+                X_test = feature_eng(X_test)
+                results = classifiers_loop(X_train, X_test, y_train, y_test)
+                results.to_csv('results.csv')
+    """
+   

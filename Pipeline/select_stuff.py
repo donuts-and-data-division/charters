@@ -4,6 +4,22 @@ import numpy as np
 from db_config import *
 
 
+
+def select_statement():
+    db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
+    engine = create_engine(db_string)
+
+    string = """
+
+        SELECT "closeddate", "opendate", "zip", "fundingtype", "soctype", "eilname", "gsoffered", "latitude", "longitude"
+        FROM "ca_pubschls_new"
+        LEFT JOIN "2015-16_AllCACharterSchools_new" ON "2015-16_AllCACharterSchools_new"."cds_code" = "ca_pubschls_new"."cdscode"
+        ;"""
+    df = pd.read_sql_query(string, engine)
+    return df
+
+# Not using select statement below because no longer using NCES data source due to too many non-matched schools
+'''
 def select_statement():
     db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
     engine = create_engine(db_string)
@@ -36,6 +52,6 @@ def select_statement():
 
     df = pd.read_sql_query(string, engine)
     return df
-
+'''
 
 
