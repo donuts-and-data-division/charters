@@ -1,29 +1,69 @@
 import pandas as pd
-import regex as re
+import re
 import numpy as np
 from os import system
 import time
-from Pipeline.util import camel_to_snake
+import sys, tempfile, os
+from subprocess import call
 
+#EDITOR = os.environ.get('EDITOR','vim') 
 DATABASE = "postgresql://capp30254_project1_user@pg.rcc.uchicago.edu:5432/capp30254_project1"
 BASEDIR = None
 VERBOSE = True
 WEIRD_CHARS ='\*|ï¾\x86|ï¾\x96|\xf1'
+# For columns with critical typing force the type (note the camel case headings are generated in cleaning):
+# csvsql automatically types columns and will fail frequently.  
+TYPE_DICT = {"county_code": "VARCHAR","district_code":"VARCHAR","charter_number":"VARCHAR"}
+FILEPATHS = "/Users/arianisfeld/MachineLearning/CATestData/ca2012_all.csv"
+# OPTIONAL: Each file in filepath will be cleaned and a new file will be created. 
+# The outname (minus the ".csv" will become the table name in the DB)
+OUTNAMES = "out.csv" 
+# OTHERWISE: each new file will use the filepath name with an ending appended
+ENDING = "_new.csv"
 
-def clean(filepaths, outnames="out.csv", ending = "_new.csv",basedir = BASEDIR):
-    '''Fixes column names and removes non-standard characters (including *)'''
-    if isinstance(filepaths, str):
-        filepaths = [filepaths]
-    if isinstance(outnames, str):
-        outnames = [outnames]
+def load(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING, db = DATABASE):
 
-    if len(outname)!=len(filepaths):
-        raise "outnames and filepaths should be same length: generating outnames"
-        outnames = [rename_csv(f, ending) for f in filepaths]
+    # Notice outnames may be specified or generated with an ending
+    filepaths, outnames = standardize_paths(filepaths, outnames, ending)
     
+    if VERBOSE:
+        start = time.time()
+        print("start time: ", start)
+    
+    clean(filepaths, outnames)
+
+    if VERBOSE:
+        clean_time = time.time() 
+        print("clean time: ", clean_time - start)
+    
+    for f in outnames:
+
+        schema = make_schema(f)
+        print(schema)
+
+        create_table(schema, db)
+    
+        try:    
+            if VERBOSE:
+                print("initiate copy: {}".format(f))
+            
+            system("""psql --db {} -c '\copy {} from {} with csv header' """.format(db, f))
+        
+        except psycopg2.Error as e:
+            print(e.diag.message_primary)
+
+
+        if VERBOSE:
+            write_time = time.time() 
+            print("write time: ", write_time - clean_time)
+
+
+def clean(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING):
+    '''Fixes column names and removes non-standard characters (including *)'''
+    filepaths, outnames = standardize_paths(filepaths, outnames, ending)
     for i, filepath in enumerate(filepaths):
         with open(outnames[i], "w") as outfile, open(filepath, 'r') as content:
-            out =  re.sub('\)|\(|\[|\]','', content.readline().replace(' ','_').lower())
+            out =  re.sub('\)|\(|\[|\]','', content.readline().replace('/','_').replace(' ','_').lower())
             outfile.write(out)
             for c in content.readlines():
                 out = re.sub(WEIRD_CHARS,'', c)
@@ -31,104 +71,28 @@ def clean(filepaths, outnames="out.csv", ending = "_new.csv",basedir = BASEDIR):
         content.close()
         outfile.close()
     return True
-    '''
-        try:
-            df = pd.read_csv(filepath, encoding = "ISO-8859-1", low_memory=False) 
-        except:
-            df = pd.read_csv(filepath, low_memory=False) 
 
-        if verbose:
-            print("cleaning the characters")
-
-        try: 
-            df.replace('ï¾\x86', [None], inplace=True) 
-        except: 
-            pass
-        try: 
-            df.replace('ï¾\x96', [None], inplace=True) 
-        except: 
-            pass
-        try: 
-            df.replace(u'\xf1', 'n', inplace=True) 
-        except: 
-            pass    
-        df.replace(['*'], [None], inplace=True) 
-        #remove brackets/parentheses and replace spaces with underscores
-        
-        if verbose:
-            print("changing column names")
-        for column in df:
-            df.columns = df.columns.str.replace('[', '')
-            df.columns = df.columns.str.replace(']', '')
-            df.columns = df.columns.str.replace('(', '')
-            df.columns = df.columns.str.replace(')', '')
-            df.columns = df.columns.str.strip().str.replace(' ', '_')
-            df.columns = df.columns.str.lower()
-
-
-        if verbose:
-            print("filling nas")
-       
-        #fill nans with none for postgres
-        df = df.where((pd.notnull(df)), None)
-        
-        filename = rename_csv(filepath,ending)
-
-        df.to_csv(filename, index=False)
-    '''
-    #ISSUE FILE IN CURRENT DIRECTORY. 
-
-
-def load(filepaths, alter_cols=[], ending="_new.csv",
-            db = DATABASE ):
-    if verbose:
-        start = time.time()
-        print("start time: ", start)
+def make_schema(outname, instructions = "-i postgresql --no-constraints", type_dict = TYPE_DICT):
     
-    clean(filepaths, ending, basedir)
-
-    if verbose:
-        clean_time = time.time() 
-        print("clean time: ", clean_time - start)
-
-    if isinstance(filepaths, str):
-        filepaths = [filepaths]
-    
-    for f in filepaths:
-
-        f = rename_csv(f)
-        schema = make_schema(f)
-        print(schema)
-
-        try:
-            system("""psql --db {} -c {}""".format(db, schema))
-            return "table up"
-        except:
-            return "oh no the table was not created" 
-
-        if verbose:
-            print("initiate run sequence: inserting {}".format(f))
-        
-        system("""psql --db {}
-                 -c '\copy {} from {} with csv header' """.format(db, f))
-         
-        if verbose:
-            write_time = time.time() 
-            print("write time: ", write_time - clean_time)
-
-
-def make_schema(filepath, type_dict = None):
-    schema = "DROP TABLE IF EXISTS {}; \n".format(filepath[:-4])
-    system("""head -n 1000 {} | csvsql -postgresql > temp.txt""".format(filepath))
+    table_name = ouname[:-4]
+    schema = 'DROP TABLE IF EXISTS {}; \n CREATE TABLE {} ('.format(table_name,table_name)
+    system('''head -n 1000 {} | csvsql {} > temp.txt'''.format(filepath,instructions))
     f = open("temp.txt")
+    f.readline() # throw away the first line
     for line in f.readlines():
-        col = re.findall('(\w*) VARCHAR', line)
+    
+        col = re.findall('(\w*) [A-Z]', line)
+    
+        if VERBOSE:
+            print('line:', line)
+            print(col)
+    
         try:
-            datatype = type_dict[col]
-            schema += "\t{} {}, \n".format(col, datatype)
+            datatype = type_dict[col[0]]
+            schema += "\t{} {}, \n".format(col[0], datatype)
         except:
             schema += line
-    schema = schema[:-4] + ");"
+    
     return schema
 
 def create_table(schema, db = DATABASE):
@@ -144,6 +108,24 @@ def rename_csv(f, new_ending=None):
     f = reg[0] + new_ending
     return f
 
+def standardize_paths(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING):
+    if isinstance(filepaths, str):
+        filepaths = [filepaths]
+    
+    if outnames:
+        if isinstance(outnames, str):
+            outnames = [outnames]
+        if len(outnames)!=len(filepaths):  
+            raise "outnames and filepaths should be same length: generating outnames"
+    
+    elif ending:
+        outnames = [rename_csv(f, ending) for f in filepaths]
+    
+    return filepaths, outnames
+
+
+
+
 
 
 if __name__=="__main__":
@@ -154,11 +136,9 @@ if __name__=="__main__":
     tests_filepaths = ["Data/CATestData/ca2011_all.csv",
                 "Data/CATestData/ca2012_all.csv",
                 "Data/CATestData/ca2013_all.csv"]
-    filepath = "ca2012_all.csv"
-    alter_cols = ["county_code","district_code","school_code"]
-    #clean(filepath)
-    #Schema = make_schema(rename_csv(filepath, "_new.csv"))
-
+    filepath = "~/MachineLearning/CATestData/ca2012_all.csv"
+    
+    clean(filepath)
     Schema = make_schema("out.csv")
 
 
