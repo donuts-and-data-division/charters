@@ -3,7 +3,7 @@ import seaborn as sns
 import numpy as np
 import pandas as pd
 import math
-from config import *
+from config import *        
 
 def explore(df):
     print("Shape: \n", df.shape, '\n')

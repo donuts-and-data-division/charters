@@ -99,7 +99,7 @@ def make_dummies(df):
 
 def label_encode(df):
     for c in LABEL_ENCODE:
-        le = preprocessing.LabelEncoder()
+        le = preprocessing.()
         le.fit(df[c])
         df[c] = le.transform(df[c])
     
