@@ -74,7 +74,7 @@ def discretize(df):
 
         for district in districts:
 
-            new_column_name = c + '_percentile'
+            new_column_name = c + '_district_percentile'
 
             df.set_value(df['located_within_district'] == district, new_column_name, \
                 value=pd.qcut(df[c], q=4, labels=[1, 2, 3, 4]))
@@ -99,7 +99,7 @@ def make_dummies(df):
 
 def label_encode(df):
     for c in LABEL_ENCODE:
-        le = preprocessing.LabelEncoder()
+        le = preprocessing.()
         le.fit(df[c])
         df[c] = le.transform(df[c])
     
