@@ -18,6 +18,8 @@ def select_statement():
     df = pd.read_sql_query(string, engine)
     return df
 
+
+
 # Not using select statement below because no longer using NCES data source due to too many non-matched schools
 '''
 def select_statement():
