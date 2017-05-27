@@ -40,8 +40,7 @@ def new_table():
         to_drop = []
         for group in df["Subgroup" + str(year)].unique():
             for group2 in df["Subgrouptype" + str(year)].unique():
-                if group != 'All':
-                    if group2 != 'All':
+                if group != 'All' or group2 != 'All':
 
                         col_name = 'Name' + str(year) + "_subgroup" + group + group2
                         col_agg = 'AggLevel' + str(year) + "_subgroup" + group + group2
