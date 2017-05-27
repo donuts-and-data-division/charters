@@ -25,15 +25,20 @@ for csv in csv_list:
 	df = df[df['AggLevel'] == 'S']
 
 	#add years to column names 
+	"""
 	newcols = [df.columns[0]]
 	for col in df.columns[1:]:
 		newcol = col + csv[-6:-4]
 		newcols.append(newcol)
-
+	"""
+	newcols = []
+	for col in df.columns:
+		newcol = col + csv[-6:-4]
+		newcols.append(newcol)
 
 	df.columns = newcols
 
-	newcsv = 'clean' + csv 
+	newcsv = 'new' + csv 
 	print (newcsv)
 
 	df.to_csv(newcsv, index = False)
