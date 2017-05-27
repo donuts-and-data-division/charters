@@ -2,17 +2,16 @@ from db_config import *
 from sqlalchemy import create_engine
 import pandas as pd
 import numpy as np
-from clean_csv import load, create_table, make_schema
 from os import system
 
 
 
 def edit_all():
 	''' 
-	Deal with raw financial, cohort, and test data that must be manipulated to "wide" format,
+	Deal with raw financial data that must be manipulated to "wide" format,
 	i.e. each row is a single school
 	'''
-	for i in ['11', '12', '13']:
+	for i in ['04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16']:
 		edit_financials(i)
 		
 
@@ -38,6 +37,19 @@ def edit_financials(year):
 		UPDATE "Alternate_Form_Data_{year}"
 		SET "CDSCode" = concat("Ccode","Dcode","SchoolID");
 		""".format(year=year)
+	if year in ['04', '05', '06']:
+		print('need to alter year')
+		alteration = """
+			ALTER TABLE "Alternate_Form_Data_{year}"
+				RENAME COLUMN objectcode TO "ObjectCode";
+			ALTER TABLE "Alternate_Form_Data_{year}"
+				RENAME COLUMN ccode TO "Dcode";
+			ALTER TABLE "Alternate_Form_Data_{year}"
+				RENAME COLUMN dcode TO "Ccode";
+			ALTER TABLE "Alternate_Form_Data_{year}"
+				RENAME COLUMN schoolid TO "SchoolID";
+
+			""".format(year=year) + alteration
 	db_action(alteration, action_type='alter')
 
 	# get initial df
@@ -55,7 +67,7 @@ def edit_financials(year):
 	# print modified df to csv
 	modified_df.to_csv('../Data/financials_{year}_wide.csv'.format(year=year))
 	
-	# load csv to database
+	# load csv to database; CHANGE TO ARI'S LOAD FUNCTION?
 	system_str = '''csvsql --db "postgresql://{}:{}@{}:{}/{}"  --insert ~/charters/Data/financials_{}_wide.csv'''.format(USER, PASSWORD, HOST, PORT, DATABASE, year)
 	try:
 		system(system_str)
@@ -79,6 +91,5 @@ def db_action(query, action_type):
 
 if __name__=="__main__":
 	edit_all()
-	#modified_df = edit_financials('11')
-
+	
 
