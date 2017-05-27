@@ -34,7 +34,7 @@ def new_table():
         df2.columns = df2.columns.map(lambda x: '{}_subgroup{}'.format(*x))
         df2.reset_index(inplace = True)
         #return df2
-        print (df2[:5])
+        print (df2.shape)
 
 
         to_drop = []
@@ -42,16 +42,24 @@ def new_table():
             for group2 in df["Subgrouptype" + str(year)].unique():
                 if group != 'All':
                     if group2 != 'All':
-                        to_drop.append('Name' + str(year) + "_subgroup" + group + group2)
-                        to_drop.append('AggLevel' + str(year) + "_subgroup" + group + group2)
-                        to_drop.append('DFC' + str(year) + "_subgroup" + group + group2)
-                        #makes sense to drop subgroups? 
 
+                        col_name = 'Name' + str(year) + "_subgroup" + group + group2
+                        col_agg = 'AggLevel' + str(year) + "_subgroup" + group + group2
+                        col_dfc = 'DFC' + str(year) + "_subgroup" + group + group2
+
+                        if col_name in df2.columns: 
+                            to_drop.append(col_name)
+                        if col_agg in df2.columns: 
+                            to_drop.append(col_agg)
+                        if col_dfc in df2.columns: 
+                            to_drop.append(col_dfc)
+                        #makes sense to drop subgroups? 
+        
         df2.drop(to_drop, axis = 1, inplace = True)
+        print (df2.shape)
 
         newcsv = "dropout_" + str(year) + "_wide"
         df2.to_csv(newcsv, index = False)
-        print ("im going to the db")
 
         try: 
             print ("im going to the db")
@@ -59,6 +67,9 @@ def new_table():
         except: 
             ("table didn't go to db")
 
+    #test query
+    #select "Cohort Dropout Rate10_subgroupAll2" from "dropout_10_wide" where "Name10_subgroupAll0" = 'Grant Union High';
+        
 
     """
 
