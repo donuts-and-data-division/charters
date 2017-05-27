@@ -2,61 +2,87 @@ import pandas as pd
 import re
 import numpy as np
 from os import system
-import time
-import sys, tempfile, os
-from subprocess import call
+from datetime import datetime
 
-#EDITOR = os.environ.get('EDITOR','vim') 
-DATABASE = "postgresql://capp30254_project1_user@pg.rcc.uchicago.edu:5432/capp30254_project1"
-BASEDIR = None
 VERBOSE = True
-WEIRD_CHARS ='\*|ï¾\x86|ï¾\x96|\xf1'
+TIMER = True
+CLEAN = True
+DATABASE = "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"
+WEIRD_CHARS ='\"\*\"|ï¾\x86|ï¾\x96|\xf1|\"\"'
 # For columns with critical typing force the type (note the camel case headings are generated in cleaning):
 # csvsql automatically types columns and will fail frequently.  
-TYPE_DICT = {"county_code": "VARCHAR","district_code":"VARCHAR","charter_number":"VARCHAR"}
-FILEPATHS = "/Users/arianisfeld/MachineLearning/CATestData/ca2012_all.csv"
+
+
+FILEPATHS = ["../CATestData/ca2006_all.csv","../CATestData/ca2007_all.csv","../CATestData/ca2008_all.csv","../CATestData/ca2009_all.csv"]
 # OPTIONAL: Each file in filepath will be cleaned and a new file will be created. 
 # The outname (minus the ".csv" will become the table name in the DB)
-OUTNAMES = "out.csv" 
+OUTNAMES = ["catests_2006.csv","catests_2007.csv","catests_2008.csv","catests_2009.csv"] 
 # OTHERWISE: each new file will use the filepath name with an ending appended
 ENDING = "_new.csv"
+MAKE_ID_COLS = ["county_code","district_code","school_code"]
+TYPE_DICT = {"county_code": "VARCHAR","district_code":"VARCHAR","school_code":"VARCHAR"}
 
-def load(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING, db = DATABASE):
+
+# FUTURE set directory for output
+BASEDIR = None
+# FUTURE editable schemas 
+#import sys, tempfile, os
+#from subprocess import call
+EDITOR = os.environ.get('EDITOR','vim') 
+
+
+def main():
+    load()
+
+def load(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING, make_id_cols= MAKE_ID_COLS, db = DATABASE):
 
     # Notice outnames may be specified or generated with an ending
     filepaths, outnames = standardize_paths(filepaths, outnames, ending)
     
-    if VERBOSE:
-        start = time.time()
-        print("start time: ", start)
-    
-    clean(filepaths, outnames)
-
-    if VERBOSE:
-        clean_time = time.time() 
-        print("clean time: ", clean_time - start)
-    
-    for f in outnames:
-
-        schema = make_schema(f)
-        print(schema)
-
-        create_table(schema, db)
-    
-        try:    
-            if VERBOSE:
-                print("initiate copy: {}".format(f))
-            
-            system("""psql --db {} -c '\copy {} from {} with csv header' """.format(db, f))
+    if CLEAN:
+        if TIMER:
+            start = datetime.now()
+            print("Starting clean")
         
-        except psycopg2.Error as e:
-            print(e.diag.message_primary)
+        clean(filepaths, outnames)
+
+        if TIMER:
+            clean_time = datetime.now() 
+            print("clean time: ", clean_time - start)
+    else: 
+        if TIMER:
+            clean_time = datetime.now()
 
 
-        if VERBOSE:
-            write_time = time.time() 
-            print("write time: ", write_time - clean_time)
+    for f in outnames:
+        table =f[:-4]
+        
+        if TIMER:
+            print("Starting sql for {}".format(f))
+        
+        schema = make_schema(f)
+        
+        if TIMER:
+            schema_time = datetime.now() 
+            print("csvsql schema generate time: ", schema_time - clean_time)
 
+        print(schema)
+     
+        try_sql("""psql -d {} -c '{}' """.format(db, schema))   
+        try_sql("""psql -d {} -c '\copy {} from {} with csv header' """.format(db, table,f))
+
+        if TIMER:
+            write_time = datetime.now() 
+            print("write time: ", write_time - schema_time)
+
+        if make_id_cols:
+           try_sql("""psql -d {} -c '{}' """.format(db, add_col(table)))
+           try_sql("""psql -d {} -c '{}' """.format(db, make_unique_id(table, make_id_cols)))
+
+        if TIMER:
+            id_time = datetime.now() 
+            print("make id time: ", id_time - write_time)
+        
 
 def clean(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING):
     '''Fixes column names and removes non-standard characters (including *)'''
@@ -75,8 +101,11 @@ def clean(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING):
 def make_schema(outname, instructions = "-i postgresql --no-constraints", type_dict = TYPE_DICT):
     
     table_name = outname[:-4]
-    schema = 'DROP TABLE IF EXISTS {}; \n CREATE TABLE {} ('.format(table_name,table_name)
-    system('''head -n 1000 {} | csvsql {} > temp.txt'''.format(filepath,instructions))
+    schema = 'DROP TABLE IF EXISTS {}; \n CREATE TABLE {}(\n'.format(table_name,table_name)
+
+    if VERBOSE:
+        print("Inferring schema from {}".format(outname))
+    system('''head -n 1000 {} | csvsql {} > temp.txt'''.format(outname,instructions))
     f = open("temp.txt")
     f.readline() # throw away the first line
     for line in f.readlines():
@@ -97,10 +126,35 @@ def make_schema(outname, instructions = "-i postgresql --no-constraints", type_d
 
 def create_table(schema, db = DATABASE):
     try:
-        system('''psql --db {} -f {}'''.schema(db, schema))
+        make_schema = '''psql --db {} -f {}'''.schema(db, schema)
+        if VERBOSE:
+            print('try: {}'.format(make_schema))
+        system(make_schema)
+
         return True
     except:
         return False
+
+
+def add_col(tbl,id="cdscode"):
+    return 'ALTER TABLE {} ADD COLUMN {} VARCHAR;'.format(tbl,id)
+
+def make_unique_id(tbl, cols = MAKE_ID_COLS, id="cdscode"):
+    '''Generate the SQL statement to make a unique id from multiple columns'''
+    out = """UPDATE {} SET {} = concat(""".format(tbl,id)
+    for col in cols:
+        out += """{},""".format(col)
+    return out[:-1] + ");"
+
+
+# HELPER FUNCTIONS
+def try_sql(command):
+    try:
+        if VERBOSE:
+            print('try: {}'.format(command))
+        system(command)
+    except:
+        print("{}: FAILED".format(command))
 
 def rename_csv(f, new_ending=None):
     '''Takes filepath strips the path and ending and adds a new_ending' (e.g. "_new.csv"'''
@@ -109,6 +163,9 @@ def rename_csv(f, new_ending=None):
     return f
 
 def standardize_paths(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING):
+    '''
+    take out
+    '''
     if isinstance(filepaths, str):
         filepaths = [filepaths]
     
@@ -123,11 +180,6 @@ def standardize_paths(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING):
     
     return filepaths, outnames
 
-
-
-
-
-
 if __name__=="__main__":
     # RUN FROM charters director ... ipython3 -i DB/clean_csv
     emmas_filepaths = ['/home/student/charters/Data/nces_download1.csv', 
@@ -136,11 +188,6 @@ if __name__=="__main__":
     tests_filepaths = ["Data/CATestData/ca2011_all.csv",
                 "Data/CATestData/ca2012_all.csv",
                 "Data/CATestData/ca2013_all.csv"]
-    filepath = "~/MachineLearning/CATestData/ca2012_all.csv"
+   main()
     
-    clean(filepath)
-    Schema = make_schema("out.csv")
-
-
-
     
