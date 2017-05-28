@@ -1,3 +1,7 @@
+#Create wide table for each year of dropout data! 
+#adapted from https://stackoverflow.com/questions/41451199/long-to-wide-dataframe-in-pandas-with-pivot-column-name-in-new-columns
+
+
 from db_config import *
 from sqlalchemy import create_engine
 import pandas as pd 
