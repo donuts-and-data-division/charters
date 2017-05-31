@@ -45,7 +45,7 @@ def new_table():
         test = tests[year]
 
         if year != '2015':
-            string = """SELECT cdscode, {}, grade, percent_tested, {}, {}, {}, {}, {}, {}
+            string = """SELECT cdscode, {}, grade, percent_tested, students_tested, {}, {}, {}, {}, {}, {}
                 FROM "catests_{}"
                 where ({} = 3 or {}=4 or {}=31 or {}=74 
                     or {}=76 or {}=78 or {}=80 or {}=120 
@@ -55,7 +55,7 @@ def new_table():
                         year, subgroup, subgroup, subgroup, subgroup, subgroup, subgroup, subgroup, subgroup, subgroup, test)
 
         if year == '2015':
-            string = """SELECT cdscode, {}, grade, percent_tested, {}, {}, {}, {}, {}
+            string = """SELECT cdscode, {}, grade, percent_tested, students_tested, {}, {}, {}, {}, {}
                 FROM "catests_{}"
                 where ({} = 3 or {}=4 or {}=31 or {}=74 
                     or {}=76 or {}=78 or {}=80 or {}=120 
@@ -65,6 +65,7 @@ def new_table():
                         year, subgroup, subgroup, subgroup, subgroup, subgroup, subgroup, subgroup, subgroup, subgroup, test)
 
         df = pd.read_sql_query(string, engine)
+        #return df
 
         newcol = "Subgroup_concat_" + year
         df[newcol] = df[subgroup].apply(str) + df['grade'].apply(str)
@@ -80,17 +81,30 @@ def new_table():
             df = df.drop(scores[year][4], axis=1)
             df = df.drop(scores[year][5], axis=1)
 
+        cols = ['percentage_standard_exceeded', 'percentage_standard_met', 'percentage_standard_met_and_above', \
+        'percentage_standard_nearly_met', 'percentage_standard_not_met']
+
+        for col in cols:
+            df[col + '_students'] = (df[col]/100) * df['students_tested']
+
+        #return df
+
+
+
         index = "cdscode"
 
-        values = ['percent_tested', 'percentage_standard_exceeded', 'percentage_standard_met', \
-        'percentage_standard_nearly_met', 'percentage_standard_not_met']
+        values = ['percent_tested', 'percentage_standard_exceeded', 'percentage_standard_met', 'percentage_standard_met_and_above'\
+        'percentage_standard_nearly_met', 'percentage_standard_not_met', 'percentage_standard_exceeded_students', \
+        'percentage_standard_met_students', 'percentage_standard_met_and_above_students'\
+        'percentage_standard_nearly_met_students', 'percentage_standard_not_met_students']
 
         df2 = pd.pivot_table(df, index = index, columns= newcol, values = values)
 
         #get rid of multi-index columns
         df2.columns = df2.columns.map('_'.join)
         df2.reset_index(inplace=True)
-        ##need to join this to re-enter names##                                                 
+        ##need to join this to re-enter names## 
+        return df2                                                
         
         newcsv = "catests_" + year + "_wide.csv"
         print('appended ' + year)
