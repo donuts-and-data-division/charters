@@ -13,21 +13,6 @@ import datetime as dt
 from dateutil.relativedelta import relativedelta
 
 
-'''
-def pipeline(df):
-    explore(df)
-    df = clean(df)
-
-    X_train, X_test, y_train, y_test = train_test_split(df[FEATURE_COLS], df[OUTCOME_VAR], test_size=TEST_SIZE, random_state=0)
-    X_train = feature_eng(X_train)
-    X_test = feature_eng(X_test)
-    results = classifiers_loop(X_train, X_test, y_train, y_test)
-    results.to_csv('results.csv')
-
-    #return results, y_test
-    return df
-'''
-
 def get_model_opts():
     '''
     Returns dictionary where keys are tuples pairs: (test window # of years, closed within # of years)
@@ -55,16 +40,38 @@ def get_feature_opts():
         feature_opts.append([i for i in feature_groups if i != group])
     return feature_opts
 
+def get_financial_columns():
+    db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
+    engine = create_engine(db_string)
+
+    string = ' SELECT "Object" FROM "Objects_full" '
+    df = pd.read_sql_query(string, engine)
+
+    return df['Object'].tolist()
+
 if __name__=="__main__":
     
     model_opts = get_model_opts()
     feature_opts = get_feature_opts()
+    financial_columns = get_financial_columns()
     
     for key, val in model_opts.items():
         for f in feature_opts:
-            df = select_statement(val, f)
-            df = clean(df)
-            # Do a train test split based on year
+            train_start = val['train_start']
+            train_end = val['train_end']
+            test_start = val['test_start']
+            test_end = val['test_end']
+            
+            df = select_statement(train_start, train_end, f)
+            #X_train, y_train = select_statement(train_start, train_end, f)
+            #X_test, y_test = select_statement(test_start, test_end, f)
+
+            #X_train = clean(X_train)
+            #X_test = clean(X_test)
+
+            #X_train = feature_eng(X_train)
+            #X_test = feature_eng(X_test)
+
             #results = classifiers_loop(X_train, X_test, y_train, y_test)
             #results.to_csv('results.csv')
     

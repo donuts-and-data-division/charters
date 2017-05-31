@@ -5,10 +5,11 @@ from db_config import *
 
 
 
-def select_statement(dates, feature_groups):
+def select_statement(start_date, end_date, feature_groups):
     '''
     Inputs
-        dates: dictionary whose keys are train_start, train_end, test_start, test_end 
+        start_date: start date of period
+        end_date: end date of period
         reature_groups: list of feature groups
     Outputs
         df: dataframe with columns relevant to dates and feature_groups
@@ -16,61 +17,73 @@ def select_statement(dates, feature_groups):
     db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
     engine = create_engine(db_string)
 
-    # set up substrings depending on what feature groups need to be selected
-    fin_select = ''
-    cohort_select = ''
-    dem_select = ''
-    schinfo_select = ''
-    spat_select = ''
-    acad_select = ''
+    start_year = start_date.year
+    end_year = end_date.year
+    year_range = range(start_year+1, end_year+1)
+    year_list = []
+    for yr in year_range:
+        year_list.append(str(yr)[-2:])
 
-    fin_join = ''
-    cohort_join = ''
-    dem_join = ''
-    schinfo_join = ''
-    spat_join = ''
-    acad_join = ''
-    
-    if 'financial' in feature_groups:
-        fin_select = '  '
-        fin_join = """ LEFT JOIN ...
-            ON
-             """
-    if 'cohort' in feature_groups:
-        cohort_select = ' COL, COL, COL '
-        cohort_join = """ LEFT JOIN ...
-            ON 
-             """
-    if 'demographic' in feature_groups:
-        dem_select = ' COL, COL, COL '
-        dem_join = """ LEFT JOIN ...
-            ON
-             """
-    if 'school_info' in feature_groups:
-        schinfo_select = """ "zip", "fundingtype", "soctype", "eilname", "gsoffered", "latitude", "longitude" """  
-        schinfo_join = """ LEFT JOIN "2015-16_AllCACharterSchools_new" 
-            ON "2015-16_AllCACharterSchools_new"."cds_code" = "ca_pubschls_new"."cdscode" 
-            """
-    if 'spatial' in feature_groups:
-        spat_select = ' COL, COL, COL '
-        spat_join = """ LEFT JOIN ...
-            ON 
-             """
-    if 'academic' in feature_groups:
-        acad_select = ' COL, COL, COL '
-        acad_join = """ LEFT JOIN ...
-            ON
-             """
-    
-    # construct overall query        
-    string = """ SELECT "closeddate", "opendate" """
+    final_string = ''
+    for yr in year_list:
+        # set up substrings depending on what feature groups need to be selected
+        fin_select = ' '
+        cohort_select = ' '
+        dem_select = ' '
+        schinfo_select = ' '
+        spat_select = ' '
+        acad_select = ' '
+
+        fin_join = ' '
+        cohort_join = ' '
+        dem_join = ' '
+        schinfo_join = ' '
+        spat_join = ' '
+        acad_join = ' '
+
+
+        if 'financial' in feature_groups:
+            
+                fin_select = ', financials_{yr}_wide.*'.format(yr=yr) 
+                fin_join += ' LEFT JOIN financials_{yr}_wide ON financials_{yr}_wide."CDSCode" = ca_pubschls_new."cdscode" '.format(yr=yr)
+        '''
+        if 'cohort' in feature_groups:
+            cohort_select = ' COL, COL, COL '
+            cohort_join = """ LEFT JOIN ...
+                ON 
+                 """
+        if 'demographic' in feature_groups:
+            dem_select = ' COL, COL, COL '
+            dem_join = """ LEFT JOIN ...
+                ON
+                 """
+        if 'school_info' in feature_groups:
+            schinfo_select = """ "zip", "fundingtype", "soctype", "eilname", "gsoffered", "latitude", "longitude" """  
+            schinfo_join = """ LEFT JOIN "2015-16_AllCACharterSchools_new" 
+                ON "2015-16_AllCACharterSchools_new"."cds_code" = "ca_pubschls_new"."cdscode" 
+                """
+        if 'spatial' in feature_groups:
+            spat_select = ' COL, COL, COL '
+            spat_join = """ LEFT JOIN ...
+                ON 
+                 """
+        if 'academic' in feature_groups:
+            acad_select = ' COL, COL, COL '
+            acad_join = """ LEFT JOIN ...
+                ON
+                 """
+        '''
+
+        # construct overall query      
+        string = (
+        ' SELECT "closeddate", "opendate" '
         + fin_select
         + cohort_select
         + dem_select
         + schinfo_select
         + spat_select
         + acad_select 
-        + """ FROM "ca_pubschls_new" """
+        + ' FROM "ca_pubschls_new" '
         + fin_join
         + cohort_join
         + dem_join
@@ -78,11 +91,15 @@ def select_statement(dates, feature_groups):
         + spat_join
         + acad_join
         + ';'
+        )
 
-    df = pd.read_sql_query(string, engine)
-    return df
+        final_string = final_string + " UNION ALL " + string
+    
+    print(final_string)
+    df = pd.read_sql_query(final_string, engine)
 
-
+    return df, y
+    
 
 # Not using select statement below because no longer using NCES data source due to too many non-matched schools
 '''
