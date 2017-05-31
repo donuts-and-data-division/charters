@@ -39,7 +39,7 @@ def new_table():
 
     years13 = ['2013']
 
-    for year in years13: 
+    for year in years: 
 
         subgroup = subgroups[year]
         test = tests[year]
@@ -91,16 +91,17 @@ def new_table():
         df2.columns = df2.columns.map('_'.join)
         df2.reset_index(inplace=True)
         ##need to join this to re-enter names##                                                 
-        return df2
+        #return df2
         newcsv = "catests_" + year + "_wide.csv"
         csvs.append(newcsv)
         print('appended ' + year)
-        df2.to_csv(newcsv, index = False)
+        cols = list(df2.columns)
+        df2.to_csv(newcsv, columns=cols, index = False)
 
-
+    
     VERBOSE = True
     TIMER = True
-    CLEAN = False
+    CLEAN = True
     #DATABASE = "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"
     #WEIRD_CHARS ='\"\*\"|ï¾\x86|ï¾\x96|\xf1|\"\"'
     # For columns with critical typing force the type (note the camel case headings are generated in cleaning):
