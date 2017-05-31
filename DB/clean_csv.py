@@ -13,14 +13,19 @@ WEIRD_CHARS ='\"\*\"|ï¾\x86|ï¾\x96|\xf1|\"\"'
 # csvsql automatically types columns and will fail frequently.  
 
 
-FILEPATHS = ["../CATestData/ca2006_all.csv","../CATestData/ca2007_all.csv","../CATestData/ca2008_all.csv","../CATestData/ca2009_all.csv"]
+FILEPATHS = ["../Data/enrollment04.txt","../Data/enrollment05.txt", "../Data/enrollment06.txt", "../Data/enrollment07.txt",\
+"../Data/enrollment08.txt", "../Data/enrollment09.txt", "../Data/enrollment10.txt", "../Data/enrollment11.txt", \
+"../Data/enrollment12.txt", "../Data/enrollment13.txt", "../Data/enrollment14.txt", "../Data/enrollment15.txt", \
+"../Data/enrollment16.txt"]
 # OPTIONAL: Each file in filepath will be cleaned and a new file will be created. 
 # The outname (minus the ".csv" will become the table name in the DB)
-OUTNAMES = ["catests_2006.csv","catests_2007.csv","catests_2008.csv","catests_2009.csv"] 
+OUTNAMES = FILEPATHS#["enrollment04.csv", "enrollment05.csv", "enrollment06.csv", "enrollment07.csv", "enrollment08.csv", "enrollment09.csv",\
+#"enrollment10.csv", "enrollment11.csv", "enrollment12.csv", "enrollment13.csv", "enrollment14.csv", "enrollment14.csv", \
+#"enrollment16.csv"] 
 # OTHERWISE: each new file will use the filepath name with an ending appended
 ENDING = "_new.csv"
-MAKE_ID_COLS = ["county_code","district_code","school_code"]
-TYPE_DICT = {"county_code": "VARCHAR","district_code":"VARCHAR","school_code":"VARCHAR"}
+MAKE_ID_COLS = None#["county_code","district_code","school_code"]
+TYPE_DICT = {"cds_code": "VARCHAR","district_code":"VARCHAR","school_code":"VARCHAR"}
 
 
 # FUTURE set directory for output
@@ -28,7 +33,7 @@ BASEDIR = None
 # FUTURE editable schemas 
 #import sys, tempfile, os
 #from subprocess import call
-EDITOR = os.environ.get('EDITOR','vim') 
+#EDITOR = os.environ.get('EDITOR','vim') 
 
 
 def main():
@@ -188,6 +193,6 @@ if __name__=="__main__":
     tests_filepaths = ["Data/CATestData/ca2011_all.csv",
                 "Data/CATestData/ca2012_all.csv",
                 "Data/CATestData/ca2013_all.csv"]
-   main()
+    main()
     
     
