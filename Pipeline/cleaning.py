@@ -100,9 +100,10 @@ def get_dummies(data,auxdf=None, prefix=None, prefix_sep='_', dummy_na=False, co
 def replace_none(df, REP_NONE=REP_NONE, fill="Unknown"):
     for colname in REP_NONE:
         try:
-            print("Replacing None in ", colname)
+            #print("Replacing None in ", colname)
 
             df[colname].fillna(value=fill, inplace=True)
         except:
-            print(colname, " not in df")
+            pass
+            #print(colname, " not in df")
     return df

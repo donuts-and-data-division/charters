@@ -54,6 +54,8 @@ if __name__=="__main__":
     df['closeddate'] = pd.to_datetime(df['closeddate'])
     df['closeddate'].fillna(inplace=True, value=dt.datetime(2200,7,1))
 
+    financial_cols = get_feature_group_columns('financials_15_wide')
+
     for key, val in model_opts.items():
         for feat in feature_opts:
             base = ['year', 'pit', 'closeddate']
@@ -62,7 +64,7 @@ if __name__=="__main__":
             demographics = []
             for i in feat:
                 if i == 'financial': 
-                    financial = get_feature_group_columns('financials_15_wide')
+                    financial = financial_cols
                 if i == 'cohort':
                     cohort = COHORT_COLS
 
@@ -74,18 +76,18 @@ if __name__=="__main__":
             test_end = val['test_end']
             closed_within = key[1]
 
-            train_start_schyr = int(str(train_start.year)[-2:]) + 1
-            train_end_schyr = int(str(train_end.year)[-2:])
-            test_start_schyr = int(str(test_start.year)[-2:]) + 1
-            test_end_schyr = int(str(test_end.year)[-2:])
+            train_start_yr = int(str(train_start.year)[-2:])
+            train_end_yr = int(str(train_end.year)[-2:])
+            test_start_yr = int(str(test_start.year)[-2:])
+            test_end_yr = int(str(test_end.year)[-2:])
 
             outcome_header = "closed_within_{}_years".format(str(closed_within))
             print(key, outcome_header)
-            X_train = df[relevant_cols].loc[(df['year'] >= train_start_schyr) & (df['year'] <= train_end_schyr)]
+            X_train = df[relevant_cols].loc[(df['year'] > train_start_yr) & (df['year'] <= train_end_yr)]
             X_train[outcome_header] = 0
             X_train[outcome_header][(X_train['closeddate'] - X_train['pit'] <= np.timedelta64(closed_within, 'Y')) & (X_train['closeddate'] - X_train['pit'] >= np.timedelta64(0, 'D'))] = 1
             
-            X_test = df[relevant_cols].loc[(df['year'] >= test_start_schyr) & (df['year'] <= test_end_schyr)]
+            X_test = df[relevant_cols].loc[(df['year'] > test_start_yr) & (df['year'] <= test_end_yr)]
             X_test[outcome_header] = 0
             X_test[outcome_header][(X_test['closeddate'] - X_test['pit'] <= np.timedelta64(closed_within, 'Y')) & (X_test['closeddate'] - X_test['pit'] >= np.timedelta64(0, 'D'))] = 1
             
@@ -93,6 +95,7 @@ if __name__=="__main__":
             y_train = X_train[outcome_header]
             y_test = X_test[outcome_header]
 
+            print('test_start: ', test_start_yr, 'train_end: ', train_end_yr, 'train_start: ', train_start_yr, 'test_end: ', test_end_yr)
             
             X_train = clean(X_train)
             X_test = clean(X_test)
