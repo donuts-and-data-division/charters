@@ -56,12 +56,16 @@ if __name__=="__main__":
 
     for key, val in model_opts.items():
         for feat in feature_opts:
-            base = ['key', 'cdscode', 'year', 'pit', 'closeddate']
+            base = ['year', 'pit', 'closeddate']
+            financial = []
+            cohort = []
+            demographics = []
             for i in feat:
                 if i == 'financial': 
                     financial = get_feature_group_columns('financials_15_wide')
                 if i == 'cohort':
                     cohort = COHORT_COLS
+
             relevant_cols = base + financial + cohort
 
             train_start = val['train_start']
@@ -91,12 +95,11 @@ if __name__=="__main__":
 
             
             X_train = clean(X_train)
-            #X_test = clean(X_test)
+            X_test = clean(X_test)
 
-            X_train = feature_eng(X_train)
+            #X_train = feature_eng(X_train)
             #X_test = feature_eng(X_test)
 
-            #results = classifiers_loop(X_train, X_test, y_train, y_test)
-            #results.to_csv('results.csv')
-            
+            results = classifiers_loop(X_train.drop(['year', 'pit', 'closeddate', 'CDSCode'], axis=1), X_test.drop(['year', 'pit', 'closeddate', 'CDSCode'], axis=1), y_train, y_test)
+            results.to_csv('results.csv')            
    

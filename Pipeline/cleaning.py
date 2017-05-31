@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from config import *
+from select_stuff import *
 
 
 def clean(df):
@@ -10,10 +11,25 @@ def clean(df):
     df = convert_types(df)
     #df = setup_outcome(df)
     #df = replace_none(df)
+
+    df = replace_none(df, REP_NONE=REP_NONE, fill="Unknown")
+    df = financial_features(df)
     #df = create_percentages(df)
     return df
 
 ### Helper functions that feed into clean() ###
+
+
+def financial_features(df):
+    financial = get_feature_group_columns('financials_15_wide')
+    df = replace_none(df, REP_NONE = financial, fill = 0)
+    df['tot_spend'] = df[financial].sum(axis=1)
+    for i in financial[1:]: # to ignore CSDcode
+        df[i].fillna(value=0.0, inplace=True)
+        df['perc_'+i] = 0.0 
+        df.loc[df['tot_spend']!=0, 'perc_'+i] = df[i]/df['tot_spend']
+    
+    return df
 
 def convert_types(df):
     '''
@@ -78,6 +94,7 @@ def get_dummies(data,auxdf=None, prefix=None, prefix_sep='_', dummy_na=False, co
         df = pd.concat([auxdf, dummies],axis=1)
         return df
     return dummies
+
 
 
 def replace_none(df, REP_NONE=REP_NONE, fill="Unknown"):
