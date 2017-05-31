@@ -173,3 +173,4 @@ TEST_GRID = {
 # which grid size to use
 WHICH_GRID = TEST_GRID
 
+COHORT_COLS = []

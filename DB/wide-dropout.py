@@ -8,6 +8,16 @@ import pandas as pd
 from os import system
 
 
+def db_table_query(query):
+    db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
+    engine = create_engine(db_string)
+
+    string = query
+    df = pd.read_sql_query(string, engine)
+
+
+
+
 def new_table():
     """
     For dropout tables. 
@@ -55,7 +65,6 @@ def new_table():
             ("table didn't go to db")
 
 
-
         """
 
         #change from long to wide using UNSTACK
@@ -87,7 +96,6 @@ def new_table():
         print (df2.shape)
 
         """
-
 
     #test query
     #select "Cohort Dropout Rate10_subgroupAll2" from "dropout_10_wide" where "Name10_subgroupAll0" = 'Grant Union High';

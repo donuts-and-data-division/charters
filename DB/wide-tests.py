@@ -37,9 +37,9 @@ def new_table():
 
     csvs = []                   
 
-    years13 = ['2013']
+    years15 = ['2015']
 
-    for year in years13: 
+    for year in years15: 
 
         subgroup = subgroups[year]
         test = tests[year]
@@ -91,38 +91,9 @@ def new_table():
         df2.columns = df2.columns.map('_'.join)
         df2.reset_index(inplace=True)
         ##need to join this to re-enter names##                                                 
-        return df2
-        newcsv = "catests_" + year + "_wide.csv"
-        csvs.append(newcsv)
-        print('appended ' + year)
-        df2.to_csv(newcsv, index = False)
-
-
-    VERBOSE = True
-    TIMER = True
-    CLEAN = False
-    #DATABASE = "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"
-    #WEIRD_CHARS ='\"\*\"|ï¾\x86|ï¾\x96|\xf1|\"\"'
-    # For columns with critical typing force the type (note the camel case headings are generated in cleaning):
-    # csvsql automatically types columns and will fail frequently.  
-
-
-    FILEPATHS = csvs
-    OUTNAMES = FILEPATHS
-    ENDING = "_new.csv"
-    MAKE_ID_COLS = None
-    TYPE_DICT = {"cds_code": "VARCHAR","district_code":"VARCHAR","school_code":"VARCHAR"}
-
-
-    # FUTURE set directory for output
-    BASEDIR = None
-    # FUTURE editable schemas 
-    #import sys, tempfile, os
-    #from subprocess import call
-    #EDITOR = os.environ.get('EDITOR','vim')
-
-    load(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING, make_id_cols= MAKE_ID_COLS, db = db_string)
-    
-
         
-    
+        newcsv = "catests_" + year + "_wide.csv"
+        print('appended ' + year)
+        #cols = list(df2.columns)
+        df2.to_csv(newcsv, index = False)
+        csvs.append(newcsv)
