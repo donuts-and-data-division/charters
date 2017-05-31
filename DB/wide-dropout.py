@@ -1,6 +1,6 @@
 #Create wide table for each year of dropout data! 
 #adapted from https://stackoverflow.com/questions/41451199/long-to-wide-dataframe-in-pandas-with-pivot-column-name-in-new-columns
-
+#https://stackoverflow.com/questions/24290297/pandas-dataframe-with-multiindex-column-merge-levels
 
 from db_config import *
 from sqlalchemy import create_engine
@@ -42,7 +42,6 @@ def new_table():
         #get rid of multi-index columns
         df2.columns = df2.columns.map('_'.join)
         df2.reset_index(inplace=True)
-        #return df2
         ##need to join this to re-enter names##                                                 
                                
 
