@@ -6,22 +6,21 @@ from datetime import datetime
 
 VERBOSE = True
 TIMER = True
-CLEAN = True
+CLEAN = False
 DATABASE = "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"
 WEIRD_CHARS ='\"\*\"|ï¾\x86|ï¾\x96|\xf1|\"\"'
 # For columns with critical typing force the type (note the camel case headings are generated in cleaning):
 # csvsql automatically types columns and will fail frequently.  
 
 
-FILEPATHS = ["../Data/enrollment04.txt","../Data/enrollment05.txt", "../Data/enrollment06.txt", "../Data/enrollment07.txt",\
-"../Data/enrollment08.txt", "../Data/enrollment09.txt", "../Data/enrollment10.txt", "../Data/enrollment11.txt", \
-"../Data/enrollment12.txt", "../Data/enrollment13.txt", "../Data/enrollment14.txt", "../Data/enrollment15.txt", \
-"../Data/enrollment16.txt"]
+FILEPATHS = ["catests_2015_wide2"]#["catests_2003_wide","catests_2004_wide", "catests_2005_wide", "catests_2006_wide","catests_2007_wide", \
+#"catests_2008_wide", "catests_2009_wide", "catests_2010_wide", "catests_2011_wide", "catests_2012_wide", \
+#"catests_2013_wide", "catests_2015_wide2"]
 # OPTIONAL: Each file in filepath will be cleaned and a new file will be created. 
 # The outname (minus the ".csv" will become the table name in the DB)
-OUTNAMES = FILEPATHS#["enrollment04.csv", "enrollment05.csv", "enrollment06.csv", "enrollment07.csv", "enrollment08.csv", "enrollment09.csv",\
-#"enrollment10.csv", "enrollment11.csv", "enrollment12.csv", "enrollment13.csv", "enrollment14.csv", "enrollment14.csv", \
-#"enrollment16.csv"] 
+OUTNAMES = ["catests_2015_wide2.csv"]#["catests_2003_wide.csv","catests_2004_wide.csv", "catests_2005_wide.csv", "catests_2006_wide.csv","catests_2007_wide.csv", \
+#"catests_2008_wide.csv", "catests_2009_wide.csv", "catests_2010_wide.csv", "catests_2011_wide.csv", "catests_2012_wide.csv", \
+#"catests_2013_wide.csv", "catests_15_wide2.csv"] #FILEPATHS
 # OTHERWISE: each new file will use the filepath name with an ending appended
 ENDING = "_new.csv"
 MAKE_ID_COLS = None#["county_code","district_code","school_code"]
