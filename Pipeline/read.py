@@ -1,6 +1,7 @@
-from pipeline.util import map_camel_to_snake
+from util import map_camel_to_snake
 import pandas as pd
 import re
+from os import system
 
 def read_csv(file, parse_zipcodes=None, **kwargs):
 	'''
@@ -24,3 +25,14 @@ def read_csv(file, parse_zipcodes=None, **kwargs):
 	df = pd.read_csv(file, **kwargs)
 	df.columns = map_camel_to_snake(df.columns)
 	return df
+
+
+
+def remove_header(files):
+	'''Given a list of files, remove the first line from the files. '''
+	for file in files:
+		try:
+			system("""sed '1d' {file} > tmpfile; mv tmpfile {file}""".format(file=file))
+		except:
+			print("could not find file {file}".format(file=file))
+
