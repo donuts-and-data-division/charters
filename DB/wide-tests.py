@@ -37,9 +37,9 @@ def new_table():
 
     csvs = []                   
 
-    years13 = ['2013']
+    years15 = ['2015']
 
-    for year in years: 
+    for year in years15: 
 
         subgroup = subgroups[year]
         test = tests[year]
@@ -97,34 +97,3 @@ def new_table():
         #cols = list(df2.columns)
         df2.to_csv(newcsv, index = False)
         csvs.append(newcsv)
-
-
-    '''
-    VERBOSE = True
-    TIMER = True
-    CLEAN = True
-    #DATABASE = "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"
-    #WEIRD_CHARS ='\"\*\"|ï¾\x86|ï¾\x96|\xf1|\"\"'
-    # For columns with critical typing force the type (note the camel case headings are generated in cleaning):
-    # csvsql automatically types columns and will fail frequently.  
-
-
-    FILEPATHS = csvs
-    OUTNAMES = FILEPATHS
-    ENDING = "_new.csv"
-    MAKE_ID_COLS = None
-    TYPE_DICT = {"cds_code": "VARCHAR","district_code":"VARCHAR","school_code":"VARCHAR"}
-
-
-    # FUTURE set directory for output
-    BASEDIR = None
-    # FUTURE editable schemas 
-    #import sys, tempfile, os
-    #from subprocess import call
-    #EDITOR = os.environ.get('EDITOR','vim')
-
-    load(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING, make_id_cols= MAKE_ID_COLS, db = db_string)
-    '''
-    
-        
-    
