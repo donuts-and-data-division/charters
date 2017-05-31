@@ -91,16 +91,15 @@ def new_table():
         df2.columns = df2.columns.map('_'.join)
         df2.reset_index(inplace=True)
         ##need to join this to re-enter names##                                                 
-        #return df2
+        
         newcsv = "catests_" + year + "_wide.csv"
-        #csvs.append(newcsv)
         print('appended ' + year)
-        cols = list(df2.columns)
+        #cols = list(df2.columns)
         df2.to_csv(newcsv, index = False)
         csvs.append(newcsv)
 
 
-    
+    '''
     VERBOSE = True
     TIMER = True
     CLEAN = True
@@ -125,7 +124,7 @@ def new_table():
     #EDITOR = os.environ.get('EDITOR','vim')
 
     load(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING, make_id_cols= MAKE_ID_COLS, db = db_string)
-    
+    '''
     
         
     
