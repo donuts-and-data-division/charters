@@ -8,9 +8,9 @@ def clean(df):
     Clean df to prepare for modeling
     '''
     df = convert_types(df)
-    df = setup_outcome(df)
-    df = replace_none(df)
-    df = create_percentages(df)
+    #df = setup_outcome(df)
+    #df = replace_none(df)
+    #df = create_percentages(df)
     return df
 
 ### Helper functions that feed into clean() ###
@@ -32,12 +32,13 @@ def convert_types(df):
         df[i] = df[i].astype(np.bool)
     
     return df
-
+'''
 def setup_outcome(df):
     df["closedyear"] = pd.to_datetime(df.closeddate, errors = "raise").dt.year.astype(str)
     df = get_dummies(df["closedyear"],auxdf = df, prefix = "closed")
 
     return df
+'''
 
 def create_percentages(df):
     '''

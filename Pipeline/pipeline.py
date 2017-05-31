@@ -40,39 +40,63 @@ def get_feature_opts():
         feature_opts.append([i for i in feature_groups if i != group])
     return feature_opts
 
-def get_financial_columns():
-    db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
-    engine = create_engine(db_string)
-
-    string = ' SELECT "Object" FROM "Objects_full" '
-    df = pd.read_sql_query(string, engine)
-
-    return df['Object'].tolist()
+def loop_through_models(df):
+    pass
+    # move everything from below to here
 
 if __name__=="__main__":
     
     model_opts = get_model_opts()
     feature_opts = get_feature_opts()
-    financial_columns = get_financial_columns()
-    
+    df = select_statement()
+    df['key'] = list(zip(df['cdscode'],df['year']))
+    df['pit'] = pd.to_datetime(['200'+str(i)+'-07-01' if len(str(i)) == 1 else '20'+str(i)+'-07-01' for i in df['year']])
+    df['closeddate'] = pd.to_datetime(df['closeddate'])
+    df['closeddate'].fillna(inplace=True, value=dt.datetime(2200,7,1))
+
     for key, val in model_opts.items():
-        for f in feature_opts:
+        for feat in feature_opts:
+            base = ['key', 'cdscode', 'year', 'pit', 'closeddate']
+            for i in feat:
+                if i == 'financial': 
+                    financial = get_feature_group_columns('financials_15_wide')
+                if i == 'cohort':
+                    cohort = COHORT_COLS
+            relevant_cols = base + financial + cohort
+
             train_start = val['train_start']
             train_end = val['train_end']
             test_start = val['test_start']
             test_end = val['test_end']
-            
-            df = select_statement(train_start, train_end, f)
-            #X_train, y_train = select_statement(train_start, train_end, f)
-            #X_test, y_test = select_statement(test_start, test_end, f)
+            closed_within = key[1]
 
-            #X_train = clean(X_train)
+            train_start_schyr = int(str(train_start.year)[-2:]) + 1
+            train_end_schyr = int(str(train_end.year)[-2:])
+            test_start_schyr = int(str(test_start.year)[-2:]) + 1
+            test_end_schyr = int(str(test_end.year)[-2:])
+
+            outcome_header = "closed_within_{}_years".format(str(closed_within))
+            print(key, outcome_header)
+            X_train = df[relevant_cols].loc[(df['year'] >= train_start_schyr) & (df['year'] <= train_end_schyr)]
+            X_train[outcome_header] = 0
+            X_train[outcome_header][(X_train['closeddate'] - X_train['pit'] <= np.timedelta64(closed_within, 'Y')) & (X_train['closeddate'] - X_train['pit'] >= np.timedelta64(0, 'D'))] = 1
+            
+            X_test = df[relevant_cols].loc[(df['year'] >= test_start_schyr) & (df['year'] <= test_end_schyr)]
+            X_test[outcome_header] = 0
+            X_test[outcome_header][(X_test['closeddate'] - X_test['pit'] <= np.timedelta64(closed_within, 'Y')) & (X_test['closeddate'] - X_test['pit'] >= np.timedelta64(0, 'D'))] = 1
+            
+            
+            y_train = X_train[outcome_header]
+            y_test = X_test[outcome_header]
+
+            
+            X_train = clean(X_train)
             #X_test = clean(X_test)
 
-            #X_train = feature_eng(X_train)
+            X_train = feature_eng(X_train)
             #X_test = feature_eng(X_test)
 
             #results = classifiers_loop(X_train, X_test, y_train, y_test)
             #results.to_csv('results.csv')
-    
+            
    

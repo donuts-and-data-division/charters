@@ -2,18 +2,72 @@ from sqlalchemy import create_engine
 import pandas as pd
 import numpy as np
 from db_config import *
+import psycopg2
 
+def select_statement():
+    db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
+    engine = create_engine(db_string)
+    year_list = []
+    for yr in range(2004, 2016):
+        year_list.append(str(yr)[-2:])
 
+    final_string = ''
+    for yr in year_list:
+        # DON"T SELECT EVERYTHING FROM DROPOUTS; LIST THEM IN CONFIG
+        string = """
+            SELECT "cdscode", {yr} AS year, closeddate, financials_{yr}_wide.*
+            FROM ca_pubschls_new
+            LEFT JOIN financials_{yr}_wide ON financials_{yr}_wide."CDSCode" = ca_pubschls_new."cdscode" 
+            """.format(yr=yr)
+        
+        if final_string == '':
+            final_string = string
+        else:
+            final_string = final_string + " UNION ALL " + string
+    final_string += ';'
+    print(final_string)
+    df = pd.read_sql_query(final_string, engine)
 
-def select_statement(start_date, end_date, feature_groups):
+    return df
+
+def get_feature_group_columns(table_name):
     '''
+    Returns a list of column names for given table
+    '''
+    conn = psycopg2.connect("dbname={} user={} host={} password={}".format(DATABASE, USER, HOST, PASSWORD))
+    cur = conn.cursor()
+    string = """
+        SELECT column_name FROM information_schema.columns WHERE table_name = '{}'
+        ;""".format(table_name)
+    cur.execute(string)
+    ls = []
+    for record in cur:
+        ls.append(record[0])
+    return ls
+'''
+# this works too; it wasn't a pandas vs psycopg2 issue
+def get_feature_group_columns(table_name):
+    db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
+    engine = create_engine(db_string)
+    string = """
+        SELECT column_name FROM information_schema.columns WHERE table_name = {table_name}
+        """.format(table_name=table_name)
+    df = pd.read_sql_query(string, engine)
+
+    return df["column_name"].tolist()
+'''
+
+
+'''
+def select_statement(start_date, end_date, feature_groups):
+    
     Inputs
         start_date: start date of period
         end_date: end date of period
         reature_groups: list of feature groups
     Outputs
         df: dataframe with columns relevant to dates and feature_groups
-    '''
+    
     db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
     engine = create_engine(db_string)
 
@@ -41,12 +95,11 @@ def select_statement(start_date, end_date, feature_groups):
         spat_join = ' '
         acad_join = ' '
 
-
         if 'financial' in feature_groups:
             
-                fin_select = ', financials_{yr}_wide.*'.format(yr=yr) 
-                fin_join += ' LEFT JOIN financials_{yr}_wide ON financials_{yr}_wide."CDSCode" = ca_pubschls_new."cdscode" '.format(yr=yr)
-        '''
+            fin_select += ', financials_{yr}_wide.*'.format(yr=yr) 
+            fin_join += ' LEFT JOIN financials_{yr}_wide ON financials_{yr}_wide."CDSCode" = ca_pubschls_new."cdscode" '.format(yr=yr)
+        
         if 'cohort' in feature_groups:
             cohort_select = ' COL, COL, COL '
             cohort_join = """ LEFT JOIN ...
@@ -58,7 +111,7 @@ def select_statement(start_date, end_date, feature_groups):
                 ON
                  """
         if 'school_info' in feature_groups:
-            schinfo_select = """ "zip", "fundingtype", "soctype", "eilname", "gsoffered", "latitude", "longitude" """  
+            schinfo_select = """ "opendate", "zip", "fundingtype", "soctype", "eilname", "gsoffered", "latitude", "longitude" """  
             schinfo_join = """ LEFT JOIN "2015-16_AllCACharterSchools_new" 
                 ON "2015-16_AllCACharterSchools_new"."cds_code" = "ca_pubschls_new"."cdscode" 
                 """
@@ -72,11 +125,11 @@ def select_statement(start_date, end_date, feature_groups):
             acad_join = """ LEFT JOIN ...
                 ON
                  """
-        '''
+        
 
         # construct overall query      
         string = (
-        ' SELECT "closeddate", "opendate" '
+        ' SELECT "cdscode" '
         + fin_select
         + cohort_select
         + dem_select
@@ -90,19 +143,21 @@ def select_statement(start_date, end_date, feature_groups):
         + schinfo_join
         + spat_join
         + acad_join
-        + ';'
         )
 
-        final_string = final_string + " UNION ALL " + string
+        if final_string == '':
+            final_string = string
+        else:
+            final_string = final_string + " UNION ALL " + string
     
-    print(final_string)
-    df = pd.read_sql_query(final_string, engine)
+    return final_string + ';'
+    #df = pd.read_sql_query(final_string, engine)
 
-    return df, y
+    #return df, y
     
 
 # Not using select statement below because no longer using NCES data source due to too many non-matched schools
-'''
+
 def select_statement():
     db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
     engine = create_engine(db_string)
