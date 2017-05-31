@@ -2,6 +2,7 @@ from db_config import *
 from sqlalchemy import create_engine
 import pandas as pd 
 from os import system
+from clean_csv import load
 
 
 def new_table():
@@ -75,7 +76,6 @@ def new_table():
 
             df = df.drop(scores[year][4], axis=1)
             df = df.drop(scores[year][5], axis=1)
-            #return df
 
         index = "cdscode"
 
@@ -84,19 +84,52 @@ def new_table():
 
         
         df2 = pd.pivot_table(df, index = index, columns= newcol, values = values)
-        #return df2
+
         #get rid of multi-index columns
         df2.columns = df2.columns.map('_'.join)
         df2.reset_index(inplace=True)
-        #return df2
         ##need to join this to re-enter names##                                                 
-                               
-
-        newcsv = "catests_" + str(year) + "_wide"
+        
+        #csvs = []                   
+        newcsv = "catests_" + year + "_wide"
+        #csvs.append(newcsv)
+        #print('appending' + year)
         df2.to_csv(newcsv, index = False)
 
-        try: 
-            print ("im going to the db")
-            system("""csvsql --db "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"  --insert {} --overwrite""".format(newcsv))
-        except: 
-            ("table didn't go to db")
+    '''    
+    VERBOSE = True
+    TIMER = True
+    CLEAN = True
+    DATABASE = "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"
+    WEIRD_CHARS ='\"\*\"|ï¾\x86|ï¾\x96|\xf1|\"\"'
+    # For columns with critical typing force the type (note the camel case headings are generated in cleaning):
+    # csvsql automatically types columns and will fail frequently.  
+
+
+    FILEPATHS = csvs
+    # OPTIONAL: Each file in filepath will be cleaned and a new file will be created. 
+    # The outname (minus the ".csv" will become the table name in the DB)
+    OUTNAMES = FILEPATHS#["enrollment04.csv", "enrollment05.csv", "enrollment06.csv", "enrollment07.csv", "enrollment08.csv", "enrollment09.csv",\
+    #"enrollment10.csv", "enrollment11.csv", "enrollment12.csv", "enrollment13.csv", "enrollment14.csv", "enrollment14.csv", \
+    #"enrollment16.csv"] 
+    # OTHERWISE: each new file will use the filepath name with an ending appended
+    ENDING = "_new.csv"
+    MAKE_ID_COLS = None#["county_code","district_code","school_code"]
+    TYPE_DICT = {"cds_code": "VARCHAR","district_code":"VARCHAR","school_code":"VARCHAR"}
+
+
+    # FUTURE set directory for output
+    BASEDIR = None
+    # FUTURE editable schemas 
+    #import sys, tempfile, os
+    #from subprocess import call
+    #EDITOR = os.environ.get('EDITOR','vim')
+
+    load(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING, make_id_cols= MAKE_ID_COLS, db = DATABASE)
+
+        #try: 
+            #print ("im going to the db")
+            #system("""csvsql --db "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"  --insert {} --overwrite""".format(newcsv))
+       # except: 
+            #("table didn't go to db")
+    '''
