@@ -93,10 +93,12 @@ def new_table():
         ##need to join this to re-enter names##                                                 
         #return df2
         newcsv = "catests_" + year + "_wide.csv"
-        csvs.append(newcsv)
+        #csvs.append(newcsv)
         print('appended ' + year)
         cols = list(df2.columns)
-        df2.to_csv(newcsv, columns=cols, index = False)
+        df2.to_csv(newcsv, index = False)
+        csvs.append(newcsv)
+
 
     
     VERBOSE = True
@@ -124,6 +126,6 @@ def new_table():
 
     load(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING, make_id_cols= MAKE_ID_COLS, db = db_string)
     
-
+    
         
     
