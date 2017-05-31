@@ -35,6 +35,8 @@ BASEDIR = None
 #from subprocess import call
 #EDITOR = os.environ.get('EDITOR','vim') 
 
+TESTING = False
+
 
 def main():
     load()
@@ -60,6 +62,7 @@ def load(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING, make_id_cols= MA
 
 
     for f in outnames:
+       
         table =f[:-4]
         
         if TIMER:
@@ -104,8 +107,9 @@ def clean(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING):
     return True
 
 def make_schema(outname, instructions = "-i postgresql --no-constraints", type_dict = TYPE_DICT):
-    
+
     table_name = outname[:-4]
+
     schema = 'DROP TABLE IF EXISTS {}; \n CREATE TABLE {}(\n'.format(table_name,table_name)
 
     if VERBOSE:

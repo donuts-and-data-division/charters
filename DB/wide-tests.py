@@ -28,15 +28,18 @@ def new_table():
     newlist = ['percentage_advanced', 'percentage_proficient', 'percentage_at_or_above_proficient', 'percentage_basic', \
             'percentage_below_basic', 'percentage_far_below_basic']
 
-    list2015 = ['percentage_standard_exceeded', 'percentage_standard_met', 'percentage_met_and_above', \
+    list2015 = ['percentage_standard_exceeded', 'percentage_standard_met', 'percentage_standard_met_and_above', \
             'percentage_standard_nearly_met', 'percentage_standard_not_met']
 
     scores = {'2003': oldlist, '2004': oldlist, '2005': oldlist, '2006': oldlist, '2007': oldlist, '2008': oldlist,
             '2009': newlist, '2010': newlist, '2011': newlist,
             '2012': newlist, '2013': newlist, '2015': list2015}
 
-    
-    for year in years: 
+    csvs = []                   
+
+    years13 = ['2013']
+
+    for year in years13: 
 
         subgroup = subgroups[year]
         test = tests[year]
@@ -51,13 +54,13 @@ def new_table():
                         scores[year][4], scores[year][5],
                         year, subgroup, subgroup, subgroup, subgroup, subgroup, subgroup, subgroup, subgroup, subgroup, test)
 
-        else:
-            string = tring = """SELECT cdscode, {}, grade, percent_tested, {}, {}, {}, {}, {}
+        if year == '2015':
+            string = """SELECT cdscode, {}, grade, percent_tested, {}, {}, {}, {}, {}
                 FROM "catests_{}"
                 where ({} = 3 or {}=4 or {}=31 or {}=74 
                     or {}=76 or {}=78 or {}=80 or {}=120 
                     or {}=128) 
-                    and {}=7;""".format(subgroup, scores[year][0], scores[year][1], scores[year][2], scores[year][3], \
+                    and {}=1;""".format(subgroup, scores[year][0], scores[year][1], scores[year][2], scores[year][3], \
                         scores[year][4],
                         year, subgroup, subgroup, subgroup, subgroup, subgroup, subgroup, subgroup, subgroup, subgroup, test)
 
@@ -82,7 +85,6 @@ def new_table():
         values = ['percent_tested', 'percentage_standard_exceeded', 'percentage_standard_met', \
         'percentage_standard_nearly_met', 'percentage_standard_not_met']
 
-        
         df2 = pd.pivot_table(df, index = index, columns= newcol, values = values)
 
         #get rid of multi-index columns
@@ -90,17 +92,16 @@ def new_table():
         df2.reset_index(inplace=True)
         ##need to join this to re-enter names##                                                 
         
-        #csvs = []                   
-        newcsv = "catests_" + year + "_wide"
-        #csvs.append(newcsv)
-        #print('appending' + year)
+        newcsv = "catests_" + year + "_wide.csv"
+        csvs.append(newcsv)
+        print('appended ' + year)
         df2.to_csv(newcsv, index = False)
 
-    '''    
+    
     VERBOSE = True
     TIMER = True
-    CLEAN = True
-    DATABASE = "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"
+    CLEAN = False
+    #DATABASE = "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"
     WEIRD_CHARS ='\"\*\"|ï¾\x86|ï¾\x96|\xf1|\"\"'
     # For columns with critical typing force the type (note the camel case headings are generated in cleaning):
     # csvsql automatically types columns and will fail frequently.  
@@ -125,11 +126,11 @@ def new_table():
     #from subprocess import call
     #EDITOR = os.environ.get('EDITOR','vim')
 
-    load(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING, make_id_cols= MAKE_ID_COLS, db = DATABASE)
+    load(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING, make_id_cols= MAKE_ID_COLS, db = db_string)
 
         #try: 
             #print ("im going to the db")
             #system("""csvsql --db "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"  --insert {} --overwrite""".format(newcsv))
        # except: 
             #("table didn't go to db")
-    '''
+    
