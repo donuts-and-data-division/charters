@@ -114,7 +114,10 @@ def make_schema(outname, instructions = "-i postgresql --no-constraints", type_d
 
     if VERBOSE:
         print("Inferring schema from {}".format(outname))
+        
+    print('''head -n 1000 {} | csvsql {} > temp.txt'''.format(outname,instructions))
     system('''head -n 1000 {} | csvsql {} > temp.txt'''.format(outname,instructions))
+
     f = open("temp.txt")
     f.readline() # throw away the first line
     for line in f.readlines():
@@ -130,7 +133,7 @@ def make_schema(outname, instructions = "-i postgresql --no-constraints", type_d
             schema += "\t{} {}, \n".format(col[0], datatype)
         except:
             schema += line
-    
+
     return schema
 
 def create_table(schema, db = DATABASE):
