@@ -54,32 +54,56 @@ def reconcile_financial_columns():
 
 
 def reconcile_test_columns():
-    test_columns = get_feature_group_columns('catests_2013_wide')
-    columns_2015 = get_feature_group_columns('catests_2015_wide2')
+    #test_columns = get_feature_group_columns('catests_2013_wide')
+    #columns_2015 = get_feature_group_columns('catests_2015_wide')
+
+    master_list = []
+    grades = [x for x in range(2,12)]
+    subgroups = [3,4,31,74, 76, 78, 80, 120, 128]
+    values = ['percent_tested', 'percentage_standard_exceeded', 'percentage_standard_met', 'percentage_standard_met_and_above',\
+        'percentage_standard_nearly_met', 'percentage_standard_not_met', 'standard_exceeded_students', \
+        'standard_met_students', 'standard_met_and_above_students',\
+        'standard_nearly_met_students', 'standard_not_met_students']
+
+
+    for grade in grades:
+        for subgroup in subgroups:
+            for value in values: 
+                master_list.append(value + "_" + str(subgroup) + ".0" + str(grade) + ".0")
+    print (len(master_list))
 
     for year in feature_years['tests']:
+    #for year in [2015]:
 
         year_columns = get_feature_group_columns('catests_{}_wide'.format(year))
+        missing_cols = [i for i in master_list if i not in year_columns]
 
-        if year == 2015:
-            missing_cols = [i for i in test_columns if i not in columns_2016]
 
-            for col in missing_cols:
+        #missing_cols = [i for i in test_columns if i not in columns_2015]
+
+
+        #if year == 2015:
+            #missing_cols = [i for i in test_columns if i not in columns_2015]
+
+        for col in missing_cols:
             
-                alteration = """
-                    ALTER TABLE 'catests_2015_wide2'
-                        ADD COLUMN "{col}" numeric;""".format(col=col)
+            alteration = """
+            ALTER TABLE 'catests_{year}_wide'
+            ADD COLUMN "{col}" numeric;""".format(year=year, col=col)
                 
-                db_action(alteration, action_type='alter')
+            db_action(alteration, action_type='alter')
+        
+        '''
         else:
             missing_cols = [i for i in columns_2015 if i not in test_columns]
 
             for col in missing_cols:
                 alteration = """
-                    ALTER TABLE 'catests_{year}_wide'
+                    ALTER TABLE 'catests_{year}_wide_testing'
                         ADD COLUMN "{col}" numeric;""".format(year=year, col=col)
 
-                db_action   (alteration, action_type='alter')
+                db_action(alteration, action_type='alter')
+        '''
 
         #for i, column in enumerate(test_columns):
             #alteration = """ALTER TABLE "catests_{year}_wide"
