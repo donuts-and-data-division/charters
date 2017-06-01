@@ -12,12 +12,10 @@ from sklearn.cross_validation import train_test_split
 import datetime as dt
 from dateutil.relativedelta import relativedelta
 
-
-import system
 print("HEY BRO")
 if sys.argv[1]:
     print(sys.argv[1])
-    from sys.argv[1] import *
+    #from sys.argv[1] import *
 
 """
 
