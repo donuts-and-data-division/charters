@@ -46,8 +46,8 @@ def financial_features(df):
     df['tot_spend'] = df[financial].sum(axis=1)
     for i in financial[1:]: # to ignore CSDcode
         df[i].fillna(value=0.0, inplace=True)
-        df['perc_'+i] = 0.0 
-        df.loc[df['tot_spend']!=0, 'perc_'+i] = df[i]/df['tot_spend']
+        #df['perc_'+i] = 0.0 
+        #df[df['tot_spend']!=0]['perc_'+i] = df[i]/df['tot_spend']
     df = df.drop(['CDSCode'], axis=1)
     
     return df
@@ -68,15 +68,29 @@ def demographic_features(df):
     return df
 
 def cohort_features(df):
+    '''
     cohort_cols = ['ged_rate', 'special_ed_compl_rate', 'cohort_grad_rate', 'cohort_dropout_rate']
     for i in cohort_cols:
-        df['deciles_'+i] = df.qcut(df[i], q=10)
+        df['deciles_'+i] = pd.qcut(df[i], q=10)
         avg = df[i].mean
         df['avg_compare_'+i] = ['Above avg' if df[i]> avg else 'Below avg' for i in df[i]]
         df = make_dummies(df['avg_compare_'+i], axis=1)
+    '''
     return df
 
 def spatial_features(df):
+    return df
+
+def academic_features(df):
+    academic = get_feature_group_columns('catests_2015_wide')
+    for i in academic[1:]: # to ignore CDScode
+        try:
+            df['deciles_'+i] = pd.qcut(df[i], q=10)
+        except:
+            print('could not cut into deciles')
+        avg = df[i].mean
+        df['avg_compare_'+i] = ['Above avg' if df[i]> avg else 'Below avg' for i in df[i]] # getting a key error 0!
+        df = make_dummies(df['avg_compare_'+i], axis=1)
     return df
 
 def convert_types(df):
