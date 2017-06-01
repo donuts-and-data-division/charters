@@ -56,6 +56,7 @@ def loop_through_models(df):
 
 
 def main():
+    print("THIS IS IN THE MAIN- Brah")
     return WHICH_GRID
     model_opts = get_model_opts()
     feature_opts = get_feature_opts()
