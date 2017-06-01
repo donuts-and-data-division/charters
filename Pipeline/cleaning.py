@@ -76,6 +76,26 @@ def cohort_features(df):
         df['avg_compare_'+i] = ['Above avg' if df[i]> avg else 'Below avg' for i in df[i]]
         df = make_dummies(df['avg_compare_'+i], axis=1)
     '''
+
+    #compare rates to district averages
+    #create new columns - 1 if above average, 0 if below
+    for col in ['ged_rate', 'special_ed_compl_rate', 'cohort_grad_rate', 'cohort_dropout_rate']:
+        
+        df[col].fillna(0, inplace=True) #fill missing values with category 0
+
+        means = df.groupby('district')[col].mean()
+        new_name = col + "_means_compare"
+        means.name = new_name
+        df = df.join(means, on='district')
+
+        df['diff'] = df[col] - df[new_name]
+
+        df.set_value(df['diff'] > 0, new_name, \
+        value=1)
+        df.set_value(df['diff'] < 0, new_name, \
+        value=0)
+
+    df = df.drop(['diff'], axis=1)
     return df
 
 def spatial_features(df):
