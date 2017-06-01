@@ -48,6 +48,7 @@ def loop_through_models(df):
 
 def main():
     print("THIS IS IN THE MAIN- Brah")
+    pd.DataFrame(['a','b'],[1,2]).to_csv("boom.csv")
     return WHICH_GRID
     model_opts = get_model_opts()
     feature_opts = get_feature_opts()
