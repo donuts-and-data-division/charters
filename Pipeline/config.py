@@ -115,20 +115,20 @@ PERCENTAGE_FEATURES = {'percent_female_2012-13': ['female_students_public_school
 
 # NOTE: the below is based on Rayid's magicloops code: https://github.com/rayidghani/magicloops/blob/master/magicloops.py
 # all classifiers and their default params
-CLASSIFIERS = {'RF': RandomForestClassifier(n_estimators=50, n_jobs=-1),
-        'ET': ExtraTreesClassifier(n_estimators=10, n_jobs=-1, criterion='entropy'),
-        'AB': AdaBoostClassifier(DecisionTreeClassifier(max_depth=1), algorithm="SAMME", n_estimators=200),
-        'LR': LogisticRegression(penalty='l1', C=1e5),
-        'SVM': svm.SVC(kernel='linear', probability=True, random_state=0),
-        'GB': GradientBoostingClassifier(learning_rate=0.05, subsample=0.5, max_depth=6, n_estimators=10),
+CLASSIFIERS = {'RF': RandomForestClassifier(n_jobs=-1),
+        'ET': ExtraTreesClassifier(n_jobs=-1),
+        'AB': AdaBoostClassifier(DecisionTreeClassifier(max_depth=1)),
+        'LR': LogisticRegression(),
+        'SVM': svm.SVC(probability=True, random_state=0),
+        'GB': GradientBoostingClassifier(n_estimators=10),
         'NB': GaussianNB(),
         'DT': DecisionTreeClassifier(),
-        'SGD': SGDClassifier(loss="hinge", penalty="l2"),
-        'KNN': KNeighborsClassifier(n_neighbors=3) 
+        'SGD': SGDClassifier(),
+        'KNN': KNeighborsClassifier() 
             }
 
 # list of classifier models to run
-TO_RUN = ['GB','RF','DT','LR','NB']
+TO_RUN = ['GB','RF','DT','LR','NB','KNN']
 
 # all grids to potentially loop through
 LARGE_GRID = { 
@@ -145,15 +145,15 @@ LARGE_GRID = {
        }
 
 small_grid = { 
-'RF':{'n_estimators': [10,100], 'max_depth': [5,50], 'max_features': ['sqrt','log2'],'min_samples_split': [2,10]},
+'RF':{'n_estimators': [10,50], 'max_depth': [3,20], 'max_features': ['sqrt','log2'],'min_samples_split': [2,10]},
 'LR': { 'penalty': ['l1','l2'], 'C': [0.00001,0.001,0.1,1,10]},
 'SGD': { 'loss': ['hinge','log','perceptron'], 'penalty': ['l2','l1','elasticnet']},
-'ET': { 'n_estimators': [10,100], 'criterion' : ['gini', 'entropy'] ,'max_depth': [5,50], 'max_features': ['sqrt','log2'],'min_samples_split': [2,10]},
-'AB': { 'algorithm': ['SAMME', 'SAMME.R'], 'n_estimators': [1,10,100,1000,10000]},
-'GB': {'n_estimators': [10,100], 'learning_rate' : [0.001,0.1,0.5],'subsample' : [0.1,0.5,1.0], 'max_depth': [5,50]},
+'ET': { 'n_estimators': [10,50], 'criterion' : ['gini', 'entropy'] ,'max_depth': [5,50], 'max_features': ['sqrt','log2'],'min_samples_split': [2,10]},
+'AB': { 'algorithm': ['SAMME', 'SAMME.R'], 'n_estimators': [1,10,100,1000]},
+'GB': {'n_estimators': [10,50], 'learning_rate' : [0.001,0.1,0.5],'subsample' : [0.1,0.5,1.0], 'max_depth': [5,20]},
 'NB' : {},
-'DT': {'criterion': ['gini', 'entropy'], 'max_depth': [1,5,10,20,50,100], 'max_features': ['sqrt','log2'],'min_samples_split': [2,5,10]},
-'SVM' :{'C' :[0.00001,0.0001,0.001,0.01,0.1,1,10],'kernel':['linear']},
+'DT': {'criterion': ['gini', 'entropy'], 'max_depth': [1,5,20,100], 'max_features': ['sqrt','log2'],'min_samples_split': [2,10]},
+'SVM' :{'C' :[0.01,1],'kernel':['linear']},
 'KNN' :{'n_neighbors': [1,5,10,25,50,100],'weights': ['uniform','distance'],'algorithm': ['auto','ball_tree','kd_tree']}
        }
 
