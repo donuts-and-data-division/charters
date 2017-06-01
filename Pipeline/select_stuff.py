@@ -55,15 +55,14 @@ def select_function(year_list):
             joins = joins + ' ' + join
 
         string = select + joins + " WHERE charter = TRUE AND opendate <= '{open_cutoff}'".format(open_cutoff=open_cutoff)
-
-        print(string)
-
+ 
         if final_string == '':
             final_string = string
         else:
             final_string = final_string + " UNION ALL " + string
 
     final_string += ';'
+
     df = pd.read_sql_query(final_string, engine)
 
     return df

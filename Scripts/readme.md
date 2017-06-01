@@ -62,7 +62,7 @@ In the main function of test.py write something like:
 
 	import system
 	print(sys.argv[1])  
-	
+
 This will print v1. Note you can't pass multiword strings.
 
 That's it! 
@@ -75,7 +75,8 @@ from an environment already established get requirements
 to see what jobs are running
 	squeue --user=anisfeld
 
-
+you can copy a file and preserve its chmod values:
+	cp -p template.sh RF.sh
 
 
 
