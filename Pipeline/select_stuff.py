@@ -23,8 +23,8 @@ def select_statement():
         year_list.append(str(yr)[-2:])
 
     final_string = ''
-    #for yr in year_list:
-    for yr in ['10']:
+    for yr in year_list:
+    #for yr in ['10']:
 
         open_cutoff = dt.datetime(int(yr)-1+2000, 7, 1).date()
 
@@ -42,6 +42,7 @@ def select_statement():
 
         if yr == '14':
             test_cols = get_feature_group_columns('catests_2015_wide')
+            test_cols = ['"' + x + '"' for x in test_cols]
             test_string = "Null as " + ", Null as ".join(test_cols)
 
         select = """
@@ -59,12 +60,16 @@ def select_statement():
             join = 'LEFT JOIN "dropout_{yr}_wide" ON dropout_{yr}_wide."CDS{yr}" = ca_pubschls_new."cdscode"'.format(yr=yr)
             joins = joins + ' ' + join
 
+        else:
+            dropout_select = ', Null as ged_rate, Null as special_ed_compl_rate, Null as cohort_grad_rate, Null as cohort_dropout_rate'
+            select = select + ' ' + dropout_select
+
         string = select + joins + " WHERE charter = TRUE AND opendate <= '{open_cutoff}'".format(open_cutoff=open_cutoff)
 
         #print(string)
         #return None
-        df = pd.read_sql_query(string, engine)
-        return df
+        #df = pd.read_sql_query(string, engine)
+        #return df
 
 
 
@@ -80,15 +85,16 @@ def select_statement():
             WHERE charter = TRUE AND opendate <= '{open_cutoff}'
             """.format(yr=yr, open_cutoff=open_cutoff)
         '''
-
-    for yr in feature_years['tests']:
         
         if final_string == '':
             final_string = string
         else:
             final_string = final_string + " UNION ALL " + string
+
+        print(yr)
+
     final_string += ';'
-    print(final_string)
+    #print(final_string)
     df = pd.read_sql_query(final_string, engine)
 
     return df
