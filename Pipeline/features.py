@@ -90,10 +90,13 @@ def normalize(df):
         normalize(df, axis=1)
     return df
 
-def make_dummies(df):
+def make_dummies(df, cols):
     '''
     Function to make dummy features from categorical variables and concatenate with df
     '''
+    for c in cols:
+        dummies = pd.get_dummies(df[c], prefix = c)
+        df = pd.concat([df, dummies], axis = 1)
     return df
 
 def label_encode(df):

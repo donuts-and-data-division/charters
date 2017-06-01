@@ -67,18 +67,17 @@ DISTRICT_BUCKETING = ['percent_female_2012-13', 'percent_female_2011-12', 'perce
 # number of buckets to cut the BUCKETING_COLS into
 Q = 10
 
-# categorical variables to be turned into dummies
-CATEGORICAL = ['fundingtype', 'soctype', 'eilname', 'site_type', 'start_type']
-
 # indicator for whether to normalize columns
 NORMALIZE = False
 
+# Feature group-specific columns
+COHORT_COLS = []
+
+SCHOOL_INFO_COLS = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
+            'afilliated_organization', 'site_type', 'start_type']
+
 # replace Nones in string feature with "Unknown"
-REP_NONE = ["charter_authorizer", 
-    "afilliated_organization", 
-    "site_type", 
-    "start_type",
-    "fundingtype"]
+REP_NONE = SCHOOL_INFO_COLS
 
 # string variables to be encoded
 LABEL_ENCODE = REP_NONE
@@ -173,4 +172,3 @@ TEST_GRID = {
 # which grid size to use
 WHICH_GRID = TEST_GRID
 
-COHORT_COLS = []

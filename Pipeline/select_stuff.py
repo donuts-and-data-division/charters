@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from db_config import *
 import psycopg2
+import datetime as dt
 
 def select_statement():
     db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
@@ -13,12 +14,15 @@ def select_statement():
 
     final_string = ''
     for yr in year_list:
-        # DON"T SELECT EVERYTHING FROM DROPOUTS; LIST THEM IN CONFIG
+        open_cutoff = dt.datetime(int(yr)-1+2000, 7, 1).date()
         string = """
-            SELECT "cdscode", {yr} AS year, closeddate, financials_{yr}_wide.*
+            SELECT "cdscode", {yr} AS year, closeddate, district, zip, fundingtype, charter_authorizer, 
+            afilliated_organization, site_type, start_type, financials_{yr}_wide.*
             FROM ca_pubschls_new
             LEFT JOIN financials_{yr}_wide ON financials_{yr}_wide."CDSCode" = ca_pubschls_new."cdscode" 
-            """.format(yr=yr)
+            LEFT JOIN "2015-16_AllCACharterSchools_new" ON "2015-16_AllCACharterSchools_new"."cds_code" = ca_pubschls_new."cdscode" 
+            WHERE charter = TRUE AND opendate <= '{open_cutoff}'
+            """.format(yr=yr, open_cutoff=open_cutoff)
         
         if final_string == '':
             final_string = string

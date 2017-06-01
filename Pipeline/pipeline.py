@@ -54,21 +54,32 @@ if __name__=="__main__":
     df['closeddate'] = pd.to_datetime(df['closeddate'])
     df['closeddate'].fillna(inplace=True, value=dt.datetime(2200,7,1))
 
-    financial_cols = get_feature_group_columns('financials_15_wide')
-
+    FINANCIAL_COLS = get_feature_group_columns('financials_15_wide')
+    results_list = []
     for key, val in model_opts.items():
         for feat in feature_opts:
             base = ['year', 'pit', 'closeddate']
             financial = []
             cohort = []
             demographics = []
+            school_info = []
+            academic = []
+            spatial = []
             for i in feat:
                 if i == 'financial': 
-                    financial = financial_cols
+                    financial = FINANCIAL_COLS
                 if i == 'cohort':
                     cohort = COHORT_COLS
+                if i == 'school_info':
+                    school_info = SCHOOL_INFO_COLS
+                if i == 'spatial':
+                    pass
+                if i == 'academic':
+                    pass
+                if i == 'demographics':
+                    pass
 
-            relevant_cols = base + financial + cohort
+            relevant_cols = base + financial + cohort + school_info + spatial + demographics
 
             train_start = val['train_start']
             train_end = val['train_end']
@@ -97,12 +108,14 @@ if __name__=="__main__":
 
             print('test_start: ', test_start_yr, 'train_end: ', train_end_yr, 'train_start: ', train_start_yr, 'test_end: ', test_end_yr)
             
-            X_train = clean(X_train)
-            X_test = clean(X_test)
+            X_train = clean(X_train, feat)
+            X_test = clean(X_test, feat, X_train.columns)
 
-            #X_train = feature_eng(X_train)
-            #X_test = feature_eng(X_test)
+            #X_train = feature_eng(X_train, feat)
+            #X_test = feature_eng(X_test, feat)
 
-            results = classifiers_loop(X_train.drop(['year', 'pit', 'closeddate', 'CDSCode'], axis=1), X_test.drop(['year', 'pit', 'closeddate', 'CDSCode'], axis=1), y_train, y_test)
-            results.to_csv('results.csv')            
+            results = classifiers_loop(X_train, X_test, y_train, y_test)
+            results_list.append(results)
+    final_results = pd.concat(results_list, axis=0)
+    final_results.to_csv('results.csv')            
    
