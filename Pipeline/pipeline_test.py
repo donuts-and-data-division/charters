@@ -44,6 +44,7 @@ def loop_through_models(df):
     pass
     # move everything from below to here
 
+
 #if __name__=="__main__":
 def main(out_file):
     model_opts = get_model_opts()
@@ -63,14 +64,14 @@ def main(out_file):
     FINANCIAL_COLS = get_feature_group_columns('financials_15_wide')
     DEMO_COLS = get_feature_group_columns('enrollment15_wide')
     ACADEMIC_COLS = get_feature_group_columns('catests_2015_wide')
-    COHORT_COLS = []
+    COHORT_COLS = ["ged_rate", "special_ed_compl_rate", "cohort_grad_rate", "cohort_dropout_rate"]
     SCHOOL_INFO_COLS = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
             'afilliated_organization', 'site_type', 'start_type']
 
     results_list = []
     for key, val in model_opts.items():
         for feat in feature_opts:
-            base = ['year', 'pit', 'closeddate']
+            base = ['year', 'pit', 'closeddate', 'district']
             financial = []
             cohort = []
             demographic = []
@@ -83,7 +84,8 @@ def main(out_file):
                 if i == 'cohort':
                     cohort = COHORT_COLS
                 if i == 'school_info':
-                    school_info = SCHOOL_INFO_COLS
+                    #school_info = SCHOOL_INFO_COLS
+                    school_info=[]
                 if i == 'spatial':
                     spatial = []
                 if i == 'academic':
