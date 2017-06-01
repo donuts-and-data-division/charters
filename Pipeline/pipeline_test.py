@@ -46,11 +46,12 @@ def loop_through_models(df):
 
 if __name__=="__main__":
     import system
+    print("HEY BRO")
     if sys.argv[1]:
-        run sys.argv[1]
-
-    return TO_RUN
-
+        print(sys.argv[1])
+	
+    
+    '''
     model_opts = get_model_opts()
     feature_opts = get_feature_opts()
     df = select_statement()
@@ -128,4 +129,4 @@ if __name__=="__main__":
             results_list.append(results)
     final_results = pd.concat(results_list, axis=0)
     final_results.to_csv('results.csv')            
-   
+    '''
