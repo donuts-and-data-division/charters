@@ -88,9 +88,8 @@ def prev_year_difference(df):
 
     testing_cols = get_feature_group_columns('catests_2015_wide')
 
-
-    #for year in [x for x in range(4,16)]:
-    for year in [4]:
+    for year in [x for x in range(4,16)]:
+    #for year in [4]:
 
         for col in testing_cols:
             print(year, col)
