@@ -48,14 +48,21 @@ if __name__=="__main__":
     
     model_opts = get_model_opts()
     feature_opts = get_feature_opts()
-    df = select_statement()
-    df['key'] = list(zip(df['cdscode'],df['year']))
-    df['pit'] = pd.to_datetime(['200'+str(i)+'-07-01' if len(str(i)) == 1 else '20'+str(i)+'-07-01' for i in df['year']])
-    df['closeddate'] = pd.to_datetime(df['closeddate'])
-    df['closeddate'].fillna(inplace=True, value=dt.datetime(2200,7,1))
+    try:
+        df=pd.read_csv(sys.argv[1])
+        print('using csv')
+    except:
+        print('building sql query')
+        df = select_statement()
+        df['key'] = list(zip(df['cds_c'],df['year']))
+        df['pit'] = pd.to_datetime(['200'+str(i)+'-07-01' if len(str(i)) == 1 else '20'+str(i)+'-07-01' for i in df['year']])
+        df['closeddate'] = pd.to_datetime(df['closeddate'])
+        df['closeddate'].fillna(inplace=True, value=dt.datetime(2200,7,1))
+        df.to_csv('queryresults.csv')    
 
     FINANCIAL_COLS = get_feature_group_columns('financials_15_wide')
     DEMO_COLS = get_feature_group_columns('enrollment15_wide')
+    ACADEMIC_COLS = get_feature_group_columns('catests_2015_wide')
     COHORT_COLS = []
     SCHOOL_INFO_COLS = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
             'afilliated_organization', 'site_type', 'start_type']
@@ -66,7 +73,7 @@ if __name__=="__main__":
             base = ['year', 'pit', 'closeddate']
             financial = []
             cohort = []
-            demographics = []
+            demographic = []
             school_info = []
             academic = []
             spatial = []
@@ -80,11 +87,11 @@ if __name__=="__main__":
                 if i == 'spatial':
                     spatial = []
                 if i == 'academic':
-                    academic = []
+                    academic = ACADEMIC_COLS
                 if i == 'demographic':
-                    demographics = DEMO_COLS
+                    demographic = DEMO_COLS
 
-            relevant_cols = base + financial + cohort + school_info + spatial + demographics + academic
+            relevant_cols = base + financial + cohort + school_info + spatial + demographic + academic
 
             train_start = val['train_start']
             train_end = val['train_end']
@@ -118,9 +125,10 @@ if __name__=="__main__":
 
             #X_train = feature_eng(X_train, feat)
             #X_test = feature_eng(X_test, feat)
-            baseline = y_test[y_test == 1].value_counts()/ y_test.shape[0]
+            baseline = float(y_test[y_test == 1].value_counts()/ y_test.shape[0])
             results = classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline)
             results_list.append(results)
+            pass
     final_results = pd.concat(results_list, axis=0)
     final_results.to_csv('results.csv')            
    
