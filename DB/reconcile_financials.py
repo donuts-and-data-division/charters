@@ -72,8 +72,8 @@ def reconcile_test_columns():
                 master_list.append(value + "_" + str(subgroup) + ".0" + str(grade) + ".0")
     print (len(master_list))
 
-    for year in feature_years['tests']:
-    #for year in [2015]:
+    #for year in feature_years['tests']:
+    for year in [2015]:
 
         year_columns = get_feature_group_columns('catests_{}_wide'.format(year))
         missing_cols = [i for i in master_list if i not in year_columns]
@@ -81,18 +81,28 @@ def reconcile_test_columns():
 
         #missing_cols = [i for i in test_columns if i not in columns_2015]
 
-
-        #if year == 2015:
-            #missing_cols = [i for i in test_columns if i not in columns_2015]
-
         for col in missing_cols:
             
             alteration = """
             ALTER TABLE 'catests_{year}_wide'
             ADD COLUMN "{col}" numeric;""".format(year=year, col=col)
-                
+                    
             db_action(alteration, action_type='alter')
-        
+
+
+        if year == 2015:
+            extra_cols = [i for i in year_columns if i not in master_list and i != 'cdscode']
+
+            for col in extra_cols:
+
+                alteration = """
+                ALTER TABLE 'catests_{year}_wide'
+                DROP COLUMN "{col}";""".format(year=year, col=col)
+                    
+                db_action(alteration, action_type='alter')        
+
+
+
         '''
         else:
             missing_cols = [i for i in columns_2015 if i not in test_columns]
