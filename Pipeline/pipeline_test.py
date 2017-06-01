@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 import sys
 import pandas as pd
 import numpy as np
-from config import *
+#from config import *
 from select_stuff import *
 from explore import *
 from cleaning import *
@@ -11,6 +11,16 @@ from model import *
 from sklearn.cross_validation import train_test_split
 import datetime as dt
 from dateutil.relativedelta import relativedelta
+
+
+import system
+print("HEY BRO")
+if sys.argv[1]:
+    print(sys.argv[1])
+    from sys.argv[1] import *
+
+
+
 
 
 def get_model_opts():
@@ -45,10 +55,7 @@ def loop_through_models(df):
     # move everything from below to here
 
 if __name__=="__main__":
-    import system
-    print("HEY BRO")
-    if sys.argv[1]:
-        print(sys.argv[1])
+    
 	
     
     '''
