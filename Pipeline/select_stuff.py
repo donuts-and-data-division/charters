@@ -5,16 +5,58 @@ from db_config import *
 import psycopg2
 import datetime as dt
 
+feature_years = {
+    'tests': [x for x in range(2004, 2016) if x != 2014],
+    'dropouts': [x for x in range(10, 16)],
+    'enrollment': [x for x in range(2004, 2016)],
+    'financial': [x for x in range(2004, 2016)]
+    }
+
+
 def select_statement():
     db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
     engine = create_engine(db_string)
     year_list = []
+    asnull = ''
+
     for yr in range(2004, 2016):
         year_list.append(str(yr)[-2:])
 
     final_string = ''
-    for yr in year_list:
+    #for yr in year_list:
+    for yr in ['14']:
+
         open_cutoff = dt.datetime(int(yr)-1+2000, 7, 1).date()
+
+        joins = '''
+            FROM ca_pubschls_new
+            LEFT JOIN financials_{yr}_wide ON financials_{yr}_wide."CDSCode" = ca_pubschls_new."cdscode" 
+            LEFT JOIN "2015-16_AllCACharterSchools_new" ON "2015-16_AllCACharterSchools_new"."cds_code" = ca_pubschls_new."cdscode" 
+            LEFT JOIN "dropout_{yr}_wide" ON dropout_{yr}_wide."CDS{yr}" = ca_pubschls_new."cdscode"'''.format(yr=yr)
+
+        if yr != '14':
+            asnull = 'Null as'
+            join = 'LEFT JOIN "catests_20{yr}_wide" on catests_20{yr}_wide."cdscode" = ca_pubschls_new."cdscore"'.format(yr=yr)
+            test_string = 'catests_{yr}_wide.*'.format(yr=yr)
+            joins = joins + ' ' + join
+
+        if yr == '14':
+            test_cols = get_feature_group_columns('catests_2015_wide')
+            test_string = "Null as " + ", Null as ".join(test_cols)
+
+        select = """
+                SELECT "cdscode", {yr} AS year, closeddate, district, zip, fundingtype, charter_authorizer, afilliated_organization, site_type, start_type, 
+                financials_{yr}_wide.*, "GED Rate{yr}_AllAll" as ged_rate, "Special Ed Completers Rate{yr}_AllAll" as special_ed_compl_rate, 
+                "Cohort Graduation Rate{yr}_AllAll" as cohort_grad_rate, "Cohort Dropout Rate{yr}_AllAll" as cohort_dropout_rate, {testcolumns}
+                """.format(yr = yr, testcolumns = test_string)
+
+        string = select + joins + " WHERE charter = TRUE AND opendate <= '{open_cutoff}'".format(open_cutoff=open_cutoff)
+
+        print(string)
+        return None
+
+
+        '''
         string = """
             SELECT "cdscode", {yr} AS year, closeddate, district, zip, fundingtype, charter_authorizer, 
             afilliated_organization, site_type, start_type, financials_{yr}_wide.*,
@@ -25,6 +67,9 @@ def select_statement():
             LEFT JOIN "dropout_{yr}_wide" ON dropout_{yr}_wide."CDS{yr}" = ca_pubschls_new."cdscode" 
             WHERE charter = TRUE AND opendate <= '{open_cutoff}'
             """.format(yr=yr, open_cutoff=open_cutoff)
+        '''
+
+    for yr in feature_years['tests']:
         
         if final_string == '':
             final_string = string
