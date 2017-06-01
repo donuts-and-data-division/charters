@@ -61,26 +61,25 @@ def discretize(df):
     '''
     Function for discretizing continuous variables into Q equally-sized buckets     
     '''
-    for c in BUCKETING_COLS:
-        # special bucketing for age 
-        #if c == 'age':
-            #agebins = [0] + list(range(20,80,5)) + [110]
-            #df['bins_age'] = pd.cut(df['age'],bins=agebins, include_lowest=True)
-        #else:
-        df['bins_' + c] = pd.qcut(df[c], q=Q)
 
-    for c in DISTRICT_BUCKETING:
+    #delete all of this - it's in cleaning now
+    for col in ['ged_rate', 'special_ed_compl_rate', 'cohort_grad_rate', 'cohort_dropout_rate']:
+        
+        df[col].fillna(0, inplace=True) #fill missing values with category 0
 
-        districts = df.located_within_district.unique()
+        means = df.groupby('district')[col].mean()
+        new_name = col + "_means_compare"
+        means.name = new_name
+        df = df.join(means, on='district')
 
-        for district in districts:
+        df['diff'] = df[col] - df[new_name]
 
-            new_column_name = c + '_district_percentile'
+        df.set_value(df['diff'] > 0, new_name, \
+        value=1)
+        df.set_value(df['diff'] < 0, new_name, \
+        value=0)
 
-            df.set_value(df['located_within_district'] == district, new_column_name, \
-                value=pd.qcut(df[c], q=4, labels=[1, 2, 3, 4]))
-
-            df[new_column_name].fillna(0, inplace=True) #fill missing values with category 0
+    df = df.drop(['diff'], axis=1)
 
     return df
 
