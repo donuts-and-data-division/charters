@@ -55,6 +55,9 @@ if __name__=="__main__":
     df['closeddate'].fillna(inplace=True, value=dt.datetime(2200,7,1))
 
     FINANCIAL_COLS = get_feature_group_columns('financials_15_wide')
+
+    DEMO_COLS = get_feature_group_columns('enrollment15_wide')
+
     results_list = []
     for key, val in model_opts.items():
         for feat in feature_opts:
@@ -77,7 +80,7 @@ if __name__=="__main__":
                 if i == 'academic':
                     pass
                 if i == 'demographics':
-                    pass
+                    demographics = DEMO_COLS
 
             relevant_cols = base + financial + cohort + school_info + spatial + demographics
 

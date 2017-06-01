@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 import pandas as pd
 import numpy as np
 from os import system
-
+from clean_csv import load, TYPE_DICT, VERBOSE, TIMER
 
 
 def edit_all():
@@ -11,9 +11,63 @@ def edit_all():
 	Deal with raw financial data that must be manipulated to "wide" format,
 	i.e. each row is a single school
 	'''
-	for i in ['04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16']:
-		edit_financials(i)
-		
+	for i in ['04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15']:
+		#edit_financials(i)
+		edit_enrollment(i)
+	
+def edit_enrollment(year):
+	# get initial df
+	select = """
+		SELECT "enrollment{year}".*
+		FROM "enrollment{year}"
+		JOIN ca_pubschls_new ON "enrollment{year}"."cds_code" = ca_pubschls_new."cdscode"
+		WHERE charter = TRUE  
+		;""".format(year=year)
+	df = db_action(select, action_type='select')
+	ethnic09 = df[(df['ethnic'] == 9) | (df['ethnic'] == 0)]
+	ethnic09 = ethnic09.groupby(["cds_code","gender"]).sum()
+	ethnic09 = ethnic09.reset_index(level=[0,1]) 
+	ethnic09['ethnic'] = 8
+
+	df = df[~((df['ethnic'] == 9) | (df['ethnic'] == 0))]
+	new_df = pd.concat([ethnic09, df], axis=0)
+	new_df['ethnic'] = new_df['ethnic'].astype(str)
+	print(df.shape)
+	# modify df
+	values = [
+		'kdgn', 
+		'gr_1', 
+		'gr_2', 
+		'gr_3', 
+		'gr_4', 
+		'gr_5', 
+		'gr_6', 
+		'gr_7', 
+		'gr_8', 
+		'ungr_elm', 
+		'gr_9', 
+		'gr_10', 
+		'gr_11', 
+		'gr_12', 
+		'ungr_sec', 
+		'enr_total', 
+		'adult']
+	print(new_df.columns)
+	modified_df = pd.pivot_table(new_df, values=values, index='cds_code', columns=['ethnic','gender'])
+	modified_df.columns = modified_df.columns.map('_'.join)
+	modified_df.reset_index(inplace=True)
+	modified_df.to_csv('../Data/enrollment{year}_wide.csv'.format(year=year))
+
+	# load csv to database
+	
+	data = 'enrollment{}_wide.csv'.format(year)
+	table = 'enrollment{}_wide.csv'.format(year)
+	#try:
+	load(filepaths=[data], outnames=[data], make_id_cols=None, db = "postgresql://{}:{}@{}:{}/{}".format(USER, PASSWORD, HOST, PORT, DATABASE), clean=False)
+	#except:
+	#	print('did not create table!')
+	
+	
 
 def edit_financials(year):
 	'''

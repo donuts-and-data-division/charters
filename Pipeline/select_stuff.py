@@ -17,6 +17,18 @@ def select_statement():
         open_cutoff = dt.datetime(int(yr)-1+2000, 7, 1).date()
         string = """
             SELECT "cdscode", {yr} AS year, closeddate, district, zip, fundingtype, charter_authorizer, 
+            afilliated_organization, site_type, start_type, financials_{yr}_wide.*, enrollment{yr}_wide.*,
+            "GED Rate{yr}_AllAll" as ged_rate, "Special Ed Completers Rate{yr}_AllAll" as special_ed_compl_rate, "Cohort Graduation Rate{yr}_AllAll" as cohort_grad_rate, "Cohort Dropout Rate{yr}_AllAll" as cohort_dropout_rate
+            FROM ca_pubschls_new
+            LEFT JOIN financials_{yr}_wide ON financials_{yr}_wide."CDSCode" = ca_pubschls_new."cdscode" 
+            LEFT JOIN "2015-16_AllCACharterSchools_new" ON "2015-16_AllCACharterSchools_new"."cds_code" = ca_pubschls_new."cdscode" 
+            LEFT JOIN "enrollment{yr}_wide" ON "enrollment{yr}_wide".cds_code = ca_pubschls_new."cdscode" 
+            LEFT JOIN "dropout_{yr}_wide" ON dropout_{yr}_wide."CDS{yr}" = ca_pubschls_new."cdscode" 
+            WHERE charter = TRUE AND opendate <= '{open_cutoff}'
+            """.format(yr=yr, open_cutoff=open_cutoff)
+        '''
+        string = """
+            SELECT "cdscode", {yr} AS year, closeddate, district, zip, fundingtype, charter_authorizer, 
             afilliated_organization, site_type, start_type, financials_{yr}_wide.*,
             "GED Rate{yr}_AllAll" as ged_rate, "Special Ed Completers Rate{yr}_AllAll" as special_ed_compl_rate, "Cohort Graduation Rate{yr}_AllAll" as cohort_grad_rate, "Cohort Dropout Rate{yr}_AllAll" as cohort_dropout_rate
             FROM ca_pubschls_new
@@ -25,7 +37,7 @@ def select_statement():
             LEFT JOIN "dropout_{yr}_wide" ON dropout_{yr}_wide."CDS{yr}" = ca_pubschls_new."cdscode" 
             WHERE charter = TRUE AND opendate <= '{open_cutoff}'
             """.format(yr=yr, open_cutoff=open_cutoff)
-        
+        '''
         if final_string == '':
             final_string = string
         else:
