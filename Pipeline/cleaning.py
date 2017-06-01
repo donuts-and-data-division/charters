@@ -17,7 +17,7 @@ def clean(df, features, train_cols = None):
     if 'financial' in features:
         df = financial_features(df)
     if 'school_info' in features:
-        df = replace_none(df, REP_NONE=REP_NONE, fill="Unknown")
+        #df = replace_none(df, REP_NONE=REP_NONE, fill="Unknown")
         df = school_info_features(df)
     if 'demographic' in features:
         df = demographic_features(df)

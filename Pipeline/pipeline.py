@@ -128,8 +128,17 @@ if __name__=="__main__":
             #X_test = feature_eng(X_test, feat)
             baseline = float(y_test[y_test == 1].value_counts()/ y_test.shape[0])
             results = classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline)
+            '''
+            writer =  open('new_results.csv', 'a') as f:
+                for row in results:
+                    r = '\t'.join(row)
+                    print(r)
+                    f.writer(r)
+            '''
             results_list.append(results)
-            pass
+            
+            
     final_results = pd.concat(results_list, axis=0)
     final_results.to_csv('results.csv')            
-   
+    
+    final_results.to_csv(f, header=False)

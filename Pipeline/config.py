@@ -70,6 +70,10 @@ Q = 10
 # indicator for whether to normalize columns
 NORMALIZE = False
 
+# Feature group-specific columns
+
+SCHOOL_INFO_COLS = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
+            'afilliated_organization', 'site_type', 'start_type']
 
 # replace Nones in string feature with "Unknown"
 REP_NONE = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
@@ -123,7 +127,7 @@ CLASSIFIERS = {'RF': RandomForestClassifier(n_jobs=-1),
             }
 
 # list of classifier models to run
-TO_RUN = ['GB', 'NB']
+TO_RUN = ['DT','LR']
 
 # all grids to potentially loop through
 LARGE_GRID = { 
