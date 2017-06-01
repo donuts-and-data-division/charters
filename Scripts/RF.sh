@@ -13,9 +13,10 @@ cd /home/anisfeld/scratch-midway/ml-charters
 source /home/anisfeld/scratch-midway/ml-charters/bin/activate
 
 # update config file
-#touch temp_config.py
+touch temp_config.py
 cat /home/anisfeld/scratch-midway/ml-charters/charters/Pipeline/config.py >> temp_config.py
 echo 'WHICH_GRID = SMALL_GRID' >>  temp_config.py
 echo 'TO_RUN = ["RF"]' >> temp_config.py
-
-python /home/anisfeld/scratch-midway/ml-charters/pipeline_test.py temp_config
+# cat temp_config.py
+echo 'Is this thing on'
+python /home/anisfeld/scratch-midway/ml-charters/charters/Pipeline/pipeline_test.py temp_config
