@@ -5,26 +5,13 @@ from db_config import *
 import psycopg2
 import datetime as dt
 
-feature_years = {
-    'tests': [x for x in range(2004, 2016) if x != 2014],
-    'dropouts': [x for x in range(10, 16)],
-    'enrollment': [x for x in range(2004, 2016)],
-    'financial': [x for x in range(2004, 2016)]
-    }
-
 
 def select_function(year_list):
     db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
     engine = create_engine(db_string)
-    #year_list = []
     asnull = ''
-
-    #for yr in range(2004, 2016):
-        #year_list.append(str(yr)[-2:])
-
     final_string = ''
-    #for yr in year_list:
-    #for yr in ['09', '10', '11', '12', '13', '14', '15']:
+
     for yr in year_list: 
 
         open_cutoff = dt.datetime(int(yr)-1+2000, 7, 1).date()
@@ -47,24 +34,15 @@ def select_function(year_list):
             test_cols = ['"' + x + '"' for x in test_cols]
             test_string = "Null as " + ", Null as ".join(test_cols)
 
-        #select = """
-              #  SELECT ca_pubschls_new."cdscode" as cds_code, {yr} AS year, closeddate, district, zip, fundingtype, charter_authorizer, afilliated_organization, site_type, start_type, 
-               # financials_{yr}_wide.*, {testcolumns}
-               # """.format(yr = yr, testcolumns = test_string)
-
         dropout_select = """
                         , "GED Rate{yr}_AllAll" as ged_rate, "Special Ed Completers Rate{yr}_AllAll" as special_ed_compl_rate, 
                         "Cohort Graduation Rate{yr}_AllAll" as cohort_grad_rate, "Cohort Dropout Rate{yr}_AllAll" as cohort_dropout_rate
                         """.format(yr=yr)
 
         if yr not in ['10', '11', '12', '13', '14', '15']:
-            #dropout_select = ', Null as ged_rate, Null as special_ed_compl_rate, Null as cohort_grad_rate, Null as cohort_dropout_rate'
-            #dropout_select = ', 0 as ged_rate, 0 as special_ed_compl_rate, 0 as cohort_grad_rate, 0 as cohort_dropout_rate'
             cols = ['ged_rate', 'special_ed_compl_rate', 'cohort_grad_rate', 'cohort_dropout_rate']
             cols = ['"' + x + '"' for x in cols]
             test_string += ", Null as " + ", Null as ".join(cols)
-
-            #select = select + ' ' + dropout_select
 
         select = """
                 SELECT ca_pubschls_new."cdscode" as cds_c, {yr} AS year, closeddate, district, zip, fundingtype, charter_authorizer, afilliated_organization, site_type, start_type, 
@@ -79,19 +57,10 @@ def select_function(year_list):
 
         string = select + joins + " WHERE charter = TRUE AND opendate <= '{open_cutoff}'".format(open_cutoff=open_cutoff)
 
-        #print(string)
-        #return None
-        df = pd.read_sql_query(string, engine)
-        print(df.shape)
-        #return df
-
-
         if final_string == '':
             final_string = string
         else:
             final_string = final_string + " UNION ALL " + string
-
-        #print(yr)
 
     final_string += ';'
     print(final_string)
