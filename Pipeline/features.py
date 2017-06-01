@@ -61,6 +61,8 @@ def discretize(df):
     '''
     Function for discretizing continuous variables into Q equally-sized buckets     
     '''
+
+    #delete all of this - it's in cleaning now
     for col in ['ged_rate', 'special_ed_compl_rate', 'cohort_grad_rate', 'cohort_dropout_rate']:
         
         df[col].fillna(0, inplace=True) #fill missing values with category 0
