@@ -1,9 +1,16 @@
-from db_config import *
 from sqlalchemy import create_engine
 import pandas as pd 
 from os import system
 from clean_csv import load
+from clean_csv import *
+from db_config import *
 
+VERBOSE = True
+TIMER = True
+CLEAN = False
+TYPE_DICT = {"cdscode": "VARCHAR", "cds_code": "VARCHAR","country_code": "VARCHAR","district_code":"VARCHAR","school_code":"VARCHAR","adult":"NUMERIC","ungr_elm":"NUMERIC"}
+#DATABASE = "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"
+WEIRD_CHARS ='\"\*\"|ï¾\x86|ï¾\x96|\@|\#|\xf1|\"\"'
 
 def new_table():
     """
@@ -85,7 +92,7 @@ def new_table():
         'percentage_standard_nearly_met', 'percentage_standard_not_met']
 
         for col in cols:
-            df[col + '_students'] = (df[col]/100) * df['students_tested']
+            df[col[11:] + '_students'] = (df[col]/100) * df['students_tested']
 
         #return df
 
@@ -94,20 +101,28 @@ def new_table():
         index = "cdscode"
 
         values = ['percent_tested', 'percentage_standard_exceeded', 'percentage_standard_met', 'percentage_standard_met_and_above'\
-        'percentage_standard_nearly_met', 'percentage_standard_not_met', 'percentage_standard_exceeded_students', \
-        'percentage_standard_met_students', 'percentage_standard_met_and_above_students'\
-        'percentage_standard_nearly_met_students', 'percentage_standard_not_met_students']
+        'percentage_standard_nearly_met', 'percentage_standard_not_met', 'standard_exceeded_students', \
+        'standard_met_students', 'standard_met_and_above_students'\
+        'standard_nearly_met_students', 'standard_not_met_students']
 
-        df2 = pd.pivot_table(df, index = index, columns= newcol, values = values)
+        df = pd.pivot_table(df, index = index, columns= newcol, values = values)
 
         #get rid of multi-index columns
-        df2.columns = df2.columns.map('_'.join)
-        df2.reset_index(inplace=True)
+        df.columns = df.columns.map('_'.join)
+        df.reset_index(inplace=True)
         ##need to join this to re-enter names## 
-        return df2                                                
+        #return df2                                                
         
         newcsv = "catests_" + year + "_wide.csv"
-        print('appended ' + year)
+        #print('appended ' + year)
         #cols = list(df2.columns)
-        df2.to_csv(newcsv, index = False)
-        csvs.append(newcsv)
+        df.to_csv(newcsv, index = False)
+        #csvs.append(newcsv)
+        #return pd.read_csv(newcsv)
+        load(filepaths=[newcsv], outnames=[newcsv], ending="_with_totals.csv", make_id_cols= None, db = db_string, clean=CLEAN)
+
+
+
+if __name__=="__main__":
+    print('timer: ', TIMER)
+    print('clean: ', CLEAN)
