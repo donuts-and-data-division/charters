@@ -10,13 +10,14 @@
 
 
 
+
 # update config file
 touch temp_config.py
 cat /home/anisfeld/scratch-midway/ml-charters/charters/Pipeline/config.py >> temp_config.py
 echo 'WHICH_GRID = SMALL_GRID' >>  temp_config.py
 echo 'TO_RUN = ["RF"]' >> temp_config.py
 # cat temp_config.py
-#echo 'Is this thing on'
+echo 'Is this thing on'
 
 module load python/3.5.2+intel-16.0
 cd /home/anisfeld/scratch-midway/ml-charters
