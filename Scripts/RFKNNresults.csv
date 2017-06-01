@@ -1,0 +1,945 @@
+,model_type,date_params,feature_groups,baseline,clf,parameters,auc-roc,precision_5,accuracy_5,recall_5,precision_10,accuracy_10,recall_10,precision_20,accuracy_20,recall_20,runtime,y_pred_probs
+0,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 10}",0.9844106286937502,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.4151318073272705,"[ 0.02383716  0.02383716  0.02712916 ...,  0.02383716  0.02383716
+  0.02383716]"
+1,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.5241298675537109,"[ 0.02329956  0.02024809  0.03061797 ...,  0.02024809  0.02024809
+  0.02024809]"
+2,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 10}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.3840198516845703,"[ 0.03502159  0.02004056  0.0246603  ...,  0.02004056  0.02004056
+  0.02004056]"
+3,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 50}",0.923937828656522,0.13333333333333333,0.9444076770350761,0.3448275862068966,0.09933774834437085,0.900727994705493,0.5172413793103449,0.09602649006622517,0.8193249503639973,1.0,0.5221951007843018,"[ 0.02684822  0.02212086  0.0675195  ...,  0.02212086  0.02212086
+  0.02212086]"
+4,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 10}",0.5210456512634372,0.02666666666666667,0.9338186631369954,0.06896551724137931,0.019867549668874173,0.884844473858372,0.10344827586206896,0.026490066225165563,0.7915287888815354,0.27586206896551724,0.38869285583496094,"[ 0.02954408  0.02418253  0.03684017 ...,  0.02418253  0.02418253
+  0.02418253]"
+5,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 50}",0.9232630648238633,0.2,0.9510258107213766,0.5172413793103449,0.17218543046357615,0.9152878888153541,0.896551724137931,0.08609271523178808,0.8153540701522171,0.896551724137931,0.422652006149292,"[ 0.02970118  0.02446462  0.02935054 ...,  0.02446462  0.02446462
+  0.02446462]"
+6,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 10}",0.650018614174694,0.0,0.9311714096624751,0.0,0.033112582781456956,0.8874917273328922,0.1724137931034483,0.033112582781456956,0.7941760423560555,0.3448275862068966,0.3889138698577881,"[ 0.03296203  0.02300438  0.03029045 ...,  0.02300438  0.02300438
+  0.02300438]"
+7,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 50}",0.8257713248638838,0.05333333333333334,0.9364659166115156,0.13793103448275862,0.09933774834437085,0.900727994705493,0.5172413793103449,0.0695364238410596,0.8087359364659166,0.7241379310344828,0.42676591873168945,"[ 0.02711515  0.02297822  0.04330921 ...,  0.02297822  0.02297822
+  0.02297822]"
+8,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 10}",0.997440550979571,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.48929882049560547,"[ 0.10700219  0.00816728  0.00212736 ...,  0.00726877  0.00816728
+  0.00816728]"
+9,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 50}",0.9988598817999907,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,1.1376020908355713,"[ 0.02730855  0.00895388  0.13058188 ...,  0.01019681  0.00895388
+  0.00895388]"
+10,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 10}",0.9997673228163246,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.483867883682251,"[ 0.03592258  0.00607322  0.06666667 ...,  0.00607322  0.00607322
+  0.00607322]"
+11,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,1.0414929389953613,"[ 0.02918123  0.00664817  0.11812944 ...,  0.00639155  0.00664817
+  0.00664817]"
+12,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 10}",0.6440388105542371,0.04,0.9351422898742554,0.10344827586206896,0.046357615894039736,0.8901389808074123,0.2413793103448276,0.029801324503311258,0.7928524156187955,0.3103448275862069,0.3840508460998535,"[ 0.10560109  0.01434832  0.10180573 ...,  0.01434832  0.01434832
+  0.01434832]"
+13,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 50}",0.9652496626180836,0.24,0.9549966909331569,0.6206896551724138,0.17880794701986755,0.9166115155526141,0.9310344827586207,0.09602649006622517,0.8193249503639973,1.0,0.6179897785186768,"[ 0.03692152  0.0121751   0.15141852 ...,  0.01197728  0.0121751   0.0121751 ]"
+14,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 10}",0.8760993996928661,0.10666666666666667,0.9417604235605559,0.27586206896551724,0.09933774834437085,0.900727994705493,0.5172413793103449,0.07947019867549669,0.8127068166776968,0.8275862068965517,0.39196205139160156,"[ 0.03213157  0.01158024  0.03548112 ...,  0.01158024  0.01158024
+  0.01158024]"
+15,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 50}",0.91328121364419,0.16,0.9470549305095963,0.41379310344827586,0.12582781456953643,0.9060225016545335,0.6551724137931034,0.08609271523178808,0.8153540701522171,0.896551724137931,0.6248719692230225,"[ 0.06093941  0.01325353  0.12848709 ...,  0.01353783  0.01325353
+  0.01325353]"
+16,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 1, 'weights': 'uniform'}",0.49055330634278005,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,10.1771879196167,"[ 0.  0.  0. ...,  0.  0.  0.]"
+17,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 1, 'weights': 'distance'}",0.49055330634278005,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,9.706653833389282,"[ 0.  0.  0. ...,  0.  0.  0.]"
+18,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 5, 'weights': 'uniform'}",0.5620317371678534,0.08,0.9391131700860358,0.20689655172413793,0.17218543046357615,0.9152878888153541,0.896551724137931,0.09602649006622517,0.8193249503639973,1.0,10.588356256484985,"[ 0.   0.   0.2 ...,  0.   0.   0. ]"
+19,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 5, 'weights': 'distance'}",0.5594490204290568,0.02666666666666667,0.9338186631369954,0.06896551724137931,0.17880794701986755,0.9166115155526141,0.9310344827586207,0.09602649006622517,0.8193249503639973,1.0,11.248258113861084,"[ 0.          0.          0.16116806 ...,  0.          0.          0.        ]"
+20,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 25, 'weights': 'uniform'}",0.6299385732235097,0.12,0.9430840502978161,0.3103448275862069,0.059602649006622516,0.8927862342819325,0.3103448275862069,0.04966887417218543,0.800794176042356,0.5172413793103449,13.456814050674438,"[ 0.08  0.    0.08 ...,  0.    0.    0.  ]"
+21,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 25, 'weights': 'distance'}",0.626250639862255,0.04,0.9351422898742554,0.10344827586206896,0.039735099337748346,0.8888153540701522,0.20689655172413793,0.03642384105960265,0.7954996690933157,0.3793103448275862,11.643838167190552,"[ 0.07583498  0.          0.08193557 ...,  0.          0.          0.        ]"
+22,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 50, 'weights': 'uniform'}",0.5859044162129461,0.05333333333333334,0.9364659166115156,0.13793103448275862,0.033112582781456956,0.8874917273328922,0.1724137931034483,0.033112582781456956,0.7941760423560555,0.3448275862068966,11.102967977523804,"[ 0.06  0.    0.08 ...,  0.    0.    0.  ]"
+23,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 50, 'weights': 'distance'}",0.6025408348457351,0.02666666666666667,0.9338186631369954,0.06896551724137931,0.033112582781456956,0.8874917273328922,0.1724137931034483,0.033112582781456956,0.7941760423560555,0.3448275862068966,10.938326835632324,"[ 0.05903335  0.          0.08161821 ...,  0.          0.          0.        ]"
+24,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 1, 'weights': 'uniform'}",0.49055330634278005,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,9.665402889251709,"[ 0.  0.  0. ...,  0.  0.  0.]"
+25,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 1, 'weights': 'distance'}",0.49055330634278005,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,9.486499786376953,"[ 0.  0.  0. ...,  0.  0.  0.]"
+26,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 5, 'weights': 'uniform'}",0.5620317371678534,0.08,0.9391131700860358,0.20689655172413793,0.17218543046357615,0.9152878888153541,0.896551724137931,0.09602649006622517,0.8193249503639973,1.0,9.992464065551758,"[ 0.   0.   0.2 ...,  0.   0.   0. ]"
+27,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 5, 'weights': 'distance'}",0.5594490204290568,0.02666666666666667,0.9338186631369954,0.06896551724137931,0.17880794701986755,0.9166115155526141,0.9310344827586207,0.09602649006622517,0.8193249503639973,1.0,10.286434888839722,"[ 0.          0.          0.16116806 ...,  0.          0.          0.        ]"
+28,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 25, 'weights': 'uniform'}",0.6299385732235097,0.12,0.9430840502978161,0.3103448275862069,0.059602649006622516,0.8927862342819325,0.3103448275862069,0.04966887417218543,0.800794176042356,0.5172413793103449,10.733340978622437,"[ 0.08  0.    0.08 ...,  0.    0.    0.  ]"
+29,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 25, 'weights': 'distance'}",0.626250639862255,0.04,0.9351422898742554,0.10344827586206896,0.039735099337748346,0.8888153540701522,0.20689655172413793,0.03642384105960265,0.7954996690933157,0.3793103448275862,10.647926092147827,"[ 0.07583498  0.          0.08193557 ...,  0.          0.          0.        ]"
+30,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 50, 'weights': 'uniform'}",0.5859044162129461,0.05333333333333334,0.9364659166115156,0.13793103448275862,0.033112582781456956,0.8874917273328922,0.1724137931034483,0.033112582781456956,0.7941760423560555,0.3448275862068966,11.132034063339233,"[ 0.06  0.    0.08 ...,  0.    0.    0.  ]"
+31,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 50, 'weights': 'distance'}",0.6025408348457351,0.02666666666666667,0.9338186631369954,0.06896551724137931,0.033112582781456956,0.8874917273328922,0.1724137931034483,0.033112582781456956,0.7941760423560555,0.3448275862068966,11.286148309707642,"[ 0.05903335  0.          0.08161821 ...,  0.          0.          0.        ]"
+0,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 10}",0.39555121224812695,0.18666666666666668,0.9497021839841164,0.4827586206896552,0.09271523178807947,0.899404367968233,0.4827586206896552,0.046357615894039736,0.799470549305096,0.4827586206896552,0.23238611221313477,"[ 0.02615879  0.02615879  0.02615879 ...,  0.02615879  0.02615879
+  0.02615879]"
+1,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.26364970207214355,"[ 0.01752286  0.01752286  0.01752286 ...,  0.01752286  0.01752286
+  0.01752286]"
+2,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 10}",0.9999767322816324,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.2257528305053711,"[ 0.02381256  0.02381256  0.02381256 ...,  0.02381256  0.02381256
+  0.02381256]"
+3,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.2654130458831787,"[ 0.01700521  0.01700521  0.01680302 ...,  0.01700521  0.01700521
+  0.01700521]"
+4,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 10}",0.9971148029224254,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.23039817810058594,"[ 0.02462598  0.02462598  0.02462598 ...,  0.02462598  0.02462598
+  0.02462598]"
+5,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 50}",0.9999767322816324,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.26770591735839844,"[ 0.02046289  0.02046289  0.02041614 ...,  0.02046289  0.02046289
+  0.02046289]"
+6,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 10}",0.9997905905346922,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.2301959991455078,"[ 0.02021562  0.02021562  0.02021562 ...,  0.02021562  0.02021562
+  0.02021562]"
+7,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.2620100975036621,"[ 0.02092713  0.02092713  0.01984758 ...,  0.02092713  0.02092713
+  0.02092713]"
+8,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 10}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.23229598999023438,"[ 0.00273038  0.00273038  0.         ...,  0.00273038  0.00273038
+  0.00273038]"
+9,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.363109827041626,"[ 0.00158416  0.00158416  0.00171429 ...,  0.00158416  0.00158416
+  0.00158416]"
+10,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 10}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.23231291770935059,"[ 0.  0.  0. ...,  0.  0.  0.]"
+11,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.4864227771759033,"[ 0.      0.      0.0025 ...,  0.      0.      0.    ]"
+12,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 10}",0.9997440550979572,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.23171401023864746,"[ 0.00267439  0.00267439  0.         ...,  0.00267439  0.00267439
+  0.00267439]"
+13,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.3638949394226074,"[ 0.00321423  0.00321423  0.02065596 ...,  0.00321423  0.00321423
+  0.00321423]"
+14,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 10}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.2283639907836914,"[ 0.00244096  0.00244096  0.         ...,  0.00244096  0.00244096
+  0.00244096]"
+15,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 50}",0.9999999999999999,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.3650178909301758,"[ 0.0026892   0.0026892   0.01379117 ...,  0.0026892   0.0026892   0.0026892 ]"
+16,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 1, 'weights': 'uniform'}",0.6879682628321467,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,1.5755810737609863,"[ 0.  0.  0. ...,  0.  0.  0.]"
+17,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 1, 'weights': 'distance'}",0.6879682628321467,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,1.6702558994293213,"[ 0.  0.  0. ...,  0.  0.  0.]"
+18,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 5, 'weights': 'uniform'}",0.7195076550793429,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,1.7052969932556152,"[ 0.   0.   0.2 ...,  0.   0.   0. ]"
+19,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 5, 'weights': 'distance'}",0.7194611196426078,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,1.645613670349121,"[ 0.         0.         0.1611679 ...,  0.         0.         0.       ]"
+20,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 25, 'weights': 'uniform'}",0.8218274466005863,0.26666666666666666,0.9576439444076771,0.6896551724137931,0.13245033112582782,0.9073461283917935,0.6896551724137931,0.09602649006622517,0.8193249503639973,1.0,1.62204909324646,"[ 0.    0.    0.08 ...,  0.    0.    0.  ]"
+21,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 25, 'weights': 'distance'}",0.8213853599516031,0.22666666666666666,0.9536730641958967,0.5862068965517241,0.13245033112582782,0.9073461283917935,0.6896551724137931,0.09602649006622517,0.8193249503639973,1.0,1.6218769550323486,"[ 0.          0.          0.08193555 ...,  0.          0.          0.        ]"
+22,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 50, 'weights': 'uniform'}",0.8167434501372794,0.28,0.9589675711449371,0.7241379310344828,0.1390728476821192,0.9086697551290536,0.7241379310344828,0.09602649006622517,0.8193249503639973,1.0,1.6241090297698975,"[ 0.    0.    0.08 ...,  0.    0.    0.  ]"
+23,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 50, 'weights': 'distance'}",0.8235143561822327,0.21333333333333335,0.9523494374586366,0.5517241379310345,0.13245033112582782,0.9073461283917935,0.6896551724137931,0.09602649006622517,0.8193249503639973,1.0,1.632742166519165,"[ 0.          0.          0.08161819 ...,  0.          0.          0.        ]"
+24,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 1, 'weights': 'uniform'}",0.6879682628321467,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,1.9470767974853516,"[ 0.  0.  0. ...,  0.  0.  0.]"
+25,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 1, 'weights': 'distance'}",0.6879682628321467,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,1.9331247806549072,"[ 0.  0.  0. ...,  0.  0.  0.]"
+26,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 5, 'weights': 'uniform'}",0.7195076550793429,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,1.8968801498413086,"[ 0.   0.   0.2 ...,  0.   0.   0. ]"
+27,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 5, 'weights': 'distance'}",0.7194611196426078,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,1.9469578266143799,"[ 0.         0.         0.1611679 ...,  0.         0.         0.       ]"
+28,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 25, 'weights': 'uniform'}",0.8218274466005863,0.26666666666666666,0.9576439444076771,0.6896551724137931,0.13245033112582782,0.9073461283917935,0.6896551724137931,0.09602649006622517,0.8193249503639973,1.0,2.007641077041626,"[ 0.    0.    0.08 ...,  0.    0.    0.  ]"
+29,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 25, 'weights': 'distance'}",0.8213853599516031,0.22666666666666666,0.9536730641958967,0.5862068965517241,0.13245033112582782,0.9073461283917935,0.6896551724137931,0.09602649006622517,0.8193249503639973,1.0,1.9653019905090332,"[ 0.          0.          0.08193555 ...,  0.          0.          0.        ]"
+30,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 50, 'weights': 'uniform'}",0.8167434501372794,0.28,0.9589675711449371,0.7241379310344828,0.1390728476821192,0.9086697551290536,0.7241379310344828,0.09602649006622517,0.8193249503639973,1.0,1.9851911067962646,"[ 0.    0.    0.08 ...,  0.    0.    0.  ]"
+31,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['financial'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 50, 'weights': 'distance'}",0.8235143561822327,0.21333333333333335,0.9523494374586366,0.5517241379310345,0.13245033112582782,0.9073461283917935,0.6896551724137931,0.09602649006622517,0.8193249503639973,1.0,1.99489426612854,"[ 0.          0.          0.08161819 ...,  0.          0.          0.        ]"
+0,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 10}",0.5209758481083345,0.0,0.9311714096624751,0.0,0.0,0.8808735936465917,0.0,0.023178807947019868,0.7902051621442753,0.2413793103448276,0.391035795211792,"[ 0.04111751  0.02397211  0.03947971 ...,  0.02397211  0.02397211
+  0.02397211]"
+1,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.48181605339050293,"[ 0.03476324  0.02044894  0.02786716 ...,  0.02044894  0.02044894
+  0.02044894]"
+2,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 10}",0.5379612825166364,0.05333333333333334,0.9364659166115156,0.13793103448275862,0.026490066225165563,0.886168100595632,0.13793103448275862,0.023178807947019868,0.7902051621442753,0.2413793103448276,0.33766722679138184,"[ 0.026048   0.0235977  0.0235977 ...,  0.0235977  0.0235977  0.0235977]"
+3,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 50}",0.8328679789659825,0.02666666666666667,0.9338186631369954,0.06896551724137931,0.039735099337748346,0.8888153540701522,0.20689655172413793,0.0695364238410596,0.8087359364659166,0.7241379310344828,0.48325014114379883,"[ 0.02800337  0.02281392  0.02645151 ...,  0.02281392  0.02281392
+  0.02281392]"
+4,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 10}",0.6227721159663084,0.013333333333333334,0.9324950363997353,0.034482758620689655,0.013245033112582781,0.8835208471211119,0.06896551724137931,0.029801324503311258,0.7928524156187955,0.3103448275862069,0.3421511650085449,"[ 0.02786871  0.02227025  0.03201312 ...,  0.02227025  0.02227025
+  0.02227025]"
+5,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 50}",0.6681325329238215,0.04,0.9351422898742554,0.10344827586206896,0.033112582781456956,0.8874917273328922,0.1724137931034483,0.026490066225165563,0.7915287888815354,0.27586206896551724,0.3741888999938965,"[ 0.05367393  0.02484002  0.02870858 ...,  0.02484002  0.02484002
+  0.02484002]"
+6,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 10}",0.5518986458187911,0.02666666666666667,0.9338186631369954,0.06896551724137931,0.039735099337748346,0.8888153540701522,0.20689655172413793,0.029801324503311258,0.7928524156187955,0.3103448275862069,0.33513426780700684,"[ 0.02951102  0.02508014  0.03940563 ...,  0.02508014  0.02508014
+  0.02508014]"
+7,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 50}",0.9887616920284796,0.3466666666666667,0.9655857048312376,0.896551724137931,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.36666393280029297,"[ 0.03950033  0.02389402  0.03088269 ...,  0.02389402  0.02389402
+  0.02389402]"
+8,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 10}",0.9531853506445157,0.24,0.9549966909331569,0.6206896551724138,0.16556291390728478,0.913964262078094,0.8620689655172413,0.08940397350993377,0.8166776968894772,0.9310344827586207,0.44300389289855957,"[ 0.0317201   0.01071353  0.3175618  ...,  0.01071353  0.01071353
+  0.01071353]"
+9,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 50}",0.9975103541346736,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,1.0913100242614746,"[ 0.03026683  0.00924944  0.13437442 ...,  0.00968163  0.00924944
+  0.00924944]"
+10,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 10}",0.9994881101959141,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.4409761428833008,"[ 0.10430793  0.00542797  0.10906614 ...,  0.00542797  0.00542797
+  0.00542797]"
+11,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.9081809520721436,"[ 0.04293542  0.00698834  0.13595326 ...,  0.00630831  0.00698834
+  0.00698834]"
+12,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 10}",0.6814882032667876,0.13333333333333333,0.9444076770350761,0.3448275862068966,0.09271523178807947,0.899404367968233,0.4827586206896552,0.056291390728476824,0.8034414295168762,0.5862068965517241,0.3385159969329834,"[ 0.01331796  0.01230943  0.10566219 ...,  0.01116395  0.01230943
+  0.01230943]"
+13,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 50}",0.979954860626367,0.3466666666666667,0.9655857048312376,0.896551724137931,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.5804519653320312,"[ 0.07102061  0.01284545  0.17201163 ...,  0.01245126  0.01284545
+  0.01284545]"
+14,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 10}",0.6646540090278746,0.02666666666666667,0.9338186631369954,0.06896551724137931,0.026490066225165563,0.886168100595632,0.13793103448275862,0.039735099337748346,0.7968232958305758,0.41379310344827586,0.335446834564209,"[ 0.07857143  0.01551956  0.04519832 ...,  0.01800376  0.01551956
+  0.01551956]"
+15,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 50}",0.9365023965749919,0.24,0.9549966909331569,0.6206896551724138,0.15894039735099338,0.9126406353408338,0.8275862068965517,0.08278145695364239,0.814030443414957,0.8620689655172413,0.5824580192565918,"[ 0.06371904  0.01289402  0.12489418 ...,  0.01289402  0.01289402
+  0.01289402]"
+16,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 1, 'weights': 'uniform'}",0.5074573037367955,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,11.148705959320068,"[ 0.  0.  0. ...,  0.  0.  0.]"
+17,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 1, 'weights': 'distance'}",0.5074573037367955,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,11.156276941299438,"[ 0.  0.  0. ...,  0.  0.  0.]"
+18,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 5, 'weights': 'uniform'}",0.5940364837824004,0.10666666666666667,0.9417604235605559,0.27586206896551724,0.12582781456953643,0.9060225016545335,0.6551724137931034,0.09602649006622517,0.8193249503639973,1.0,11.407193899154663,"[ 0.   0.   0.2 ...,  0.   0.   0. ]"
+19,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 5, 'weights': 'distance'}",0.5923379403415702,0.05333333333333334,0.9364659166115156,0.13793103448275862,0.13245033112582782,0.9073461283917935,0.6896551724137931,0.09602649006622517,0.8193249503639973,1.0,11.336995124816895,"[ 0.          0.          0.19942271 ...,  0.          0.          0.        ]"
+20,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 25, 'weights': 'uniform'}",0.6548466657359578,0.08,0.9391131700860358,0.20689655172413793,0.039735099337748346,0.8888153540701522,0.20689655172413793,0.056291390728476824,0.8034414295168762,0.5862068965517241,11.585819005966187,"[ 0.12  0.    0.08 ...,  0.    0.    0.  ]"
+21,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 25, 'weights': 'distance'}",0.6614779654707059,0.06666666666666667,0.9377895433487756,0.1724137931034483,0.039735099337748346,0.8888153540701522,0.20689655172413793,0.039735099337748346,0.7968232958305758,0.41379310344827586,11.693509101867676,"[ 0.10993149  0.          0.07977657 ...,  0.          0.          0.        ]"
+22,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 50, 'weights': 'uniform'}",0.6526013309134906,0.04,0.9351422898742554,0.10344827586206896,0.046357615894039736,0.8901389808074123,0.2413793103448276,0.033112582781456956,0.7941760423560555,0.3448275862068966,11.681175947189331,"[ 0.06  0.    0.12 ...,  0.    0.    0.  ]"
+23,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 50, 'weights': 'distance'}",0.6651658988319605,0.04,0.9351422898742554,0.10344827586206896,0.046357615894039736,0.8901389808074123,0.2413793103448276,0.033112582781456956,0.7941760423560555,0.3448275862068966,11.693116903305054,"[ 0.05912682  0.          0.11900408 ...,  0.          0.          0.        ]"
+24,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 1, 'weights': 'uniform'}",0.5074573037367955,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,8.981011867523193,"[ 0.  0.  0. ...,  0.  0.  0.]"
+25,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 1, 'weights': 'distance'}",0.5074573037367955,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,8.927119970321655,"[ 0.  0.  0. ...,  0.  0.  0.]"
+26,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 5, 'weights': 'uniform'}",0.5940364837824004,0.10666666666666667,0.9417604235605559,0.27586206896551724,0.12582781456953643,0.9060225016545335,0.6551724137931034,0.09602649006622517,0.8193249503639973,1.0,9.383873701095581,"[ 0.   0.   0.2 ...,  0.   0.   0. ]"
+27,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 5, 'weights': 'distance'}",0.5923379403415702,0.05333333333333334,0.9364659166115156,0.13793103448275862,0.13245033112582782,0.9073461283917935,0.6896551724137931,0.09602649006622517,0.8193249503639973,1.0,9.421908855438232,"[ 0.          0.          0.19942271 ...,  0.          0.          0.        ]"
+28,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 25, 'weights': 'uniform'}",0.6548466657359578,0.08,0.9391131700860358,0.20689655172413793,0.039735099337748346,0.8888153540701522,0.20689655172413793,0.056291390728476824,0.8034414295168762,0.5862068965517241,9.984044075012207,"[ 0.12  0.    0.08 ...,  0.    0.    0.  ]"
+29,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 25, 'weights': 'distance'}",0.6614779654707059,0.06666666666666667,0.9377895433487756,0.1724137931034483,0.039735099337748346,0.8888153540701522,0.20689655172413793,0.039735099337748346,0.7968232958305758,0.41379310344827586,9.904788970947266,"[ 0.10993149  0.          0.07977657 ...,  0.          0.          0.        ]"
+30,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 50, 'weights': 'uniform'}",0.6526013309134906,0.04,0.9351422898742554,0.10344827586206896,0.046357615894039736,0.8901389808074123,0.2413793103448276,0.033112582781456956,0.7941760423560555,0.3448275862068966,10.338239192962646,"[ 0.06  0.    0.12 ...,  0.    0.    0.  ]"
+31,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['cohort', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 50, 'weights': 'distance'}",0.6651658988319605,0.04,0.9351422898742554,0.10344827586206896,0.046357615894039736,0.8901389808074123,0.2413793103448276,0.033112582781456956,0.7941760423560555,0.3448275862068966,9.862385988235474,"[ 0.05912682  0.          0.11900408 ...,  0.          0.          0.        ]"
+0,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 10}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.2193312644958496,"[ 0.00245346  0.00245346  0.00245346 ...,  0.          0.00245346
+  0.00245346]"
+1,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.261354923248291,"[ 0.00368797  0.00368797  0.00368797 ...,  0.00068656  0.00368797
+  0.00368797]"
+2,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 10}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.21918988227844238,"[ 0.0050464  0.0050464  0.0050464 ...,  0.         0.0050464  0.0050464]"
+3,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.26047515869140625,"[ 0.00497011  0.00497011  0.00497011 ...,  0.00225529  0.00497011
+  0.00497011]"
+4,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 10}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.21936607360839844,"[ 0.00258138  0.00258138  0.00258138 ...,  0.          0.00258138
+  0.00258138]"
+5,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.25790905952453613,"[ 0.00812232  0.00812232  0.00812232 ...,  0.00106622  0.00812232
+  0.00812232]"
+6,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 10}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.22293877601623535,"[ 0.0053828  0.0053828  0.0053828 ...,  0.         0.0053828  0.0053828]"
+7,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.26172971725463867,"[ 0.00566538  0.00566538  0.00566538 ...,  0.00046183  0.00566538
+  0.00566538]"
+8,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 10}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.22045397758483887,"[ 0.  0.  0. ...,  0.  0.  0.]"
+9,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.252025842666626,"[ 0.  0.  0. ...,  0.  0.  0.]"
+10,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 10}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.22321510314941406,"[ 0.  0.  0. ...,  0.  0.  0.]"
+11,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.2578282356262207,"[ 0.  0.  0. ...,  0.  0.  0.]"
+12,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 10}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.21891307830810547,"[ 0.  0.  0. ...,  0.  0.  0.]"
+13,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.25775694847106934,"[ 0.  0.  0. ...,  0.  0.  0.]"
+14,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 10}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.2187178134918213,"[ 0.  0.  0. ...,  0.  0.  0.]"
+15,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.26054906845092773,"[ 0.  0.  0. ...,  0.  0.  0.]"
+16,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 1, 'weights': 'uniform'}",0.982421238773326,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.40003085136413574,"[ 0.  0.  0. ...,  0.  0.  0.]"
+17,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 1, 'weights': 'distance'}",0.982421238773326,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.3961758613586426,"[ 0.  0.  0. ...,  0.  0.  0.]"
+18,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 5, 'weights': 'uniform'}",0.9826771836753689,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.3781147003173828,"[ 0.  0.  0. ...,  0.  0.  0.]"
+19,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 5, 'weights': 'distance'}",0.9826771836753689,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.3973062038421631,"[ 0.  0.  0. ...,  0.  0.  0.]"
+20,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 25, 'weights': 'uniform'}",0.9825957466610825,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.4088280200958252,"[ 0.  0.  0. ...,  0.  0.  0.]"
+21,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 25, 'weights': 'distance'}",0.9825957466610825,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.3845369815826416,"[ 0.  0.  0. ...,  0.  0.  0.]"
+22,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 50, 'weights': 'uniform'}",0.9825492112243474,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.38135290145874023,"[ 0.  0.  0. ...,  0.  0.  0.]"
+23,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 50, 'weights': 'distance'}",0.9825492112243474,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.3865201473236084,"[ 0.  0.  0. ...,  0.  0.  0.]"
+24,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 1, 'weights': 'uniform'}",0.982421238773326,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.4308311939239502,"[ 0.  0.  0. ...,  0.  0.  0.]"
+25,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 1, 'weights': 'distance'}",0.982421238773326,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.4484062194824219,"[ 0.  0.  0. ...,  0.  0.  0.]"
+26,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 5, 'weights': 'uniform'}",0.9826771836753689,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.4501609802246094,"[ 0.  0.  0. ...,  0.  0.  0.]"
+27,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 5, 'weights': 'distance'}",0.9826771836753689,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.451312780380249,"[ 0.  0.  0. ...,  0.  0.  0.]"
+28,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 25, 'weights': 'uniform'}",0.9825957466610825,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.45159912109375,"[ 0.  0.  0. ...,  0.  0.  0.]"
+29,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 25, 'weights': 'distance'}",0.9825957466610825,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.441957950592041,"[ 0.  0.  0. ...,  0.  0.  0.]"
+30,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 50, 'weights': 'uniform'}",0.9825492112243474,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.4409952163696289,"[ 0.  0.  0. ...,  0.  0.  0.]"
+31,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['cohort'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 50, 'weights': 'distance'}",0.9825492112243474,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.44744396209716797,"[ 0.  0.  0. ...,  0.  0.  0.]"
+0,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 10}",0.5829028805435338,0.04,0.9351422898742554,0.10344827586206896,0.026490066225165563,0.886168100595632,0.13793103448275862,0.026490066225165563,0.7915287888815354,0.27586206896551724,0.4075436592102051,"[ 0.08587527  0.02282092  0.02282092 ...,  0.02282092  0.02282092
+  0.02282092]"
+1,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.5254127979278564,"[ 0.03390562  0.01964958  0.04023462 ...,  0.01964958  0.01964958
+  0.01964958]"
+2,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 10}",0.49268230257340967,0.04,0.9351422898742554,0.10344827586206896,0.052980132450331126,0.8914626075446724,0.27586206896551724,0.029801324503311258,0.7928524156187955,0.3103448275862069,0.38245105743408203,"[ 0.02934462  0.0249754   0.02934462 ...,  0.0249754   0.0249754   0.0249754 ]"
+3,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 50}",0.9999767322816325,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.5205409526824951,"[ 0.02340183  0.02319918  0.06066327 ...,  0.02319918  0.02319918
+  0.02319918]"
+4,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 10}",0.46095676857927315,0.0,0.9311714096624751,0.0,0.006622516556291391,0.8821972203838517,0.034482758620689655,0.023178807947019868,0.7902051621442753,0.2413793103448276,0.3866260051727295,"[ 0.02806173  0.02589183  0.06385478 ...,  0.02589183  0.02589183
+  0.02589183]"
+5,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 50}",0.6575340872074084,0.02666666666666667,0.9338186631369954,0.06896551724137931,0.033112582781456956,0.8874917273328922,0.1724137931034483,0.03642384105960265,0.7954996690933157,0.3793103448275862,0.4213712215423584,"[ 0.029419    0.02446394  0.04327568 ...,  0.02446394  0.02446394
+  0.02446394]"
+6,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 10}",0.47332356089161903,0.013333333333333334,0.9324950363997353,0.034482758620689655,0.019867549668874173,0.884844473858372,0.10344827586206896,0.016556291390728478,0.7875579086697552,0.1724137931034483,0.389052152633667,"[ 0.03547211  0.02421564  0.03418262 ...,  0.02421564  0.02421564
+  0.02421564]"
+7,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 50}",0.9092326306482387,0.22666666666666666,0.9536730641958967,0.5862068965517241,0.16556291390728478,0.913964262078094,0.8620689655172413,0.08278145695364239,0.814030443414957,0.8620689655172413,0.42168378829956055,"[ 0.03107014  0.02399987  0.02691175 ...,  0.02399987  0.02399987
+  0.02399987]"
+8,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 10}",0.9996858858020383,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.49542808532714844,"[ 0.01112572  0.00794038  0.30182601 ...,  0.00794038  0.00794038
+  0.00794038]"
+9,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 50}",0.9996044487877519,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,1.0259249210357666,"[ 0.06593527  0.00807125  0.05975528 ...,  0.00807125  0.00807125
+  0.00807125]"
+10,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 10}",0.969356414909954,0.28,0.9589675711449371,0.7241379310344828,0.16556291390728478,0.913964262078094,0.8620689655172413,0.09602649006622517,0.8193249503639973,1.0,0.48606204986572266,"[ 0.10566113  0.01037458  0.16008912 ...,  0.01037458  0.01037458
+  0.01037458]"
+11,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,1.0373761653900146,"[ 0.04465421  0.00775519  0.12217192 ...,  0.00775519  0.00775519
+  0.00775519]"
+12,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 10}",0.8145213830331797,0.14666666666666667,0.9457313037723362,0.3793103448275862,0.09271523178807947,0.899404367968233,0.4827586206896552,0.0695364238410596,0.8087359364659166,0.7241379310344828,0.3777170181274414,"[ 0.01327294  0.01073782  0.01004471 ...,  0.01073782  0.01073782
+  0.01073782]"
+13,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 50}",0.9053934571175951,0.18666666666666668,0.9497021839841164,0.4827586206896552,0.12582781456953643,0.9060225016545335,0.6551724137931034,0.08278145695364239,0.814030443414957,0.8620689655172413,0.6402239799499512,"[ 0.03641786  0.01451785  0.0761395  ...,  0.01451785  0.01451785
+  0.01451785]"
+14,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 10}",0.8683512494764764,0.14666666666666667,0.9457313037723362,0.3793103448275862,0.08609271523178808,0.8980807412309728,0.4482758620689655,0.076158940397351,0.8113831899404368,0.7931034482758621,0.38272905349731445,"[ 0.09508546  0.01516054  0.10219602 ...,  0.01516054  0.01516054
+  0.01516054]"
+15,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 50}",0.917655544697287,0.22666666666666666,0.9536730641958967,0.5862068965517241,0.13245033112582782,0.9073461283917935,0.6896551724137931,0.076158940397351,0.8113831899404368,0.7931034482758621,0.6273260116577148,"[ 0.08688309  0.01317228  0.16003389 ...,  0.01317228  0.01317228
+  0.01317228]"
+16,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 1, 'weights': 'uniform'}",0.5084694494857834,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,10.181639194488525,"[ 0.  0.  0. ...,  0.  0.  0.]"
+17,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 1, 'weights': 'distance'}",0.5084694494857834,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,9.63973093032837,"[ 0.  0.  0. ...,  0.  0.  0.]"
+18,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 5, 'weights': 'uniform'}",0.5813555772720927,0.09333333333333334,0.9404367968232958,0.2413793103448276,0.18543046357615894,0.9179351422898743,0.9655172413793104,0.09602649006622517,0.8193249503639973,1.0,10.585142850875854,"[ 0.   0.   0.2 ...,  0.   0.   0. ]"
+19,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 5, 'weights': 'distance'}",0.57887756526595,0.04,0.9351422898742554,0.10344827586206896,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,10.453211784362793,"[ 0.          0.          0.16116806 ...,  0.          0.          0.        ]"
+20,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 25, 'weights': 'uniform'}",0.6540555633114618,0.13333333333333333,0.9444076770350761,0.3448275862068966,0.06622516556291391,0.8941098610191925,0.3448275862068966,0.052980132450331126,0.8021178027796162,0.5517241379310345,10.197649002075195,"[ 0.08  0.    0.08 ...,  0.    0.    0.  ]"
+21,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 25, 'weights': 'distance'}",0.650670110288985,0.05333333333333334,0.9364659166115156,0.13793103448275862,0.046357615894039736,0.8901389808074123,0.2413793103448276,0.04304635761589404,0.7981469225678358,0.4482758620689655,10.716158866882324,"[ 0.07583498  0.          0.08193557 ...,  0.          0.          0.        ]"
+22,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 50, 'weights': 'uniform'}",0.6134068593233748,0.06666666666666667,0.9377895433487756,0.1724137931034483,0.039735099337748346,0.8888153540701522,0.20689655172413793,0.03642384105960265,0.7954996690933157,0.3793103448275862,11.041301012039185,"[ 0.06  0.    0.08 ...,  0.    0.    0.  ]"
+23,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 50, 'weights': 'distance'}",0.6301828842663688,0.04,0.9351422898742554,0.10344827586206896,0.039735099337748346,0.8888153540701522,0.20689655172413793,0.03642384105960265,0.7954996690933157,0.3793103448275862,257.2088830471039,"[ 0.05903335  0.          0.08161821 ...,  0.          0.          0.        ]"
+24,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 1, 'weights': 'uniform'}",0.5084694494857834,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,11.358283996582031,"[ 0.  0.  0. ...,  0.  0.  0.]"
+25,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 1, 'weights': 'distance'}",0.5084694494857834,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,10.858005046844482,"[ 0.  0.  0. ...,  0.  0.  0.]"
+26,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 5, 'weights': 'uniform'}",0.5813555772720927,0.09333333333333334,0.9404367968232958,0.2413793103448276,0.18543046357615894,0.9179351422898743,0.9655172413793104,0.09602649006622517,0.8193249503639973,1.0,12.406621932983398,"[ 0.   0.   0.2 ...,  0.   0.   0. ]"
+27,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 5, 'weights': 'distance'}",0.57887756526595,0.04,0.9351422898742554,0.10344827586206896,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,11.837080240249634,"[ 0.          0.          0.16116806 ...,  0.          0.          0.        ]"
+28,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 25, 'weights': 'uniform'}",0.6540555633114618,0.13333333333333333,0.9444076770350761,0.3448275862068966,0.06622516556291391,0.8941098610191925,0.3448275862068966,0.052980132450331126,0.8021178027796162,0.5517241379310345,11.57222294807434,"[ 0.08  0.    0.08 ...,  0.    0.    0.  ]"
+29,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 25, 'weights': 'distance'}",0.650670110288985,0.05333333333333334,0.9364659166115156,0.13793103448275862,0.046357615894039736,0.8901389808074123,0.2413793103448276,0.04304635761589404,0.7981469225678358,0.4482758620689655,12.021687984466553,"[ 0.07583498  0.          0.08193557 ...,  0.          0.          0.        ]"
+30,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 50, 'weights': 'uniform'}",0.6134068593233748,0.06666666666666667,0.9377895433487756,0.1724137931034483,0.039735099337748346,0.8888153540701522,0.20689655172413793,0.03642384105960265,0.7954996690933157,0.3793103448275862,13.348268032073975,"[ 0.06  0.    0.08 ...,  0.    0.    0.  ]"
+31,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}","['financial', 'demographic', 'school_info', 'spatial', 'academic']",0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 50, 'weights': 'distance'}",0.6301828842663688,0.04,0.9351422898742554,0.10344827586206896,0.039735099337748346,0.8888153540701522,0.20689655172413793,0.03642384105960265,0.7954996690933157,0.3793103448275862,12.81313180923462,"[ 0.05903335  0.          0.08161821 ...,  0.          0.          0.        ]"
+0,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 10}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.2853810787200928,"[ 0.02617229  0.01641794  0.1228498  ...,  0.01641794  0.01641794
+  0.01641794]"
+1,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.40317583084106445,"[ 0.02678254  0.02060889  0.02269454 ...,  0.02060889  0.02060889
+  0.02060889]"
+2,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 10}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.2598750591278076,"[ 0.02879968  0.01994439  0.02308452 ...,  0.01994439  0.01994439
+  0.01994439]"
+3,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 50}",0.9999069291265298,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.3983280658721924,"[ 0.02765143  0.02297268  0.02645775 ...,  0.02297268  0.02297268
+  0.02297268]"
+4,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 10}",0.8590325282702779,0.29333333333333333,0.9602911978821972,0.7586206896551724,0.1456953642384106,0.9099933818663137,0.7586206896551724,0.0728476821192053,0.8100595632031767,0.7586206896551724,0.2637639045715332,"[ 0.02436404  0.02327471  0.02631522 ...,  0.02327471  0.02327471
+  0.02327471]"
+5,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 50}",0.9993019684489739,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.29167890548706055,"[ 0.03310904  0.02369889  0.0282908  ...,  0.02369889  0.02369889
+  0.02369889]"
+6,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 10}",0.9988133463632556,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.25791406631469727,"[ 0.03476374  0.02357919  0.02715616 ...,  0.02357919  0.02357919
+  0.02357919]"
+7,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 3, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 50}",0.9169924147238122,0.3333333333333333,0.9642620780939775,0.8620689655172413,0.16556291390728478,0.913964262078094,0.8620689655172413,0.08278145695364239,0.814030443414957,0.8620689655172413,0.2971982955932617,"[ 0.03193769  0.02398795  0.02732502 ...,  0.02398795  0.02398795
+  0.02398795]"
+8,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 10}",0.9993717716040765,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.36550211906433105,"[ 0.          0.00415714  0.00347958 ...,  0.00415714  0.00415714
+  0.00415714]"
+9,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 50}",0.9994881101959141,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.8038711547851562,"[ 0.04267367  0.00567652  0.04536456 ...,  0.00567652  0.00567652
+  0.00567652]"
+10,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 10}",0.9996277165061195,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.36620593070983887,"[ 0.          0.00563633  0.07111111 ...,  0.00563633  0.00563633
+  0.00563633]"
+11,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 50}",1.0,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.817803144454956,"[ 0.03275588  0.00404234  0.09860918 ...,  0.00404234  0.00404234
+  0.00404234]"
+12,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 10}",0.9578621620363909,0.28,0.9589675711449371,0.7241379310344828,0.18543046357615894,0.9179351422898743,0.9655172413793104,0.09271523178807947,0.8180013236267373,0.9655172413793104,0.2578740119934082,"[ 0.05923077  0.01090224  0.10189223 ...,  0.01090224  0.01090224
+  0.01090224]"
+13,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 2, 'n_estimators': 50}",0.9879007864488808,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.49924230575561523,"[ 0.02940702  0.01006102  0.06688097 ...,  0.01006102  0.01006102
+  0.01006102]"
+14,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 10}",0.9972544092326306,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.26204681396484375,"[ 0.00030581  0.00519309  0.07719298 ...,  0.00519309  0.00519309
+  0.00519309]"
+15,RF,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=3, max_features='sqrt', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=-1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)","{'max_depth': 20, 'max_features': 'log2', 'min_samples_split': 10, 'n_estimators': 50}",0.9869468099958119,0.37333333333333335,0.9682329583057577,0.9655172413793104,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,0.5001616477966309,"[ 0.03011602  0.01026082  0.08172405 ...,  0.01026082  0.01026082
+  0.01026082]"
+16,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 1, 'weights': 'uniform'}",0.5246986830471403,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,2.8171210289001465,"[ 0.  0.  0. ...,  0.  0.  0.]"
+17,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 1, 'weights': 'distance'}",0.5246986830471403,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,3.3233871459960938,"[ 0.  0.  0. ...,  0.  0.  0.]"
+18,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 5, 'weights': 'uniform'}",0.6203988086928196,0.12,0.9430840502978161,0.3103448275862069,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,4.263468027114868,"[ 0.  0.  0. ...,  0.  0.  0.]"
+19,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 5, 'weights': 'distance'}",0.6386290660337847,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,3.640721082687378,"[ 0.  0.  0. ...,  0.  0.  0.]"
+20,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 25, 'weights': 'uniform'}",0.6874680068872446,0.10666666666666667,0.9417604235605559,0.27586206896551724,0.06622516556291391,0.8941098610191925,0.3448275862068966,0.056291390728476824,0.8034414295168762,0.5862068965517241,3.2511329650878906,"[ 0.  0.  0. ...,  0.  0.  0.]"
+21,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 25, 'weights': 'distance'}",0.759853878728652,0.10666666666666667,0.9417604235605559,0.27586206896551724,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,3.2580690383911133,"[ 0.  0.  0. ...,  0.  0.  0.]"
+22,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 50, 'weights': 'uniform'}",0.7150984224486947,0.06666666666666667,0.9377895433487756,0.1724137931034483,0.06622516556291391,0.8941098610191925,0.3448275862068966,0.052980132450331126,0.8021178027796162,0.5517241379310345,3.3500490188598633,"[ 0.02  0.    0.08 ...,  0.    0.    0.  ]"
+23,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'ball_tree', 'n_neighbors': 50, 'weights': 'distance'}",0.8193959700311787,0.08,0.9391131700860358,0.20689655172413793,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,3.3261687755584717,"[ 0.  0.  0. ...,  0.  0.  0.]"
+24,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 1, 'weights': 'uniform'}",0.5246986830471403,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,2.140697717666626,"[ 0.  0.  0. ...,  0.  0.  0.]"
+25,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 1, 'weights': 'distance'}",0.5246986830471403,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,2.218480110168457,"[ 0.  0.  0. ...,  0.  0.  0.]"
+26,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 5, 'weights': 'uniform'}",0.6203988086928196,0.12,0.9430840502978161,0.3103448275862069,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,2.6162068843841553,"[ 0.  0.  0. ...,  0.  0.  0.]"
+27,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 5, 'weights': 'distance'}",0.6386290660337847,0.38666666666666666,0.9695565850430179,1.0,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,2.538395881652832,"[ 0.  0.  0. ...,  0.  0.  0.]"
+28,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 25, 'weights': 'uniform'}",0.6874680068872446,0.10666666666666667,0.9417604235605559,0.27586206896551724,0.06622516556291391,0.8941098610191925,0.3448275862068966,0.056291390728476824,0.8034414295168762,0.5862068965517241,2.8270680904388428,"[ 0.  0.  0. ...,  0.  0.  0.]"
+29,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 25, 'weights': 'distance'}",0.759853878728652,0.10666666666666667,0.9417604235605559,0.27586206896551724,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,2.769036054611206,"[ 0.  0.  0. ...,  0.  0.  0.]"
+30,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 50, 'weights': 'uniform'}",0.7150984224486947,0.06666666666666667,0.9377895433487756,0.1724137931034483,0.06622516556291391,0.8941098610191925,0.3448275862068966,0.052980132450331126,0.8021178027796162,0.5517241379310345,2.94472599029541,"[ 0.02  0.    0.08 ...,  0.    0.    0.  ]"
+31,KNN,"{'train_start': datetime.datetime(2003, 7, 1, 0, 0), 'train_end': datetime.datetime(2014, 7, 1, 0, 0), 'test_start': datetime.datetime(2014, 7, 1, 0, 0), 'test_end': datetime.datetime(2015, 7, 1, 0, 0)}",['demographic'],0.019192587690271344,"KNeighborsClassifier(algorithm='kd_tree', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=50, p=2,
+           weights='distance')","{'algorithm': 'kd_tree', 'n_neighbors': 50, 'weights': 'distance'}",0.8193959700311787,0.08,0.9391131700860358,0.20689655172413793,0.19205298013245034,0.9192587690271343,1.0,0.09602649006622517,0.8193249503639973,1.0,2.9917562007904053,"[ 0.  0.  0. ...,  0.  0.  0.]"
