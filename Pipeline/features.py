@@ -7,21 +7,11 @@ from select_stuff import *
 
 def feature_eng(df):
     #df = fill_missing(df)
-    df = financial_features(df)
     df = cap_extreme(df)
     df = discretize(df)
     df = normalize(df)
     df = label_encode(df)
 
-    return df
-
-def financial_features(df):
-    financial = get_feature_group_columns('financials_15_wide')
-    df['tot_spend'] = df[financial].sum(axis=1)
-    for i in financial:
-        df[i].fillna(value=0, inplace=True)
-        df['perc_'+i] = df[i] / df['tot_spend']
-        df['bins_'+i] = pd.qcut(df['perc_'+i], q=10)
     return df
 
 def fill_missing(df):
