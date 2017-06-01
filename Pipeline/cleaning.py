@@ -82,6 +82,7 @@ def spatial_features(df):
     return df
 
 def academic_features(df):
+    '''
     academic = get_feature_group_columns('catests_2015_wide')
     for i in academic[1:]: # to ignore CDScode
         try:
@@ -91,6 +92,8 @@ def academic_features(df):
         avg = df[i].mean
         df['avg_compare_'+i] = ['Above avg' if df[i]> avg else 'Below avg' for i in df[i]] # getting a key error 0!
         df = make_dummies(df['avg_compare_'+i], axis=1)
+    '''
+    df = df.drop(['cdscode'], axis=1)
     return df
 
 def convert_types(df):

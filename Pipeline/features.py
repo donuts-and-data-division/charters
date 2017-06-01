@@ -4,6 +4,7 @@ from sklearn.preprocessing import normalize
 from sklearn.preprocessing import LabelEncoder as le
 from config import *
 from select_stuff import *
+import sys
 
 def feature_eng(df):
     #df = fill_missing(df)
@@ -34,7 +35,8 @@ def fill_missing(df):
             except: # if no mode, fill with 'unknown'
                 df[colname].fillna(value='Unknown', inplace=True)
         else:
-            sys.exit('check irregular data types')
+            #sys.exit('check irregular data types')
+            pass
     return df
 
 def cap_extreme(df):
