@@ -169,3 +169,12 @@ def replace_none(df, REP_NONE=REP_NONE, fill="Unknown"):
             pass
             #print(colname, " not in df")
     return df
+
+
+def testing_features(df):
+    testing_cols = get_feature_group_columns('catests_2015_wide')
+    prev_year_difference(testing_cols)
+    df = df.drop(['cdscode'], axis=1)
+
+
+
