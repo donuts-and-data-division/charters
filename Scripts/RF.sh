@@ -20,6 +20,4 @@ module load python/3.5.2+intel-16.0
 cd /home/anisfeld/scratch-midway/ml-charters
 source /home/anisfeld/scratch-midway/ml-charters/bin/activate
 python /home/anisfeld/scratch-midway/ml-charters/charters/Pipeline/pipeline_test.py SMALL_GRID RF
-python /home/anisfeld/scratch-midway/ml-charters/test.py FUCK THE HELLO
-
-echo "seriously those python things should've went"
+python /home/anisfeld/scratch-midway/ml-charters/test.py POOP

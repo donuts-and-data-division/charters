@@ -12,13 +12,15 @@ from sklearn.cross_validation import train_test_split
 import datetime as dt
 from dateutil.relativedelta import relativedelta
 
+print("work")
 
 if sys.argv[1]:
     WHICH_GRID = sys.argv[1]  
-
+    print(WHICH_GRID)
 if sys.argv[2]:
     TO_RUN = [sys.argv[2]]
-
+    print(WHICH_GRID)	
+print('main function:', main())
 
 
 def get_model_opts():
