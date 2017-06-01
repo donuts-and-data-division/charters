@@ -10,6 +10,7 @@ def clean(df, features, train_cols = None):
     Clean df to prepare for modeling
     '''
     df = convert_types(df)
+    df = fill_missing(df)
     #df = setup_outcome(df)
     #df = replace_none(df)
 
