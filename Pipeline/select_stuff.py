@@ -24,7 +24,7 @@ def select_statement():
 
     final_string = ''
     #for yr in year_list:
-    for yr in ['14']:
+    for yr in ['10']:
 
         open_cutoff = dt.datetime(int(yr)-1+2000, 7, 1).date()
 
@@ -32,12 +32,12 @@ def select_statement():
             FROM ca_pubschls_new
             LEFT JOIN financials_{yr}_wide ON financials_{yr}_wide."CDSCode" = ca_pubschls_new."cdscode" 
             LEFT JOIN "2015-16_AllCACharterSchools_new" ON "2015-16_AllCACharterSchools_new"."cds_code" = ca_pubschls_new."cdscode" 
-            LEFT JOIN "dropout_{yr}_wide" ON dropout_{yr}_wide."CDS{yr}" = ca_pubschls_new."cdscode"'''.format(yr=yr)
+            '''.format(yr=yr)
 
         if yr != '14':
             asnull = 'Null as'
-            join = 'LEFT JOIN "catests_20{yr}_wide" on catests_20{yr}_wide."cdscode" = ca_pubschls_new."cdscore"'.format(yr=yr)
-            test_string = 'catests_{yr}_wide.*'.format(yr=yr)
+            join = 'LEFT JOIN "catests_20{yr}_wide" on catests_20{yr}_wide."cdscode" = ca_pubschls_new."cdscode"'.format(yr=yr)
+            test_string = 'catests_20{yr}_wide.*'.format(yr=yr)
             joins = joins + ' ' + join
 
         if yr == '14':
@@ -45,15 +45,27 @@ def select_statement():
             test_string = "Null as " + ", Null as ".join(test_cols)
 
         select = """
-                SELECT "cdscode", {yr} AS year, closeddate, district, zip, fundingtype, charter_authorizer, afilliated_organization, site_type, start_type, 
-                financials_{yr}_wide.*, "GED Rate{yr}_AllAll" as ged_rate, "Special Ed Completers Rate{yr}_AllAll" as special_ed_compl_rate, 
-                "Cohort Graduation Rate{yr}_AllAll" as cohort_grad_rate, "Cohort Dropout Rate{yr}_AllAll" as cohort_dropout_rate, {testcolumns}
+                SELECT ca_pubschls_new."cdscode" as cds_code, {yr} AS year, closeddate, district, zip, fundingtype, charter_authorizer, afilliated_organization, site_type, start_type, 
+                financials_{yr}_wide.*, {testcolumns}
                 """.format(yr = yr, testcolumns = test_string)
+
+        dropout_select = """
+                        , "GED Rate{yr}_AllAll" as ged_rate, "Special Ed Completers Rate{yr}_AllAll" as special_ed_compl_rate, 
+                        "Cohort Graduation Rate{yr}_AllAll" as cohort_grad_rate, "Cohort Dropout Rate{yr}_AllAll" as cohort_dropout_rate
+                        """.format(yr=yr)
+
+        if yr in ['10', '11', '12', '13', '14', '15']:
+            select = select + ' ' + dropout_select
+            join = 'LEFT JOIN "dropout_{yr}_wide" ON dropout_{yr}_wide."CDS{yr}" = ca_pubschls_new."cdscode"'.format(yr=yr)
+            joins = joins + ' ' + join
 
         string = select + joins + " WHERE charter = TRUE AND opendate <= '{open_cutoff}'".format(open_cutoff=open_cutoff)
 
-        print(string)
-        return None
+        #print(string)
+        #return None
+        df = pd.read_sql_query(string, engine)
+        return df
+
 
 
         '''
