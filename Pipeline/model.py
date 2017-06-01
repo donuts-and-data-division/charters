@@ -18,13 +18,16 @@ import matplotlib.pyplot as plt
 import time
 
 # based off Rayid's magicloops code: https://github.com/rayidghani/magicloops/blob/master/magicloops.py
-def classifiers_loop(X_train, X_test, y_train, y_test):
-    results =  pd.DataFrame(columns=('model_type','clf', 'parameters', 'auc-roc', 'precision_5', 'accuracy_5', 'recall_5',
+def classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline):
+    results =  pd.DataFrame(columns=('model_type', 'date_params', 'feature_groups', 'baseline', 'clf', 'parameters', 'auc-roc', 'precision_5', 'accuracy_5', 'recall_5',
                                                        'precision_10', 'accuracy_10', 'recall_10',
                                                        'precision_20', 'accuracy_20', 'recall_20', 'runtime', 'y_pred_probs'))
     for i, clf in enumerate([CLASSIFIERS[x] for x in TO_RUN]):
         print(TO_RUN[i])
         params = WHICH_GRID[TO_RUN[i]]
+        results['date_params'] = val
+        results['feature_groups'] = feat
+        results['baseline'] = baseline
         for p in ParameterGrid(params):
             try:
                 start_time = time.time()
@@ -52,7 +55,7 @@ def classifiers_loop(X_train, X_test, y_train, y_test):
 
 def generate_binary_at_k(y_scores, k):
     cutoff_index = int(len(y_scores) * (k / 100.0))
-    test_predictions_binary = [1 if x < cutoff_index else 0 for x in range(len(y_scores))]
+    test_predictions_binary = [1 if x < cutoff_index else 0 for x in y_scores]
     return test_predictions_binary
 
 def scores_at_k(y_true, y_scores, k):

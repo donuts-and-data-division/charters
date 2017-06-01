@@ -55,8 +55,10 @@ if __name__=="__main__":
     df['closeddate'].fillna(inplace=True, value=dt.datetime(2200,7,1))
 
     FINANCIAL_COLS = get_feature_group_columns('financials_15_wide')
-
     DEMO_COLS = get_feature_group_columns('enrollment15_wide')
+    COHORT_COLS = []
+    SCHOOL_INFO_COLS = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
+            'afilliated_organization', 'site_type', 'start_type']
 
     results_list = []
     for key, val in model_opts.items():
@@ -82,7 +84,7 @@ if __name__=="__main__":
                 if i == 'demographics':
                     demographics = DEMO_COLS
 
-            relevant_cols = base + financial + cohort + school_info + spatial + demographics
+            relevant_cols = base + financial + cohort + school_info + spatial + demographics + academic
 
             train_start = val['train_start']
             train_end = val['train_end']
@@ -96,7 +98,7 @@ if __name__=="__main__":
             test_end_yr = int(str(test_end.year)[-2:])
 
             outcome_header = "closed_within_{}_years".format(str(closed_within))
-            print(key, outcome_header)
+            print(key, outcome_header, feat)
             X_train = df[relevant_cols].loc[(df['year'] > train_start_yr) & (df['year'] <= train_end_yr)]
             X_train[outcome_header] = 0
             X_train[outcome_header][(X_train['closeddate'] - X_train['pit'] <= np.timedelta64(closed_within, 'Y')) & (X_train['closeddate'] - X_train['pit'] >= np.timedelta64(0, 'D'))] = 1
@@ -116,8 +118,8 @@ if __name__=="__main__":
 
             #X_train = feature_eng(X_train, feat)
             #X_test = feature_eng(X_test, feat)
-
-            results = classifiers_loop(X_train, X_test, y_train, y_test)
+            baseline = y_test[y_test == 1].value_counts()/ y_test.shape[1]
+            results = classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline)
             results_list.append(results)
     final_results = pd.concat(results_list, axis=0)
     final_results.to_csv('results.csv')            

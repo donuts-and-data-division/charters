@@ -59,8 +59,9 @@ def school_info_features(df):
     return df
 
 def demographic_features(df):
-    demographic = get_feature_group_columns('enrollment15_wide')
+    demographic = get_feature_group_columns('enrollment04_wide')
     df.fillna(value=0.0, inplace=True)
+    print(demographic)
     df['tot_enrollment'] = df[demographic].sum(axis=1)
     for i in demographic[2:]: # to ignore CSDcode and index
         df['perc_'+i] = 0.0 
