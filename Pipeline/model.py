@@ -25,9 +25,9 @@ def classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline):
     for i, clf in enumerate([CLASSIFIERS[x] for x in TO_RUN]):
         print(TO_RUN[i])
         params = WHICH_GRID[TO_RUN[i]]
-        results['date_params'] = val
-        results['feature_groups'] = feat
-        results['baseline'] = baseline
+        #results['date_params'] = val
+        #results['feature_groups'] = str(feat)
+        #results['baseline'] = baseline
         for p in ParameterGrid(params):
             try:
                 start_time = time.time()
@@ -40,7 +40,7 @@ def classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline):
                 precision_5, accuracy_5, recall_5 = scores_at_k(y_test_sorted,y_pred_probs_sorted,5.0)
                 precision_10, accuracy_10, recall_10 = scores_at_k(y_test_sorted,y_pred_probs_sorted,10.0)
                 precision_20, accuracy_20, recall_20 = scores_at_k(y_test_sorted,y_pred_probs_sorted,20.0)
-                results.loc[len(results)] = [TO_RUN[i], clf, p,
+                results.loc[len(results)] = [TO_RUN[i], val, feat, baseline, clf, p,
                                                        roc_auc_score(y_test, y_pred_probs),
                                                        precision_5, accuracy_5, recall_5,
                                                        precision_10, accuracy_10, recall_10,

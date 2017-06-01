@@ -78,10 +78,10 @@ if __name__=="__main__":
                 if i == 'school_info':
                     school_info = SCHOOL_INFO_COLS
                 if i == 'spatial':
-                    pass
+                    spatial = []
                 if i == 'academic':
-                    pass
-                if i == 'demographics':
+                    academic = []
+                if i == 'demographic':
                     demographics = DEMO_COLS
 
             relevant_cols = base + financial + cohort + school_info + spatial + demographics + academic
@@ -118,7 +118,7 @@ if __name__=="__main__":
 
             #X_train = feature_eng(X_train, feat)
             #X_test = feature_eng(X_test, feat)
-            baseline = y_test[y_test == 1].value_counts()/ y_test.shape[1]
+            baseline = y_test[y_test == 1].value_counts()/ y_test.shape[0]
             results = classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline)
             results_list.append(results)
     final_results = pd.concat(results_list, axis=0)
