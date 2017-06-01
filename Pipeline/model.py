@@ -55,7 +55,7 @@ def classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline):
 
 def generate_binary_at_k(y_scores, k):
     cutoff_index = int(len(y_scores) * (k / 100.0))
-    test_predictions_binary = [1 if x < cutoff_index else 0 for x in len(range(y_scores))]
+    test_predictions_binary = [1 if x < cutoff_index else 0 for x in range(len(y_scores))]
     return test_predictions_binary
 
 def scores_at_k(y_true, y_scores, k):
