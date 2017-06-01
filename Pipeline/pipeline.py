@@ -70,7 +70,7 @@ if __name__=="__main__":
     results_list = []
     for key, val in model_opts.items():
         for feat in feature_opts:
-            base = ['year', 'pit', 'closeddate']
+            base = ['year', 'pit', 'closeddate', 'district']
             financial = []
             cohort = []
             demographic = []
@@ -83,7 +83,8 @@ if __name__=="__main__":
                 if i == 'cohort':
                     cohort = COHORT_COLS
                 if i == 'school_info':
-                    school_info = SCHOOL_INFO_COLS
+                    #school_info = SCHOOL_INFO_COLS
+                    school_info=[]
                 if i == 'spatial':
                     spatial = []
                 if i == 'academic':
