@@ -128,7 +128,7 @@ CLASSIFIERS = {'RF': RandomForestClassifier(n_jobs=-1),
             }
 
 # list of classifier models to run
-TO_RUN = ['DT','LR']
+TO_RUN = ['GB', 'NB']
 
 # all grids to potentially loop through
 LARGE_GRID = { 
