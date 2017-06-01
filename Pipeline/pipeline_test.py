@@ -12,12 +12,13 @@ from sklearn.cross_validation import train_test_split
 import datetime as dt
 from dateutil.relativedelta import relativedelta
 
-print("HEY BRO")
-if sys.argv[1]:
-    print(sys.argv[1])
-    #from sys.argv[1] import *
 
-"""
+if sys.argv[1]:
+    WHICH_GRID = sys.argv[1]  
+
+if sys.argv[2]:
+    TO_RUN = [sys.argv[2]]
+
 
 
 def get_model_opts():
@@ -51,11 +52,9 @@ def loop_through_models(df):
     pass
     # move everything from below to here
 
-if __name__=="__main__":
-    
-	
-    
-    '''
+
+def main():
+    return WHICH_GRID
     model_opts = get_model_opts()
     feature_opts = get_feature_opts()
     df = select_statement()
@@ -133,5 +132,3 @@ if __name__=="__main__":
             results_list.append(results)
     final_results = pd.concat(results_list, axis=0)
     final_results.to_csv('results.csv')            
-    '''
-"""
