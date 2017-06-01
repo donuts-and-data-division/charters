@@ -19,8 +19,7 @@ if sys.argv[1]:
     print(sys.argv[1])
     from sys.argv[1] import *
 
-
-
+"""
 
 
 def get_model_opts():
@@ -137,3 +136,4 @@ if __name__=="__main__":
     final_results = pd.concat(results_list, axis=0)
     final_results.to_csv('results.csv')            
     '''
+"""
