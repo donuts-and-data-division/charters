@@ -63,7 +63,7 @@ if __name__=="__main__":
     FINANCIAL_COLS = get_feature_group_columns('financials_15_wide')
     DEMO_COLS = get_feature_group_columns('enrollment15_wide')
     ACADEMIC_COLS = get_feature_group_columns('catests_2015_wide')
-    COHORT_COLS = []
+    COHORT_COLS = ["ged_rate", "special_ed_compl_rate", "cohort_grad_rate", "cohort_dropout_rate"]
     SCHOOL_INFO_COLS = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
             'afilliated_organization', 'site_type', 'start_type']
 
