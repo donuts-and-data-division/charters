@@ -27,13 +27,13 @@ def select_function(year_list):
     for yr in year_list: 
 
         open_cutoff = dt.datetime(int(yr)-1+2000, 7, 1).date()
-        '''
+        
         joins = """
             FROM ca_pubschls_new
             LEFT JOIN financials_{yr}_wide ON financials_{yr}_wide."CDSCode" = ca_pubschls_new."cdscode" 
             LEFT JOIN "2015-16_AllCACharterSchools_new" ON "2015-16_AllCACharterSchools_new"."cds_code" = ca_pubschls_new."cdscode" 
             LEFT JOIN "enrollment{yr}_wide" ON "enrollment{yr}_wide".cds_code = ca_pubschls_new."cdscode" 
-            '''.format(yr=yr)
+            """.format(yr=yr)
 
         if yr != '14':
             asnull = 'Null as'

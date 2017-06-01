@@ -46,23 +46,23 @@ module load makes python available.
 You'll need a virtual environment before you run a batch.
 I used the code:
 
-cd /home/anisfeld/scratch-midway/
-virtualenv ml-charters
-cd ml_charters
-git clone https://github.com/donuts-and-data-division/charters.git
+	cd /home/anisfeld/scratch-midway/
+	virtualenv ml-charters
+	cd ml_charters
+	git clone https://github.com/donuts-and-data-division/charters.git
 
-source /home/anisfeld/scratch-midway/ml-charters/bin/activate
-pip install -r requirements.txt
+	source /home/anisfeld/scratch-midway/ml-charters/bin/activate
+	pip install -r requirements.txt
 
 
 Then run a python file. You can pass an argument if needed.
-python /home/anisfeld/scratch-midway/ml-charters/test.py  v1 v2
+	python /home/anisfeld/scratch-midway/ml-charters/test.py  v1 v2
 
 In the main function of test.py write something like:
 
 	import system
 	print(sys.argv[1])  
-
+	
 This will print v1. Note you can't pass multiword strings.
 
 That's it! 
@@ -70,9 +70,10 @@ That's it!
 # Useful information:
 
 from an environment already established get requirements
-pip freeze > requirements.txt
+	pip freeze > requirements.txt
 
-
+to see what jobs are running
+	squeue --user=anisfeld
 
 
 
