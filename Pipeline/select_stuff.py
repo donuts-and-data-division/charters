@@ -81,7 +81,7 @@ def select_function(year_list):
         #print(string)
         #return None
         df = pd.read_sql_query(string, engine)
-        print(df.shape)
+        #print(df.shape)
         #return df
 
 
@@ -93,7 +93,7 @@ def select_function(year_list):
         #print(yr)
 
     final_string += ';'
-    print(final_string)
+    #print(final_string)
     df = pd.read_sql_query(final_string, engine)
 
     return df
