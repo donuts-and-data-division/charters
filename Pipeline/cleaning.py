@@ -2,9 +2,10 @@ import pandas as pd
 import numpy as np
 from config import *
 from select_stuff import *
+from features import *
 
 
-def clean(df):
+def clean(df, features, train_cols = None):
     '''
     Clean df to prepare for modeling
     '''
@@ -13,8 +14,28 @@ def clean(df):
     #df = replace_none(df)
 
     df = replace_none(df, REP_NONE=REP_NONE, fill="Unknown")
-    df = financial_features(df)
+    if 'financial' in features:
+        df = financial_features(df)
+        df = df.drop(['CDSCode'], axis=1)
+
+    if 'school_info' in features:
+        df = school_info_features(df)
+    '''
+    if 'cohort' in features:
+        df = cohort_features(df)
+    if 'demographic' in features:
+        df = demographic_features(df)
+    
+    if 'spatial' in features:
+        df = spatial_features(df)
+    if 'academic' in features:
+        df = academic_features(df)
+    '''
     #df = create_percentages(df)
+    x=[]
+    if train_cols is not None:
+         x = [i for i in df.columns if i not in train_cols]
+    df = df.drop(['year', 'pit', 'closeddate']+x, axis=1)
     return df
 
 ### Helper functions that feed into clean() ###
@@ -29,6 +50,11 @@ def financial_features(df):
         df['perc_'+i] = 0.0 
         df.loc[df['tot_spend']!=0, 'perc_'+i] = df[i]/df['tot_spend']
     
+    return df
+
+def school_info_features(df):
+    df = make_dummies(df, SCHOOL_INFO_COLS)
+    df = df.drop(SCHOOL_INFO_COLS, axis=1)
     return df
 
 def convert_types(df):
