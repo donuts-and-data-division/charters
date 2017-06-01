@@ -65,6 +65,59 @@ def new_table():
             ("table didn't go to db")
 
 
+
+
+
+def new_enrollment_table():
+    """
+    For dropout tables. 
+    """
+    db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
+    engine = create_engine(db_string)
+
+    years = ['04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16']
+    years2 = ['04']
+
+    for year in years: 
+
+        string = """SELECT *
+            FROM "enrollment{}"
+            ;""".format(year)
+        print (string)
+
+        df = pd.read_sql_query(string, engine)
+        print (df.head())
+
+        newcol = "Subgroup_concat_" + year
+        df[newcol] = df["ethnic"] + df["gender"]
+
+
+        index = "cds_code"
+        values = ["kdgn", "gr_1", "gr_2", "gr_3", "gr_4", "gr_5", "gr_6", "gr_7", "gr_8", "ungr_elm"\
+        "gr_9", "gr_10", "gr_11", "gr_12", "ungr_sec", "enr_total", "adult"]
+        #values = ["NumCohort" + year, "NumGraduates" + year, "Cohort Graduation Rate" + year,\
+        #"NumDropouts" + year, "Cohort Dropout Rate" + year, "NumSpecialEducation" + year, \
+        #"Special Ed Completers Rate" + year, "NumStillEnrolled" + year, "Still Enrolled Rate" + year, \
+        #"NumGED" + year, "GED Rate" + year]
+
+        
+        df2 = pd.pivot_table(df, index = index, columns= newcol, values = values)
+        #get rid of multi-index columns
+        df2.columns = df2.columns.map('_'.join)
+        df2.reset_index(inplace=True)
+        ##need to join this to re-enter names##                                                 
+                               
+
+        newcsv = "enrollment_" + str(year) + "_wide"
+        df2.to_csv(newcsv, index = False)
+
+        try: 
+            print ("im going to the db")
+            system("""csvsql --db "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"  --insert {} --overwrite""".format(newcsv))
+        except: 
+            ("table didn't go to db")
+
+
         """
 
         #change from long to wide using UNSTACK
