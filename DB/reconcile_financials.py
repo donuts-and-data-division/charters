@@ -8,7 +8,7 @@ import psycopg2
 
 feature_years = {
     'tests': [x for x in range(2003, 2016) if x != 2014],
-    'dropouts': [x for x in range(2010, 2016)],
+    'dropouts': [x for x in range(10, 16)],
     'enrollment': [x for x in range(2004, 2016)],
     'financial': [x for x in range(2004, 2016)]
     }
@@ -54,40 +54,138 @@ def reconcile_financial_columns():
 
 
 def reconcile_test_columns():
-    test_columns = get_feature_group_columns('catests_2013_wide')
-    columns_2015 = get_feature_group_columns('catests_2015_wide2')
+    #test_columns = get_feature_group_columns('catests_2013_wide')
+    #columns_2015 = get_feature_group_columns('catests_2015_wide')
 
-    for year in feature_years['tests']:
+    master_list = []
+    grades = [x for x in range(2,12)]
+    subgroups = [3,4,31,74, 76, 78, 80, 120, 128]
+    values = ['percent_tested', 'percentage_standard_exceeded', 'percentage_standard_met', 'percentage_standard_met_and_above',\
+        'percentage_standard_nearly_met', 'percentage_standard_not_met', 'standard_exceeded_students', \
+        'standard_met_students', 'standard_met_and_above_students',\
+        'standard_nearly_met_students', 'standard_not_met_students']
+
+
+    for grade in grades:
+        for subgroup in subgroups:
+            for value in values: 
+                master_list.append(value + "_" + str(subgroup) + ".0" + str(grade) + ".0")
+    print (len(master_list))
+
+    #for year in feature_years['tests']:
+    for year in [2015]:
 
         year_columns = get_feature_group_columns('catests_{}_wide'.format(year))
+        missing_cols = [i for i in master_list if i not in year_columns]
+
+
+        #missing_cols = [i for i in test_columns if i not in columns_2015]
+
+        for col in missing_cols:
+            
+            alteration = """
+            ALTER TABLE 'catests_{year}_wide'
+            ADD COLUMN "{col}" numeric;""".format(year=year, col=col)
+                    
+            db_action(alteration, action_type='alter')
+
 
         if year == 2015:
-            missing_cols = [i for i in test_columns if i not in columns_2016]
+            extra_cols = [i for i in year_columns if i not in master_list and i != 'cdscode']
 
-            for col in missing_cols:
-            
+            for col in extra_cols:
+
                 alteration = """
-                    ALTER TABLE 'catests_2015_wide2'
-                        ADD COLUMN "{col}" numeric;""".format(col=col)
-                
-                db_action(alteration, action_type='alter')
+                ALTER TABLE 'catests_{year}_wide'
+                DROP COLUMN "{col}";""".format(year=year, col=col)
+                    
+                db_action(alteration, action_type='alter')        
+
+
+def reconcile_dropout_columns():
+    #test_columns = get_feature_group_columns('catests_2013_wide')
+    #columns_2015 = get_feature_group_columns('catests_2015_wide')
+
+    master_list = []
+    subgroups = ['All', 'SE', 'MAL', 'MIG', 'SD', 'EL', 'FEM']
+    subgroupstypes = [0,1,2,3,4,5,6,7,8,9,'All']
+    values = ['percent_tested', 'percentage_standard_exceeded', 'percentage_standard_met', 'percentage_standard_met_and_above',\
+        'percentage_standard_nearly_met', 'percentage_standard_not_met', 'standard_exceeded_students', \
+        'standard_met_students', 'standard_met_and_above_students',\
+        'standard_nearly_met_students', 'standard_not_met_students']
+
+
+    for subgroup in subgroups:
+        for subgrouptype in subgrouptypes:
+            for value in values: 
+                master_list.append(value + "_" + str(subgroup) + ".0" + str(grade) + ".0")
+    print (len(master_list))
+
+    #for year in feature_years['tests']:
+    for year in [2015]:
+
+        year_columns = get_feature_group_columns('catests_{}_wide'.format(year))
+        missing_cols = [i for i in master_list if i not in year_columns]
+
+
+        #missing_cols = [i for i in test_columns if i not in columns_2015]
+
+        for col in missing_cols:
+            
+            alteration = """
+            ALTER TABLE 'catests_{year}_wide'
+            ADD COLUMN "{col}" numeric;""".format(year=year, col=col)
+                    
+            db_action(alteration, action_type='alter')
+
+
+        if year == 2015:
+            extra_cols = [i for i in year_columns if i not in master_list and i != 'cdscode']
+
+            for col in extra_cols:
+
+                alteration = """
+                ALTER TABLE 'catests_{year}_wide'
+                DROP COLUMN "{col}";""".format(year=year, col=col)
+                    
+                db_action(alteration, action_type='alter')        
+
+
+        '''
         else:
             missing_cols = [i for i in columns_2015 if i not in test_columns]
 
             for col in missing_cols:
                 alteration = """
-                    ALTER TABLE 'catests_{year}_wide'
+                    ALTER TABLE 'catests_{year}_wide_testing'
                         ADD COLUMN "{col}" numeric;""".format(year=year, col=col)
 
-                db_action   (alteration, action_type='alter')
+                db_action(alteration, action_type='alter')
+        '''
 
         #for i, column in enumerate(test_columns):
             #alteration = """ALTER TABLE "catests_{year}_wide"
                             #RENAME year_columns[i] TO test_columns[i];
+
+def rename_dropout():
+
+    for year in feature_years['dropouts']:
+
+        year_columns = get_feature_group_columns('dropout_{}_wide'.format(year))
+        
+        for col in year_columns:
+            alteration = """
+            ALTER TABLE 'catests_{year}_wide'
+            RENAME COLUMN "{col}" {newname};""".format(year=year, col=col, newname = col[:9] + col[11:])
+                    
+            db_action(alteration, action_type='alter')    
+
+
 
 
 
 
 if __name__=="__main__":
  	#reconcile_financial_columns()
-    reconcile_test_columns()
+    #reconcile_test_columns()
+    rename_dropout()

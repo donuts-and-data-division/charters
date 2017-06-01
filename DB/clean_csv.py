@@ -6,25 +6,31 @@ from datetime import datetime
 
 VERBOSE = True
 TIMER = True
-CLEAN = False
+CLEAN = True
+
 DATABASE = "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"
-WEIRD_CHARS ='\"\*\"|ï¾\x86|ï¾\x96|\xf1|\"\"'
+WEIRD_CHARS ='\"\*\"|ï¾\x86|ï¾\x96|\@|\#|\xf1|\"\"'
 # For columns with critical typing force the type (note the camel case headings are generated in cleaning):
 # csvsql automatically types columns and will fail frequently.  
 
 
-FILEPATHS = ["catests_2015_wide2"]#["catests_2003_wide","catests_2004_wide", "catests_2005_wide", "catests_2006_wide","catests_2007_wide", \
+FILEPATHS = ["../Data/enrollment07.txt",\
+"../Data/enrollment08.txt", "../Data/enrollment09.txt", "../Data/enrollment10.txt", "../Data/enrollment11.txt", \
+"../Data/enrollment12.txt", "../Data/enrollment13.txt", "../Data/enrollment14.txt", "../Data/enrollment15.txt", \
+"../Data/enrollment16.txt"]#["../Data/management_type.csv"]#["catests_2003_wide","catests_2004_wide", "catests_2005_wide", "catests_2006_wide","catests_2007_wide", \
 #"catests_2008_wide", "catests_2009_wide", "catests_2010_wide", "catests_2011_wide", "catests_2012_wide", \
 #"catests_2013_wide", "catests_2015_wide2"]
 # OPTIONAL: Each file in filepath will be cleaned and a new file will be created. 
 # The outname (minus the ".csv" will become the table name in the DB)
-OUTNAMES = ["catests_2015_wide2.csv"]#["catests_2003_wide.csv","catests_2004_wide.csv", "catests_2005_wide.csv", "catests_2006_wide.csv","catests_2007_wide.csv", \
+OUTNAMES = ["enrollment07.csv", "enrollment08.csv", "enrollment09.csv",\
+"enrollment10.csv", "enrollment11.csv", "enrollment12.csv", "enrollment13.csv", "enrollment14.csv", "enrollment14.csv", \
+"enrollment16.csv"]#["management_type.csv"]#["catests_2003_wide.csv","catests_2004_wide.csv", "catests_2005_wide.csv", "catests_2006_wide.csv","catests_2007_wide.csv", \
 #"catests_2008_wide.csv", "catests_2009_wide.csv", "catests_2010_wide.csv", "catests_2011_wide.csv", "catests_2012_wide.csv", \
 #"catests_2013_wide.csv", "catests_15_wide2.csv"] #FILEPATHS
 # OTHERWISE: each new file will use the filepath name with an ending appended
 ENDING = "_new.csv"
 MAKE_ID_COLS = None#["county_code","district_code","school_code"]
-TYPE_DICT = {"cds_code": "VARCHAR","district_code":"VARCHAR","school_code":"VARCHAR"}
+TYPE_DICT = {"cdscode": "VARCHAR", "cds_code": "VARCHAR","country_code": "VARCHAR","district_code":"VARCHAR","school_code":"VARCHAR","adult":"NUMERIC","ungr_elm":"NUMERIC"}
 
 
 # FUTURE set directory for output
@@ -40,16 +46,17 @@ TESTING = False
 def main():
     load()
 
-def load(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING, make_id_cols= MAKE_ID_COLS, db = DATABASE):
-
+def load(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING, make_id_cols= MAKE_ID_COLS, db = DATABASE, clean=CLEAN):
+    print("filepaths",filepaths)
+    print("outnames",outnames)
     # Notice outnames may be specified or generated with an ending
     filepaths, outnames = standardize_paths(filepaths, outnames, ending)
+    print("outnames updated",outnames)
     
-    if CLEAN:
+    if clean:
         if TIMER:
             start = datetime.now()
             print("Starting clean")
-        
         clean(filepaths, outnames)
 
         if TIMER:
@@ -66,6 +73,7 @@ def load(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING, make_id_cols= MA
         
         if TIMER:
             print("Starting sql for {}".format(f))
+            print(f)
         
         schema = make_schema(f)
         
@@ -93,13 +101,15 @@ def load(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING, make_id_cols= MA
 
 def clean(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING):
     '''Fixes column names and removes non-standard characters (including *)'''
-    filepaths, outnames = standardize_paths(filepaths, outnames, ending)
+    #filepaths, outnames = standardize_paths(filepaths, outnames, ending)
     for i, filepath in enumerate(filepaths):
         with open(outnames[i], "w") as outfile, open(filepath, 'r') as content:
             out =  re.sub('\)|\(|\[|\]','', content.readline().replace('/','_').replace(' ','_').lower())
+            out = re.sub('\t', ',',out)
             outfile.write(out)
             for c in content.readlines():
-                out = re.sub(WEIRD_CHARS,'', c)
+                out = re.sub(WEIRD_CHARS,'', c.replace(',',''))
+                out = re.sub('\t', ',',out)
                 outfile.write(out)
         content.close()
         outfile.close()
@@ -114,7 +124,7 @@ def make_schema(outname, instructions = "-i postgresql --no-constraints", type_d
     if VERBOSE:
         print("Inferring schema from {}".format(outname))
         
-    print('''head -n 1000 {} | csvsql {} > temp.txt'''.format(outname,instructions))
+    #print('''head -n 1000 {} | csvsql {} > temp.txt'''.format(outname,instructions))
     system('''head -n 1000 {} | csvsql {} > temp.txt'''.format(outname,instructions))
 
     f = open("temp.txt")
@@ -122,13 +132,15 @@ def make_schema(outname, instructions = "-i postgresql --no-constraints", type_d
     for line in f.readlines():
     
         col = re.findall('(\w*) [A-Z]', line)
-    
         if VERBOSE:
             print('line:', line)
             print(col)
     
         try:
             datatype = type_dict[col[0]]
+            #if col[0]=="adult":
+            #    schema += "\t{} {}\n".format(col[0], datatype)
+            #else: 
             schema += "\t{} {}, \n".format(col[0], datatype)
         except:
             schema += line
