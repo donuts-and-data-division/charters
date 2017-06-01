@@ -13,11 +13,11 @@ def clean(df, features, train_cols = None):
     #df = setup_outcome(df)
     #df = replace_none(df)
 
-    df = replace_none(df, REP_NONE=REP_NONE, fill="Unknown")
-
+    
     if 'financial' in features:
         df = financial_features(df)
     if 'school_info' in features:
+        #df = replace_none(df, REP_NONE=REP_NONE, fill="Unknown")
         df = school_info_features(df)
     if 'demographic' in features:
         df = demographic_features(df)
@@ -33,7 +33,7 @@ def clean(df, features, train_cols = None):
     x=[]
     if train_cols is not None:
          x = [i for i in df.columns if i not in train_cols]
-    df = df.drop(['year', 'pit', 'closeddate']+x, axis=1)
+    df = df.drop(['year', 'pit', 'closeddate', 'district']+x, axis=1)
     
     return df
 
@@ -53,8 +53,10 @@ def financial_features(df):
     return df
 
 def school_info_features(df):
+    '''
     df = make_dummies(df, SCHOOL_INFO_COLS)
     df = df.drop(SCHOOL_INFO_COLS, axis=1)
+    '''
     return df
 
 def demographic_features(df):

@@ -71,14 +71,13 @@ Q = 10
 NORMALIZE = False
 
 # Feature group-specific columns
-#COHORT_COLS = ["ged_rate", "special_ed_compl_rate", "cohort_grad_rate", "cohort_dropout_rate"]
-COHORT_COLS = []
 
 SCHOOL_INFO_COLS = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
             'afilliated_organization', 'site_type', 'start_type']
 
 # replace Nones in string feature with "Unknown"
-REP_NONE = SCHOOL_INFO_COLS
+REP_NONE = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
+            'afilliated_organization', 'site_type', 'start_type']
 
 # string variables to be encoded
 LABEL_ENCODE = REP_NONE

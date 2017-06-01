@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 import sys
 import pandas as pd
 import numpy as np
-#from config import *
+from config import *
 from select_stuff import *
 from explore import *
 from cleaning import *
@@ -11,7 +11,6 @@ from model import *
 from sklearn.cross_validation import train_test_split
 import datetime as dt
 from dateutil.relativedelta import relativedelta
-
 
 
 def get_model_opts():
@@ -46,30 +45,36 @@ def loop_through_models(df):
     # move everything from below to here
 
 
-def main():
-    print("THIS IS IN THE MAIN- Brah")
-    return WHICH_GRID
+#if __name__=="__main__":
+def main(out_file):
     model_opts = get_model_opts()
     feature_opts = get_feature_opts()
-    df = select_statement()
-    df['key'] = list(zip(df['cdscode'],df['year']))
-    df['pit'] = pd.to_datetime(['200'+str(i)+'-07-01' if len(str(i)) == 1 else '20'+str(i)+'-07-01' for i in df['year']])
-    df['closeddate'] = pd.to_datetime(df['closeddate'])
-    df['closeddate'].fillna(inplace=True, value=dt.datetime(2200,7,1))
+    try:
+        df=pd.read_csv(sys.argv[1])
+        print('using csv')
+    except:
+        print('building sql query')
+        df = select_statement()
+        df['key'] = list(zip(df['cds_c'],df['year']))
+        df['pit'] = pd.to_datetime(['200'+str(i)+'-07-01' if len(str(i)) == 1 else '20'+str(i)+'-07-01' for i in df['year']])
+        df['closeddate'] = pd.to_datetime(df['closeddate'])
+        df['closeddate'].fillna(inplace=True, value=dt.datetime(2200,7,1))
+        df.to_csv('queryresults.csv')    
 
     FINANCIAL_COLS = get_feature_group_columns('financials_15_wide')
     DEMO_COLS = get_feature_group_columns('enrollment15_wide')
-    COHORT_COLS = []
+    ACADEMIC_COLS = get_feature_group_columns('catests_2015_wide')
+    COHORT_COLS = ["ged_rate", "special_ed_compl_rate", "cohort_grad_rate", "cohort_dropout_rate"]
     SCHOOL_INFO_COLS = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
             'afilliated_organization', 'site_type', 'start_type']
 
     results_list = []
     for key, val in model_opts.items():
         for feat in feature_opts:
-            base = ['year', 'pit', 'closeddate']
+            base = ['year', 'pit', 'closeddate', 'district']
             financial = []
             cohort = []
-            demographics = []
+            demographic = []
             school_info = []
             academic = []
             spatial = []
@@ -79,15 +84,16 @@ def main():
                 if i == 'cohort':
                     cohort = COHORT_COLS
                 if i == 'school_info':
-                    school_info = SCHOOL_INFO_COLS
+                    #school_info = SCHOOL_INFO_COLS
+                    school_info=[]
                 if i == 'spatial':
                     spatial = []
                 if i == 'academic':
-                    academic = []
+                    academic = ACADEMIC_COLS
                 if i == 'demographic':
-                    demographics = DEMO_COLS
+                    demographic = DEMO_COLS
 
-            relevant_cols = base + financial + cohort + school_info + spatial + demographics + academic
+            relevant_cols = base + financial + cohort + school_info + spatial + demographic + academic
 
             train_start = val['train_start']
             train_end = val['train_end']
@@ -121,11 +127,12 @@ def main():
 
             #X_train = feature_eng(X_train, feat)
             #X_test = feature_eng(X_test, feat)
-            baseline = y_test[y_test == 1].value_counts()/ y_test.shape[0]
+            baseline = float(y_test[y_test == 1].value_counts()/ y_test.shape[0])
             results = classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline)
             results_list.append(results)
+            pass
     final_results = pd.concat(results_list, axis=0)
-    final_results.to_csv('results.csv')       
+    final_results.to_csv(out_file)            
 
 
 print("work")
@@ -135,5 +142,6 @@ if sys.argv[1]:
     print(WHICH_GRID)
 if sys.argv[2]:
     TO_RUN = [sys.argv[2]]
-    print(WHICH_GRID)   
-print('main function:', main())     
+    print(TO_RUN)   
+if sys.argv[3]:
+    print('main function:', main(sys.argv[3]))     

@@ -63,14 +63,14 @@ if __name__=="__main__":
     FINANCIAL_COLS = get_feature_group_columns('financials_15_wide')
     DEMO_COLS = get_feature_group_columns('enrollment15_wide')
     ACADEMIC_COLS = get_feature_group_columns('catests_2015_wide')
-    COHORT_COLS = []
+    COHORT_COLS = ["ged_rate", "special_ed_compl_rate", "cohort_grad_rate", "cohort_dropout_rate"]
     SCHOOL_INFO_COLS = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
             'afilliated_organization', 'site_type', 'start_type']
 
     results_list = []
     for key, val in model_opts.items():
         for feat in feature_opts:
-            base = ['year', 'pit', 'closeddate']
+            base = ['year', 'pit', 'closeddate', 'district']
             financial = []
             cohort = []
             demographic = []
@@ -83,7 +83,8 @@ if __name__=="__main__":
                 if i == 'cohort':
                     cohort = COHORT_COLS
                 if i == 'school_info':
-                    school_info = SCHOOL_INFO_COLS
+                    #school_info = SCHOOL_INFO_COLS
+                    school_info=[]
                 if i == 'spatial':
                     spatial = []
                 if i == 'academic':
@@ -127,8 +128,17 @@ if __name__=="__main__":
             #X_test = feature_eng(X_test, feat)
             baseline = float(y_test[y_test == 1].value_counts()/ y_test.shape[0])
             results = classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline)
+            '''
+            writer =  open('new_results.csv', 'a') as f:
+                for row in results:
+                    r = '\t'.join(row)
+                    print(r)
+                    f.writer(r)
+            '''
             results_list.append(results)
-            pass
+            
+            
     final_results = pd.concat(results_list, axis=0)
     final_results.to_csv('results.csv')            
-   
+    
+    final_results.to_csv(f, header=False)
