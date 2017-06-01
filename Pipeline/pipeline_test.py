@@ -12,15 +12,6 @@ from sklearn.cross_validation import train_test_split
 import datetime as dt
 from dateutil.relativedelta import relativedelta
 
-print("work")
-
-if sys.argv[1]:
-    WHICH_GRID = sys.argv[1]  
-    print(WHICH_GRID)
-if sys.argv[2]:
-    TO_RUN = [sys.argv[2]]
-    print(WHICH_GRID)	
-print('main function:', main())
 
 
 def get_model_opts():
@@ -134,4 +125,15 @@ def main():
             results = classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline)
             results_list.append(results)
     final_results = pd.concat(results_list, axis=0)
-    final_results.to_csv('results.csv')            
+    final_results.to_csv('results.csv')       
+
+
+print("work")
+
+if sys.argv[1]:
+    WHICH_GRID = sys.argv[1]  
+    print(WHICH_GRID)
+if sys.argv[2]:
+    TO_RUN = [sys.argv[2]]
+    print(WHICH_GRID)   
+print('main function:', main())     
