@@ -49,16 +49,12 @@ def select_function(year_list):
                 financials_{yr}_wide.*, enrollment{yr}_wide.*, {testcolumns} 
                 """.format(yr = yr, testcolumns = test_string)
 
-
         if yr in ['10', '11', '12', '13', '14', '15']:
             select = select + ' ' + dropout_select
-            join = 'LEFT JOIN "dropout_{yr}_wide" ON dropout_{yr}_wide."CDS{yr}" = ca_pubschls_new."cdscode"'.format(yr=yr)
+            join = 'LEFT JOIN "dropout_{yr}_wide" ON LEFT("CDS{yr}", 13) = ca_pubschls_new."cdscode"'.format(yr=yr)
             joins = joins + ' ' + join
 
         string = select + joins + " WHERE charter = TRUE AND opendate <= '{open_cutoff}'".format(open_cutoff=open_cutoff)
-
-
-        df = pd.read_sql_query(string, engine)
  
         if final_string == '':
             final_string = string
@@ -66,7 +62,7 @@ def select_function(year_list):
             final_string = final_string + " UNION ALL " + string
 
     final_string += ';'
-    #print(final_string)
+
     df = pd.read_sql_query(final_string, engine)
 
     return df

@@ -84,6 +84,30 @@ def discretize(df):
 
     return df
 
+
+def prev_year_difference(df):
+
+    testing_cols = get_feature_group_columns('catests_2015_wide')
+
+
+    #for year in [x for x in range(4,16)]:
+    for year in [4]:
+
+        for col in testing_cols:
+            print(year, col)
+            
+            new_column_name = col + '_prev_year_difference'
+            if year != 3:
+                difference = df[df['year'] == year][col] - df[df['year'] == (year-1)][col]
+                df.set_value(df['year'] == year, new_column_name, value = difference)
+
+            else:
+                print('year 3')
+                df.set_value(df['year'] == year, new_column_name, value = 0)
+
+    return df
+
+
 def normalize(df):
     '''
     Function for normalizing dataframe
