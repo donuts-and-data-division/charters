@@ -71,7 +71,8 @@ Q = 10
 NORMALIZE = False
 
 # Feature group-specific columns
-COHORT_COLS = ["ged_rate", "special_ed_compl_rate", "cohort_grad_rate", "cohort_dropout_rate"]
+#COHORT_COLS = ["ged_rate", "special_ed_compl_rate", "cohort_grad_rate", "cohort_dropout_rate"]
+COHORT_COLS = []
 
 SCHOOL_INFO_COLS = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
             'afilliated_organization', 'site_type', 'start_type']
