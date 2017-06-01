@@ -16,15 +16,15 @@ def clean(df, features, train_cols = None):
     df = replace_none(df, REP_NONE=REP_NONE, fill="Unknown")
     if 'financial' in features:
         df = financial_features(df)
-        df = df.drop(['CDSCode'], axis=1)
-
+        
     if 'school_info' in features:
         df = school_info_features(df)
+    if 'demographic' in features:
+        df = demographic_features(df)
     '''
     if 'cohort' in features:
         df = cohort_features(df)
-    if 'demographic' in features:
-        df = demographic_features(df)
+    
     
     if 'spatial' in features:
         df = spatial_features(df)
@@ -49,12 +49,24 @@ def financial_features(df):
         df[i].fillna(value=0.0, inplace=True)
         df['perc_'+i] = 0.0 
         df.loc[df['tot_spend']!=0, 'perc_'+i] = df[i]/df['tot_spend']
-    
+    df = df.drop(['CDSCode'], axis=1)
     return df
 
 def school_info_features(df):
     df = make_dummies(df, SCHOOL_INFO_COLS)
     df = df.drop(SCHOOL_INFO_COLS, axis=1)
+    return df
+
+def demographic_features(df):
+    demographic = get_feature_group_columns('enrollment04_wide')
+    df.fillna(value=0.0, inplace=True)
+    print(demographic)
+    df['tot_enrollment'] = df[demographic].sum(axis=1)
+    for i in demographic[2:]: # to ignore CSDcode and index
+        df['perc_'+i] = 0.0 
+        df.loc[df['tot_enrollment']!=0, 'perc_'+i] = df[i]/df['tot_enrollment']
+    df = df.drop(['a','cds_code'], axis=1)
+
     return df
 
 def convert_types(df):

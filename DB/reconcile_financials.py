@@ -176,7 +176,7 @@ def rename_dropout():
         for col in year_columns:
             alteration = """
             ALTER TABLE 'catests_{year}_wide'
-            RENAME COLUMN "{col}" {newname};""".format(year=year, col=col, newname = col[:9] + col[11:])
+            RENAME COLUMN "{col}" "{newname}";""".format(year=year, col=col, newname = col[:9] + col[11:])
                     
             db_action(alteration, action_type='alter')    
 
