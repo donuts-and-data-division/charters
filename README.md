@@ -9,6 +9,8 @@ Nearly 550,000 students attend over 1,200 charter schools in California.  Over t
 
 
 Overall Pipeline
+After setting up initial databse configurations, the general process for analysis is: 
+
 I. Load data into the database using DB/clean_csv.py
   a. Most data sets are located in Data folder, but some of too large to be stored
 II. Organize tables and standardize format using DB/features_by_year_py, DB/wide-dropout.py, DB/wide-tests.py.
