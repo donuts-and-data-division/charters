@@ -133,8 +133,6 @@ CLASSIFIERS = {'RF': RandomForestClassifier(n_jobs=-1),
         'KNN': KNeighborsClassifier() 
             }
 
-# list of classifier models to run
-TO_RUN = ['RF','LR','KNN','GB','NB','DT']
 
 # all grids to potentially loop through
 LARGE_GRID = { 
@@ -178,11 +176,16 @@ TEST_GRID = {
 
 
 BEST_GRID = {
-  'RF':{'n_estimators': [50], 'max_depth': [3], 'max_features': ['sqrt'],'min_samples_split': [10]}
+  'RF':{'n_estimators': [50], 'max_depth': [3], 'max_features': ['log2'],'min_samples_split': [10]},
+  'GB':{'max_depth': [5], 'subsample': [1.0], 'n_estimators': [10], 'learning_rate': [0.5]},
+  'DT': {'max_depth':[1,5], 'criterion': ['gini'], 'max_features': ['log2'], 'min_samples_split': [10]}
 }
 
 # which grid size to use
-WHICH_GRID = small_grid
+WHICH_GRID = BEST_GRID
+
+# list of classifier models to run
+TO_RUN = ['RF','GB','DT']
 
 
 

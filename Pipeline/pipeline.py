@@ -53,7 +53,7 @@ if __name__=="__main__":
                   'test_start': dt.datetime(2014, 7, 1, 0, 0),
                   'train_end': dt.datetime(2014, 7, 1, 0, 0),
                   'train_start': dt.datetime(2003, 7, 1, 0, 0)}}
-    feature_opts = [['financial','academic', 'demographic']]#['financial', 'cohort', 'school_info', 'spatial', 'academic']#
+    feature_opts = [['financial', 'cohort', 'school_info', 'spatial', 'academic', 'demographic']]
 
     try:
         df=pd.read_csv(sys.argv[1], dtype={'cdscode':object,'cds_c':object,'CDSCode':object})

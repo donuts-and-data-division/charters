@@ -48,6 +48,8 @@ def main(outfile):
     model_opts = get_model_opts()
     feature_opts = get_feature_opts()
 
+    
+
     """try:
         df=pd.read_csv(data, dtype={'cdscode':object,'cds_c':object,'CDSCode':object})
         df['closeddate'] = pd.to_datetime(df['closeddate'])
@@ -128,7 +130,7 @@ def main(outfile):
             
             
     final_results = pd.concat(results_list, axis=0)
-    final_results.to_csv(outfile)            
+    final_results.to_csv(OUTFILE)            
     
     #final_results.to_csv(f, header=False)
 print("work")
