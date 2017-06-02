@@ -95,10 +95,6 @@ def new_table():
         for col in cols:
             df[col[11:] + '_students'] = (df[col]/100) * df['students_tested']
 
-        #return df
-
-
-
         index = "cdscode"
 
         values = ['percent_tested', 'percentage_standard_exceeded', 'percentage_standard_met', 'percentage_standard_met_and_above'\
@@ -112,7 +108,6 @@ def new_table():
         df.columns = df.columns.map('_'.join)
         df.reset_index(inplace=True)
         ##need to join this to re-enter names## 
-        #return df2                                                
         
         newcsv = "catests_" + year + "_wide.csv"
         #print('appended ' + year)
@@ -126,7 +121,7 @@ def new_table():
 def new_acs_table():
     """
     For acs_data tables. 
-    Create empty rows for missing years for each school. 
+    Add year rows and impute ACS Data for each school. 
 
     """
     db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
@@ -138,8 +133,7 @@ def new_acs_table():
     df = pd.read_sql_query(string, engine)
     schools = df['cdscode'].unique()
 
-
-    #add rows for missing school, year pairs 
+    #create empty rows for missing years for each school.
     df_contents = []
     for i in range(len(df)):
         lst = (df.loc[i]['cdscode'], df.loc[i]['year'])
@@ -153,11 +147,10 @@ def new_acs_table():
             master_list.append(lst2)
 
     to_add = [x for x in master_list if x not in df_contents]
-    #extra = [x for x in df_contents if x not in master_list] we're not including 2000
-    #print (len(extra))
+    #df_contents contain the year 2000 but master_list does not
+    
     df2 = pd.DataFrame(to_add, columns = ['cdscode', 'year'])
     df = df.append(df2)
-    #return df
     #print(df.loc[df['cdscode']== 30768930130765.0])
 
     #impute missing data for added years
