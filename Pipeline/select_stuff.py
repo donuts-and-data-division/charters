@@ -90,7 +90,17 @@ def select_statement():
     df3 = pd.concat([df1,df2], ignore_index=True)
 
     df4 = select_acs()
-    df5 = df3.join(d4, on = [cds_c, year], how = inner)
+    #9 rows didn't get filled
+    df4.fillna(0, inplace = True)
+    df4['year'] = df4['year'] - 2000  
+    df4['year'] = df4['year'].astype('int') 
+
+    df4['cds_c'] = df4['cds_c'].astype('int')
+    df4['cds_c'] = df4['cds_c'].astype('str')
+
+    df5 = df3.join(df4, how = 'inner', lsuffix = '_idk')
+    df5.drop(['cds_c_idk', 'year_idk'], axis = 1, inplace= True)
+
 
     return df5
     #return df3
