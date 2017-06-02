@@ -1,7 +1,8 @@
 import pandas as pd
 import re
 from random import sample
-
+import psycopg2
+from db_config  import *
 
 # Helper Functions
 def check_nulls(df, col):
@@ -85,3 +86,21 @@ def map_camel_to_snake(s):
     '''
     return s.map(camel_to_snake)
 
+
+def get_feature_group_columns(table_name):
+    '''
+    Returns a list of column names for given table
+    '''
+    conn = psycopg2.connect("dbname={} user={} host={} password={}".format(DATABASE, USER, HOST, PASSWORD))
+    cur = conn.cursor()
+    string = """
+        SELECT column_name FROM information_schema.columns WHERE table_name = '{}'
+        ;""".format(table_name)
+    cur.execute(string)
+    ls = []
+    for record in cur:
+        ls.append(record[0])
+    return ls
+
+def remove_item(lst, item):
+    return [l for l in lst if l not in item]

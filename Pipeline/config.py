@@ -6,6 +6,9 @@ from sklearn.naive_bayes import GaussianNB, MultinomialNB, BernoulliNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 
+
+from util import *
+
 # name of outcome feature
 OUTCOME_VAR = 'closed_2014.0'
 
@@ -72,11 +75,14 @@ NORMALIZE = False
 
 # Feature group-specific columns
 
-SCHOOL_INFO_COLS = ['zip', 'fundingtype', 'charter_authorizer', 'afilliated_organization', 'site_type', 'start_type']
+SCHOOL_INFO_COLS = ['zip','fundingtype', 'charter_authorizer','afilliated_organization', 'site_type', 'start_type']
+FINANCIAL_COLS = remove_item( get_feature_group_columns('financials_15_wide'), ["CDSCode"])
+DEMO_COLS = remove_item( get_feature_group_columns('enrollment15_wide'), ["a","cds_code"])
+ACADEMIC_COLS = remove_item( get_feature_group_columns('catests_2015_wide'), ["cdscode"])
+COHORT_COLS = ["ged_rate", "special_ed_compl_rate", "cohort_grad_rate", "cohort_dropout_rate"]
 
 # replace Nones in string feature with "Unknown"
-REP_NONE = ['zip', 'fundingtype', 'charter_authorizer', 
-            'afilliated_organization', 'site_type', 'start_type']
+REP_NONE = SCHOOL_INFO_COLS
 
 # string variables to be encoded
 LABEL_ENCODE = REP_NONE
