@@ -49,8 +49,11 @@ if __name__=="__main__":
     model_opts = get_model_opts()
     feature_opts = get_feature_opts()
 
-    #model_opts = {'train_start': train_start, 'train_end': train_end, 'test_start': test_start, 'test_end': test_end}
-    #feature_opts = ['academic']#['financial', 'cohort', 'school_info', 'spatial', 'academic']#
+    model_opts = {(1,1): {'test_end': dt.datetime(2015, 7, 1, 0, 0),
+                  'test_start': dt.datetime(2014, 7, 1, 0, 0),
+                  'train_end': dt.datetime(2014, 7, 1, 0, 0),
+                  'train_start': dt.datetime(2003, 7, 1, 0, 0)}}
+    feature_opts = [['financial','academic', 'demographic']]#['financial', 'cohort', 'school_info', 'spatial', 'academic']#
 
     try:
         df=pd.read_csv(sys.argv[1], dtype={'cdscode':object,'cds_c':object,'CDSCode':object})
@@ -107,21 +110,16 @@ if __name__=="__main__":
             test_end_yr = int(str(test_end.year)[-2:])
 
             outcome_header = "closed_within_{}_years".format(str(closed_within))
-            print(key, outcome_header, feat)
             X_train = df[relevant_cols].loc[(df['year'] > train_start_yr) & (df['year'] <= train_end_yr)]
-            X_train[outcome_header] = 0
-            X_train[outcome_header][(X_train['closeddate'] - X_train['pit'] <= np.timedelta64(closed_within, 'Y')) & (X_train['closeddate'] - X_train['pit'] >= np.timedelta64(0, 'D'))] = 1
+            y_train = (X_train['closeddate'] - X_train['pit'] <= np.timedelta64(closed_within, 'Y')) & (X_train['closeddate'] - X_train['pit'] >= np.timedelta64(0, 'D'))
             
             X_test = df[relevant_cols].loc[(df['year'] > test_start_yr) & (df['year'] <= test_end_yr)]
-            X_test[outcome_header] = 0
-            X_test[outcome_header][(X_test['closeddate'] - X_test['pit'] <= np.timedelta64(closed_within, 'Y')) & (X_test['closeddate'] - X_test['pit'] >= np.timedelta64(0, 'D'))] = 1
+            y_test = (X_test['closeddate'] - X_test['pit'] <= np.timedelta64(closed_within, 'Y')) & (X_test['closeddate'] - X_test['pit'] >= np.timedelta64(0, 'D'))
             
             
-            y_train = X_train[outcome_header]
-            y_test = X_test[outcome_header]
             print('\n\n NEXT MODEL')
             print('test_start: ', test_start_yr, 'train_end: ', train_end_yr, 'train_start: ', train_start_yr, 'test_end: ', test_end_yr)
-            print(feat)
+            print(key, feat)
             X_train = clean(X_train, feat)
             X_test = clean(X_test, feat, X_train.columns)
 
@@ -134,13 +132,6 @@ if __name__=="__main__":
 
             baseline = float(y_test[y_test == 1].value_counts()/ y_test.shape[0])
             results = classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline)
-            '''
-            writer =  open('new_results.csv', 'a') as f:
-                for row in results:
-                    r = '\t'.join(row)
-                    print(r)
-                    f.writer(r)
-            '''
             results_list.append(results)
             
             

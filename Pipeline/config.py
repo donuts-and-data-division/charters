@@ -134,7 +134,7 @@ CLASSIFIERS = {'RF': RandomForestClassifier(n_jobs=-1),
             }
 
 # list of classifier models to run
-TO_RUN = ['RF']
+TO_RUN = ['RF','LR','KNN','GB','NB','DT']
 
 # all grids to potentially loop through
 LARGE_GRID = { 
@@ -182,7 +182,7 @@ BEST_GRID = {
 }
 
 # which grid size to use
-WHICH_GRID = BEST_GRID
+WHICH_GRID = small_grid
 
 
 

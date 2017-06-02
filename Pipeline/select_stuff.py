@@ -74,19 +74,5 @@ def select_statement():
     df3 = pd.concat([df1,df2], ignore_index=True)
     return df3
 
-def get_feature_group_columns(table_name):
-    '''
-    Returns a list of column names for given table
-    '''
-    conn = psycopg2.connect("dbname={} user={} host={} password={}".format(DATABASE, USER, HOST, PASSWORD))
-    cur = conn.cursor()
-    string = """
-        SELECT column_name FROM information_schema.columns WHERE table_name = '{}'
-        ;""".format(table_name)
-    cur.execute(string)
-    ls = []
-    for record in cur:
-        ls.append(record[0])
-    return ls
 
 

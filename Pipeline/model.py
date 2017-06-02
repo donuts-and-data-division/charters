@@ -17,7 +17,6 @@ import pylab as pl
 import matplotlib.pyplot as plt
 import time
 
-RUN_CNF = True
 # based off Rayid's magicloops code: https://github.com/rayidghani/magicloops/blob/master/magicloops.py
 def classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline, run_cnf=RUN_CNF):
     results =  pd.DataFrame(columns=('model_type', 'date_params', 'feature_groups', 'baseline', 'clf', 'parameters', 'auc-roc', 'precision_5', 'accuracy_5', 'recall_5',
@@ -61,11 +60,12 @@ def classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline, run_
     return results
 
 
-def feature_importance(model):
-    importances = model.feature_importances_
-    std = np.std([tree.feature_importances_ for tree in forest.estimators_],
+def feature_importance(treemodel):
+    importances = treemodel.feature_importances_
+    std = np.std([treemodel.feature_importances_ for tree in treemodel.estimators_],
                  axis=0)
     indices = np.argsort(importances)[::-1]
+    
 
 
 def generate_binary_at_k(y_scores, k):
