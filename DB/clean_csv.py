@@ -6,7 +6,7 @@ from datetime import datetime
 
 VERBOSE = True
 TIMER = True
-CLEAN = True
+CLEAN = False
 
 DATABASE = "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"
 WEIRD_CHARS ='\"\*\"|ï¾\x86|ï¾\x96|\@|\#|\xf1|0\xe9|\"\"'
@@ -14,13 +14,13 @@ WEIRD_CHARS ='\"\*\"|ï¾\x86|ï¾\x96|\@|\#|\xf1|0\xe9|\"\"'
 # csvsql automatically types columns and will fail frequently.  
 
 
-FILEPATHS = ["enrollment07.csv", "enrollment15.csv"]
+FILEPATHS = ["../Data/ACS\ Child\ data/acs_data.csv"]#["enrollment07.csv", "enrollment15.csv"]
 #["../Data/management_type.csv"]#["catests_2003_wide","catests_2004_wide", "catests_2005_wide", "catests_2006_wide","catests_2007_wide", \
 #"catests_2008_wide", "catests_2009_wide", "catests_2010_wide", "catests_2011_wide", "catests_2012_wide", \
 #"catests_2013_wide", "catests_2015_wide2"]
 # OPTIONAL: Each file in filepath will be cleaned and a new file will be created. 
 # The outname (minus the ".csv" will become the table name in the DB)
-OUTNAMES = ["enrollment07.csv", "enrollment15.csv"]#["management_type.csv"]#["catests_2003_wide.csv","catests_2004_wide.csv", "catests_2005_wide.csv", "catests_2006_wide.csv","catests_2007_wide.csv", \
+OUTNAMES = ["acs_data.csv"] #["enrollment07.csv", "enrollment15.csv"]#["management_type.csv"]#["catests_2003_wide.csv","catests_2004_wide.csv", "catests_2005_wide.csv", "catests_2006_wide.csv","catests_2007_wide.csv", \
 #"catests_2008_wide.csv", "catests_2009_wide.csv", "catests_2010_wide.csv", "catests_2011_wide.csv", "catests_2012_wide.csv", \
 #"catests_2013_wide.csv", "catests_15_wide2.csv"] #FILEPATHS
 # OTHERWISE: each new file will use the filepath name with an ending appended
@@ -40,7 +40,7 @@ TESTING = False
 
 
 def main():
-    pass
+    #pass
     load()
 
 def load(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING, make_id_cols= MAKE_ID_COLS, db = DATABASE, clean=CLEAN):
