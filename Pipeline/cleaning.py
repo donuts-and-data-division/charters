@@ -2,14 +2,13 @@ import pandas as pd
 import numpy as np
 from config import *
 from select_stuff import *
-from features import *
-
+from pipeline import *
 
 def clean(df, features, train_cols = None):
     '''
     Clean df to prepare for modeling
     '''
-    df = convert_types(df)
+    #df = convert_types(df)
     #df = setup_outcome(df)
     #df = replace_none(df)
 
@@ -17,7 +16,7 @@ def clean(df, features, train_cols = None):
     if 'financial' in features:
         df = financial_features(df)
     if 'school_info' in features:
-        #df = replace_none(df, REP_NONE=REP_NONE, fill="Unknown")
+        #print('working on school info')
         df = school_info_features(df)
     if 'demographic' in features:
         df = demographic_features(df)
@@ -41,32 +40,33 @@ def clean(df, features, train_cols = None):
 
 
 def financial_features(df):
-    financial = get_feature_group_columns('financials_15_wide')
+    financial = FINANCIAL_COLS
     df = replace_none(df, REP_NONE = financial, fill = 0)
     df['tot_spend'] = df[financial].sum(axis=1)
-    for i in financial[1:]: # to ignore CSDcode
+    for i in financial: # to ignore CSDcode
         df[i].fillna(value=0.0, inplace=True)
         #df['perc_'+i] = 0.0 
         #df[df['tot_spend']!=0]['perc_'+i] = df[i]/df['tot_spend']
-    df = df.drop(['CDSCode'], axis=1)
+    #df = df.drop(['CDSCode'], axis=1)
     
     return df
 
+
 def school_info_features(df):
-    '''
-    df = make_dummies(df, SCHOOL_INFO_COLS)
-    df = df.drop(SCHOOL_INFO_COLS, axis=1)
-    '''
+
+    df = replace_none(df, REP_NONE=SCHOOL_INFO_COLS, fill="Unknown category") 
+
+    df = pd.get_dummies(df, columns=SCHOOL_INFO_COLS)
     return df
 
 def demographic_features(df):
-    demographic = get_feature_group_columns('enrollment14_wide')
-    df.fillna(value=0.0, inplace=True)
+    demographic = DEMO_COLS
+    df[demographic].fillna(value=0.0, inplace=True)
     df['tot_enrollment'] = df[demographic].sum(axis=1)
-    for i in demographic[2:]: # to ignore CSDcode and index
+    for i in demographic: # to ignore CSDcode and index
         df['perc_'+i] = 0.0 
         df.loc[df['tot_enrollment']!=0, 'perc_'+i] = df[i]/df['tot_enrollment']
-    df = df.drop(['a','cds_code'], axis=1)
+    #df = df.drop(['a','cds_code'], axis=1)
     return df
 
 def cohort_features(df):
@@ -76,12 +76,12 @@ def cohort_features(df):
         df['deciles_'+i] = pd.qcut(df[i], q=10)
         avg = df[i].mean
         df['avg_compare_'+i] = ['Above avg' if df[i]> avg else 'Below avg' for i in df[i]]
-        df = make_dummies(df['avg_compare_'+i], axis=1)
+        df = make_dummies(df[`'avg_compare_'+i], axis=1)
     '''
 
     #compare rates to district averages
     #create new columns - 1 if above average, 0 if below
-    for col in ['ged_rate', 'special_ed_compl_rate', 'cohort_grad_rate', 'cohort_dropout_rate']:
+    for col in COHORT_COLS:
         
         df[col].fillna(0, inplace=True) #fill missing values with category 0
 
@@ -104,18 +104,19 @@ def spatial_features(df):
     return df
 
 def academic_features(df):
-    '''
-    academic = get_feature_group_columns('catests_2015_wide')
-    for i in academic[1:]: # to ignore CDScode
-        try:
-            df['deciles_'+i] = pd.qcut(df[i], q=10)
-        except:
-            print('could not cut into deciles')
+   
+    academic = ACADEMIC_COLS
+    empty_columns = df[academic].columns[df[academic].isnull().all()]
+    non_empty_columns = df[academic].columns[~df[academic].isnull().all()]
+    df[empty_columns] = 0
+    df[non_empty_columns].fillna(value=df[non_empty_columns].mean(axis=1), inplace=True)
+    """
+    for i in academic: 
         avg = df[i].mean
-        df['avg_compare_'+i] = ['Above avg' if df[i]> avg else 'Below avg' for i in df[i]] # getting a key error 0!
-        df = make_dummies(df['avg_compare_'+i], axis=1)
-    '''
-    df = df.drop(['cdscode'], axis=1)
+        df['avg_compare_'+i] = ['Above avg' if df[i] > avg else 'Below avg' for i in df[i]] # getting a key error 0!
+        df = pd.get_dummies(df, ['avg_compare_'+i]) 
+        df = df.drop([i],axis=1)
+    """
     return df
 
 def convert_types(df):
@@ -184,22 +185,58 @@ def get_dummies(data,auxdf=None, prefix=None, prefix_sep='_', dummy_na=False, co
 
 
 
-def replace_none(df, REP_NONE=REP_NONE, fill="Unknown"):
+def replace_none(df, REP_NONE=REP_NONE, fill="Unknown category"):
     for colname in REP_NONE:
         try:
             #print("Replacing None in ", colname)
-
             df[colname].fillna(value=fill, inplace=True)
         except:
             pass
-            #print(colname, " not in df")
+
+       
     return df
 
 
-def testing_features(df):
-    testing_cols = get_feature_group_columns('catests_2015_wide')
-    prev_year_difference(testing_cols)
-    df = df.drop(['cdscode'], axis=1)
+def make_dummies(df, cols):
+    '''
+    Function to make dummy features from categorical variables and concatenate with df
+    '''
+    '''
+    for c in cols:
+        print('making dummies for ', c)
+        dummies = pd.get_dummies(df[c], prefix = c)
+        print(dummies)
+        df = pd.concat([df, dummies], axis = 1)
+    '''
+    print(cols)
+    dummies = pd.get_dummies(df, [cols])
+    df = pd.concat([df, dummies], axis=1)
+    return df
+
+
+def fill_missing(df):
+    '''
+    Function to fill null values in df with:
+        median (if integer)
+        mean (if float)
+        mode (if string)
+    Do this imputation after training/test split occurs.
+    '''   
+    for colname in df:    
+        if 'int' in str(df[colname].dtype):
+            df[colname].fillna(value=df[colname].median(), inplace=True)
+        elif 'float' in str(df[colname].dtype):
+            df[colname].fillna(value=df[colname].mean(), inplace=True)
+        elif df[colname].dtype == 'object':
+            try: # see if mode exists
+                mode = df[colname].mode()[0]
+                df[colname].fillna(value=mode, inplace=True)
+            except: # if no mode, fill with 'unknown'
+                df[colname].fillna(value='Unknown', inplace=True)
+        else:
+            #sys.exit('check irregular data types')
+            pass
+    return df
 
 
 

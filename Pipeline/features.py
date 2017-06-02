@@ -15,30 +15,6 @@ def feature_eng(df):
 
     return df
 
-def fill_missing(df):
-    '''
-    Function to fill null values in df with:
-        median (if integer)
-        mean (if float)
-        mode (if string)
-    Do this imputation after training/test split occurs.
-    '''   
-    for colname in df:    
-        if 'int' in str(df[colname].dtype):
-            df[colname].fillna(value=df[colname].median(), inplace=True)
-        elif 'float' in str(df[colname].dtype):
-            df[colname].fillna(value=df[colname].mean(), inplace=True)
-        elif df[colname].dtype == 'object':
-            try: # see if mode exists
-                mode = df[colname].mode()[0]
-                df[colname].fillna(value=mode, inplace=True)
-            except: # if no mode, fill with 'unknown'
-                df[colname].fillna(value='Unknown', inplace=True)
-        else:
-            #sys.exit('check irregular data types')
-            pass
-    return df
-
 def cap_extreme(df):
     '''
     Function to cap extreme columns at a certain percentile
@@ -114,15 +90,7 @@ def normalize(df):
         normalize(df, axis=1)
     return df
 
-def make_dummies(df, cols):
-    '''
-    Function to make dummy features from categorical variables and concatenate with df
-    '''
-    for c in cols:
-        dummies = pd.get_dummies(df[c], prefix = c)
-        print(dummies)
-        df = pd.concat([df, dummies], axis = 1)
-    return df
+
 
 def label_encode(df):
     for c in LABEL_ENCODE:

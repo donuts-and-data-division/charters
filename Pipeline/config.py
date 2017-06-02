@@ -6,6 +6,9 @@ from sklearn.naive_bayes import GaussianNB, MultinomialNB, BernoulliNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 
+
+from util import *
+
 # name of outcome feature
 OUTCOME_VAR = 'closed_2014.0'
 
@@ -72,12 +75,14 @@ NORMALIZE = False
 
 # Feature group-specific columns
 
-SCHOOL_INFO_COLS = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
-            'afilliated_organization', 'site_type', 'start_type']
+SCHOOL_INFO_COLS = ['zip','fundingtype', 'charter_authorizer','afilliated_organization', 'site_type', 'start_type']
+FINANCIAL_COLS = remove_item( get_feature_group_columns('financials_15_wide'), ["CDSCode"])
+DEMO_COLS = remove_item( get_feature_group_columns('enrollment15_wide'), ["a","cds_code"])
+ACADEMIC_COLS = remove_item( get_feature_group_columns('catests_2015_wide'), ["cdscode"])
+COHORT_COLS = ["ged_rate", "special_ed_compl_rate", "cohort_grad_rate", "cohort_dropout_rate"]
 
 # replace Nones in string feature with "Unknown"
-REP_NONE = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
-            'afilliated_organization', 'site_type', 'start_type']
+REP_NONE = SCHOOL_INFO_COLS
 
 # string variables to be encoded
 LABEL_ENCODE = REP_NONE
@@ -128,8 +133,6 @@ CLASSIFIERS = {'RF': RandomForestClassifier(n_jobs=-1),
         'KNN': KNeighborsClassifier() 
             }
 
-# list of classifier models to run
-TO_RUN = ['RF']
 
 # all grids to potentially loop through
 LARGE_GRID = { 
@@ -173,11 +176,16 @@ TEST_GRID = {
 
 
 BEST_GRID = {
-  'RF':{'n_estimators': [50], 'max_depth': [3], 'max_features': ['sqrt'],'min_samples_split': [10]}
+  'RF':{'n_estimators': [50], 'max_depth': [3], 'max_features': ['log2'],'min_samples_split': [10]},
+  'GB':{'max_depth': [5], 'subsample': [1.0], 'n_estimators': [10], 'learning_rate': [0.5]},
+  'DT': {'max_depth':[1,5], 'criterion': ['gini'], 'max_features': ['log2'], 'min_samples_split': [10]}
 }
 
 # which grid size to use
 WHICH_GRID = BEST_GRID
+
+# list of classifier models to run
+TO_RUN = ['RF','GB','DT']
 
 
 

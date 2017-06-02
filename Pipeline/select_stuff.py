@@ -4,7 +4,7 @@ import numpy as np
 from db_config import *
 import psycopg2
 import datetime as dt
-
+from util import get_feature_group_columns
 
 def select_function(year_list):
     db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
@@ -67,26 +67,33 @@ def select_function(year_list):
 
     return df
 
+def select_acs():
+    db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
+    engine = create_engine(db_string)
+
+    string = """
+            SELECT cdscode as cds_c, total_below_poverty, under_5_below_poverty, age_5_below_poverty, age_6_to_11_below_poverty, \
+            age_12_to_17_below_poverty, age_18_65_below_poverty, total_above_poverty, under_5_above_poverty, \
+            age_5_above_poverty, age_6_to_11_above_poverty, age_12_to_17_above_poverty, age_18_65_above_poverty, year
+            FROM acs_complete
+            WHERE year != 2000
+            ;
+            """
+
+    df = pd.read_sql_query(string, engine)
+    return df
+
 def select_statement():
     df1 = select_function(['09', '10', '11', '12', '13', '14', '15'])
     df2 = select_function(['04', '05', '06', '07', '08'])
 
     df3 = pd.concat([df1,df2], ignore_index=True)
-    return df3
 
-def get_feature_group_columns(table_name):
-    '''
-    Returns a list of column names for given table
-    '''
-    conn = psycopg2.connect("dbname={} user={} host={} password={}".format(DATABASE, USER, HOST, PASSWORD))
-    cur = conn.cursor()
-    string = """
-        SELECT column_name FROM information_schema.columns WHERE table_name = '{}'
-        ;""".format(table_name)
-    cur.execute(string)
-    ls = []
-    for record in cur:
-        ls.append(record[0])
-    return ls
+    df4 = select_acs()
+    df5 = df3.join(d4, on = [cds_c, year], how = inner)
+
+    return df5
+    #return df3
+
 
 
