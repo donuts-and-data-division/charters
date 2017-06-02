@@ -7,6 +7,8 @@ from datetime import datetime
 VERBOSE = True
 TIMER = True
 CLEAN = True
+
+
 DATABASE = "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"
 WEIRD_CHARS ='\"\*\"|ï¾\x86|ï¾\x96|\xf1|\"\"'
 # For columns with critical typing force the type (note the camel case headings are generated in cleaning):
@@ -22,6 +24,7 @@ FILEPATHS = ['../Data/ACS_Child_data/acs_data.csv'] #["../Data/enrollment04.txt"
 OUTNAMES = ['acs_data.csv']#["enrollment04.csv", "enrollment05.csv", "enrollment06.csv", "enrollment07.csv", "enrollment08.csv", "enrollment09.csv",\
 #"enrollment10.csv", "enrollment11.csv", "enrollment12.csv", "enrollment13.csv", "enrollment14.csv", "enrollment14.csv", \
 #"enrollment16.csv"] 
+
 # OTHERWISE: each new file will use the filepath name with an ending appended
 ENDING = "_new.csv"
 MAKE_ID_COLS = None#["county_code","district_code","school_code"]

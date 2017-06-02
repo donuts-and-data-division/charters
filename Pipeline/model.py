@@ -16,6 +16,10 @@ import random
 import pylab as pl
 import matplotlib.pyplot as plt
 import time
+import pylab as pl
+import itertools
+
+
 
 # based off Rayid's magicloops code: https://github.com/rayidghani/magicloops/blob/master/magicloops.py
 def classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline, run_cnf=RUN_CNF):
@@ -25,9 +29,6 @@ def classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline, run_
     for i, clf in enumerate([CLASSIFIERS[x] for x in TO_RUN]):
         print(TO_RUN[i])
         params = WHICH_GRID[TO_RUN[i]]
-        #results['date_params'] = val
-        #results['feature_groups'] = str(feat)
-        #results['baseline'] = baseline
         for p in ParameterGrid(params):
             try:
                 start_time = time.time()
@@ -65,7 +66,7 @@ def feature_importance(treemodel):
     std = np.std([treemodel.feature_importances_ for tree in treemodel.estimators_],
                  axis=0)
     indices = np.argsort(importances)[::-1]
-    
+
 
 
 def generate_binary_at_k(y_scores, k):
@@ -108,11 +109,6 @@ def plot_precision_recall_n(y_true, y_prob, model_name):
     name = model_name
     plt.title(name)
     plt.show()
-
-import pylab as pl
-import itertools
-import numpy as np
-
 
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
