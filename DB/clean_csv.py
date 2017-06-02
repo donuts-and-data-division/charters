@@ -9,22 +9,18 @@ TIMER = True
 CLEAN = True
 
 DATABASE = "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"
-WEIRD_CHARS ='\"\*\"|ï¾\x86|ï¾\x96|\@|\#|\xf1|\"\"'
+WEIRD_CHARS ='\"\*\"|ï¾\x86|ï¾\x96|\@|\#|\xf1|0\xe9|\"\"'
 # For columns with critical typing force the type (note the camel case headings are generated in cleaning):
 # csvsql automatically types columns and will fail frequently.  
 
 
-FILEPATHS = ["../Data/enrollment07.txt",\
-"../Data/enrollment08.txt", "../Data/enrollment09.txt", "../Data/enrollment10.txt", "../Data/enrollment11.txt", \
-"../Data/enrollment12.txt", "../Data/enrollment13.txt", "../Data/enrollment14.txt", "../Data/enrollment15.txt", \
-"../Data/enrollment16.txt"]#["../Data/management_type.csv"]#["catests_2003_wide","catests_2004_wide", "catests_2005_wide", "catests_2006_wide","catests_2007_wide", \
+FILEPATHS = ["enrollment07.csv", "enrollment15.csv"]
+#["../Data/management_type.csv"]#["catests_2003_wide","catests_2004_wide", "catests_2005_wide", "catests_2006_wide","catests_2007_wide", \
 #"catests_2008_wide", "catests_2009_wide", "catests_2010_wide", "catests_2011_wide", "catests_2012_wide", \
 #"catests_2013_wide", "catests_2015_wide2"]
 # OPTIONAL: Each file in filepath will be cleaned and a new file will be created. 
 # The outname (minus the ".csv" will become the table name in the DB)
-OUTNAMES = ["enrollment07.csv", "enrollment08.csv", "enrollment09.csv",\
-"enrollment10.csv", "enrollment11.csv", "enrollment12.csv", "enrollment13.csv", "enrollment14.csv", "enrollment14.csv", \
-"enrollment16.csv"]#["management_type.csv"]#["catests_2003_wide.csv","catests_2004_wide.csv", "catests_2005_wide.csv", "catests_2006_wide.csv","catests_2007_wide.csv", \
+OUTNAMES = ["enrollment07.csv", "enrollment15.csv"]#["management_type.csv"]#["catests_2003_wide.csv","catests_2004_wide.csv", "catests_2005_wide.csv", "catests_2006_wide.csv","catests_2007_wide.csv", \
 #"catests_2008_wide.csv", "catests_2009_wide.csv", "catests_2010_wide.csv", "catests_2011_wide.csv", "catests_2012_wide.csv", \
 #"catests_2013_wide.csv", "catests_15_wide2.csv"] #FILEPATHS
 # OTHERWISE: each new file will use the filepath name with an ending appended
@@ -44,6 +40,7 @@ TESTING = False
 
 
 def main():
+    pass
     load()
 
 def load(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING, make_id_cols= MAKE_ID_COLS, db = DATABASE, clean=CLEAN):
@@ -101,10 +98,11 @@ def load(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING, make_id_cols= MA
 
 def clean(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING):
     '''Fixes column names and removes non-standard characters (including *)'''
-    #filepaths, outnames = standardize_paths(filepaths, outnames, ending)
+    filepaths, outnames = standardize_paths(filepaths, outnames, ending)
     for i, filepath in enumerate(filepaths):
         with open(outnames[i], "w") as outfile, open(filepath, 'r') as content:
-            out =  re.sub('\)|\(|\[|\]','', content.readline().replace('/','_').replace(' ','_').lower())
+            out = content.readlines().encode('latin-1')
+            out =  re.sub('\)|\(|\[|\]','', out.replace('/','_').replace(' ','_').lower())
             out = re.sub('\t', ',',out)
             outfile.write(out)
             for c in content.readlines():
@@ -113,7 +111,7 @@ def clean(filepaths=FILEPATHS, outnames=OUTNAMES, ending=ENDING):
                 outfile.write(out)
         content.close()
         outfile.close()
-    return True
+    
 
 def make_schema(outname, instructions = "-i postgresql --no-constraints", type_dict = TYPE_DICT):
 
@@ -138,10 +136,10 @@ def make_schema(outname, instructions = "-i postgresql --no-constraints", type_d
     
         try:
             datatype = type_dict[col[0]]
-            #if col[0]=="adult":
-            #    schema += "\t{} {}\n".format(col[0], datatype)
-            #else: 
-            schema += "\t{} {}, \n".format(col[0], datatype)
+            if col[0]=="adult":
+                schema += "\t{} {}\n".format(col[0], datatype)
+            else: 
+                schema += "\t{} {}, \n".format(col[0], datatype)
         except:
             schema += line
 

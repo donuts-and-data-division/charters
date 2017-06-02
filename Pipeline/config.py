@@ -127,7 +127,7 @@ CLASSIFIERS = {'RF': RandomForestClassifier(n_jobs=-1),
             }
 
 # list of classifier models to run
-TO_RUN = ['DT','LR']
+TO_RUN = ['RF']
 
 # all grids to potentially loop through
 LARGE_GRID = { 
@@ -153,7 +153,7 @@ small_grid = {
 'NB' : {},
 'DT': {'criterion': ['gini', 'entropy'], 'max_depth': [1,5,20,100], 'max_features': ['sqrt','log2'],'min_samples_split': [2,10]},
 'SVM' :{'C' :[0.01,1],'kernel':['linear']},
-'KNN' :{'n_neighbors': [1,5,10,25,50,100],'weights': ['uniform','distance'],'algorithm': ['auto','ball_tree','kd_tree']}
+'KNN' :{'n_neighbors': [1,5,25,50],'weights': ['uniform','distance'],'algorithm': ['ball_tree','kd_tree']}
        }
 
 TEST_GRID = { 
@@ -169,6 +169,16 @@ TEST_GRID = {
 'KNN' :{'n_neighbors': [5],'weights': ['uniform'],'algorithm': ['auto']}
        }
 
+
+BEST_GRID = {
+  'RF':{'n_estimators': [50], 'max_depth': [3], 'max_features': ['sqrt'],'min_samples_split': [10]}
+}
+
 # which grid size to use
-WHICH_GRID = small_grid
+WHICH_GRID = BEST_GRID
+
+
+
+
+
 

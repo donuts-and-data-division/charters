@@ -46,7 +46,10 @@ def classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline):
                                                        precision_10, accuracy_10, recall_10,
                                                        precision_20, accuracy_20, recall_20,
                                                        tot_time, y_pred_probs]
-                # plot_precision_recall_n(y_test,y_pred_probs,clf)
+                plot_precision_recall_n(y_test,y_pred_probs,clf)
+
+                y_hat = clf.predict(X_test)
+                plot_cnf(classes=[0,1], y_test=y_test, y_hat=y_hat)
             except IndexError:
                     print('Error')
                     continue
@@ -93,4 +96,72 @@ def plot_precision_recall_n(y_true, y_prob, model_name):
     name = model_name
     plt.title(name)
     plt.show()
+
+import pylab as pl
+import itertools
+import numpy as np
+
+
+def plot_confusion_matrix(cm, classes,
+                          normalize=False,
+                          title='Confusion matrix',
+                          cmap=pl.cm.Blues):
+    """
+    This function prints and plots the confusion matrix.
+    Normalization can be applied by setting `normalize=True`.
+    http://scikit-learn.org/stable/auto_examples/model_selection/plot_confusion_matrix.html 
+    """
+    pl.imshow(cm, interpolation='nearest', cmap=cmap)
+    pl.title(title)
+    pl.colorbar()
+    tick_marks = np.arange(len(classes))
+    pl.xticks(tick_marks, classes, rotation=45)
+    pl.yticks(tick_marks, classes)
+
+    if normalize:
+        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+        print("Normalized confusion matrix")
+    else:
+        print('Confusion matrix, without normalization')
+
+    print(cm)
+
+    thresh = cm.max() / 2.
+    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+        pl.text(j, i, cm[i, j],
+                 horizontalalignment="center",
+                 color="white" if cm[i, j] > thresh else "black")
+
+    pl.tight_layout()
+    pl.ylabel('True label')
+    pl.xlabel('Predicted label')
+
+def get_accuracy(cm):
+    return (cm[0,0] + cm[1,1])/sum(sum(cm))
+def get_recall(cm):
+    return cm[0,0]/(cm[0,0] + cm[0,1])
+
+def get_precision(cm):
+    return cm[0,0]/(cm[0,0] + cm[1,0])
+
+def plot_cnf(cnf_matrix=None, classes=None, y_test=None,y_hat=None):
+    if y_test is not None:
+        cnf_matrix = confusion_matrix(y_test, y_hat)
+        if not classes:
+            classes = y_test.unique()
+            
+            
+    np.set_printoptions(precision=2)
+
+    # Plot non-normalized confusion matrix
+    pl.figure()
+    plot_confusion_matrix(cnf_matrix, classes=classes,
+                          title='Confusion matrix, without normalization')
+
+    # Plot normalized confusion matrix
+    pl.figure()
+    plot_confusion_matrix(cnf_matrix, classes=classes, normalize=True,
+                          title='Normalized confusion matrix')
+
+    pl.show()
     
