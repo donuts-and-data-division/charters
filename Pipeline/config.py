@@ -72,11 +72,10 @@ NORMALIZE = False
 
 # Feature group-specific columns
 
-SCHOOL_INFO_COLS = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
-            'afilliated_organization', 'site_type', 'start_type']
+SCHOOL_INFO_COLS = ['zip', 'fundingtype', 'charter_authorizer', 'afilliated_organization', 'site_type', 'start_type']
 
 # replace Nones in string feature with "Unknown"
-REP_NONE = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
+REP_NONE = ['zip', 'fundingtype', 'charter_authorizer', 
             'afilliated_organization', 'site_type', 'start_type']
 
 # string variables to be encoded

@@ -9,7 +9,7 @@ def clean(df, features, train_cols = None):
     '''
     Clean df to prepare for modeling
     '''
-    df = convert_types(df)
+    #df = convert_types(df)
     #df = setup_outcome(df)
     #df = replace_none(df)
 
@@ -53,9 +53,8 @@ def financial_features(df):
     return df
 
 def school_info_features(df):
-    df = replace_none(df, REP_NONE=SCHOOL_INFO_COLS, fill="Unknown category")
-    df = make_dummies(df, SCHOOL_INFO_COLS)
-    df = df[~SCHOOL_INFO_COLS]
+    df = replace_none(df, REP_NONE=SCHOOL_INFO_COLS, fill="Unknown category") 
+    df = pd.get_dummies(df, columns=SCHOOL_INFO_COLS)
     return df
 
 def demographic_features(df):
@@ -186,10 +185,11 @@ def get_dummies(data,auxdf=None, prefix=None, prefix_sep='_', dummy_na=False, co
 def replace_none(df, REP_NONE=REP_NONE, fill="Unknown category"):
     for colname in REP_NONE:
         try:
-            print("Replacing None in ", colname)
+            #print("Replacing None in ", colname)
             df[colname].fillna(value=fill, inplace=True)
         except:
-            print(colname, " not in df")
+            pass
+            #print(colname, " not in df")
     return df
 
 

@@ -8,7 +8,6 @@ from explore import *
 from cleaning import *
 from features import *
 from model import *
-from read import read_csv as our_reader
 from sklearn.cross_validation import train_test_split
 import datetime as dt
 from dateutil.relativedelta import relativedelta
@@ -47,14 +46,10 @@ def loop_through_models(df):
     # move everything from below to here
 
 if __name__=="__main__":
-    if sys.argv[1]:
-        data = sys.argv[1]
-
-        
     model_opts = get_model_opts()
     feature_opts = get_feature_opts()
+    
     try:
-
         df=pd.read_csv(sys.argv[1])
         df['closeddate'] = pd.to_datetime(df['closeddate'])
         df['pit'] = pd.to_datetime(df['pit'])
@@ -74,12 +69,10 @@ if __name__=="__main__":
     DEMO_COLS = get_feature_group_columns('enrollment15_wide')
     ACADEMIC_COLS = get_feature_group_columns('catests_2015_wide')
     COHORT_COLS = ["ged_rate", "special_ed_compl_rate", "cohort_grad_rate", "cohort_dropout_rate"]
-    #SCHOOL_INFO_COLS = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
-    #        'afilliated_organization', 'site_type', 'start_type']
-
+    
     results_list = []
     for key, val in model_opts.items():
-        for feat in [['school_info']]:
+        for feat in feature_opts:
             base = ['year', 'pit', 'closeddate', 'district']
             financial = []
             cohort = []
