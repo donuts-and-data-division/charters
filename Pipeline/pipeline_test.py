@@ -44,26 +44,26 @@ def loop_through_models(df):
     pass
     # move everything from below to here
 
-def main(outfile):
+def main(infile, outfile):
     model_opts = get_model_opts()
     feature_opts = get_feature_opts()
 
-    
 
-    """try:
-        df=pd.read_csv(data, dtype={'cdscode':object,'cds_c':object,'CDSCode':object})
+
+   try:
+        df=pd.read_csv(infile, dtype={'cdscode':object,'cds_c':object,'CDSCode':object})
         df['closeddate'] = pd.to_datetime(df['closeddate'])
         df['pit'] = pd.to_datetime(df['pit'])
         print('using csv')
     except:
-    """
-    print('building sql query')
-    df = select_statement()
-    df['key'] = list(zip(df['cds_c'],df['year']))
-    df['pit'] = pd.to_datetime(['200'+str(i)+'-07-01' if len(str(i)) == 1 else '20'+str(i)+'-07-01' for i in df['year']])
-    df['closeddate'] = pd.to_datetime(df['closeddate'])
-    df['closeddate'].fillna(inplace=True, value=dt.datetime(2200,7,1))
-    #df.to_csv('queryresults.csv')    
+        
+        print('building sql query')
+        df = select_statement()
+        df['key'] = list(zip(df['cds_c'],df['year']))
+        df['pit'] = pd.to_datetime(['200'+str(i)+'-07-01' if len(str(i)) == 1 else '20'+str(i)+'-07-01' for i in df['year']])
+        df['closeddate'] = pd.to_datetime(df['closeddate'])
+        df['closeddate'].fillna(inplace=True, value=dt.datetime(2200,7,1))
+        #df.to_csv('queryresults.csv')    
 
    
     results_list = []
@@ -130,7 +130,7 @@ def main(outfile):
             
             
     final_results = pd.concat(results_list, axis=0)
-    final_results.to_csv(OUTFILE)            
+    final_results.to_csv(outfile)            
     
     #final_results.to_csv(f, header=False)
 print("work")
@@ -145,4 +145,8 @@ if sys.argv[3]:
     OUTFILE = sys.argv[3]
     print(OUTFILE)
 
-print('main function:', main(OUTFILE))     
+if sys.argv[4]:
+    INFILE = sys.argv[4]
+    print(INFILE)
+
+print('main function:', main(INFILE, OUTFILE))     
