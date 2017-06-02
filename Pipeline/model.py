@@ -108,8 +108,8 @@ import numpy as np
 
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
-                          pretty = False
-                          title='Confusion matrix',
+                          pretty = False,
+                          title ='Confusion matrix',
                           cmap=pl.cm.Blues):
     """
     This function prints and plots the confusion matrix.
@@ -153,12 +153,10 @@ def plot_cnf(cnf_matrix=None, classes=None, y_test=None,y_hat=None, pretty=False
 
     # Plot non-normalized confusion matrix
     pl.figure()
-    plot_confusion_matrix(cnf_matrix, classes=classes,
-                          title='Confusion matrix, without normalization')
+    plot_confusion_matrix(cnf_matrix, classes=classes, title='Confusion matrix, without normalization')
 
     # Plot normalized confusion matrix
     pl.figure()
-    plot_confusion_matrix(cnf_matrix, classes=classes, normalize=True,
-                          title='Normalized confusion matrix')
+    plot_confusion_matrix(cnf_matrix, classes=classes, normalize=True, title='Normalized confusion matrix')
     pl.show()
     
