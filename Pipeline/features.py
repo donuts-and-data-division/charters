@@ -126,7 +126,7 @@ def make_dummies(df, cols):
         df = pd.concat([df, dummies], axis = 1)
     '''
     print(cols)
-    dummies = pd.get_dummies(df[cols])
+    dummies = pd.get_dummies(df, [cols])
     df = pd.concat([df, dummies], axis=1)
     return df
 

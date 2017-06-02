@@ -8,11 +8,9 @@ from explore import *
 from cleaning import *
 from features import *
 from model import *
-from read import read_csv as our_reader
 from sklearn.cross_validation import train_test_split
 import datetime as dt
 from dateutil.relativedelta import relativedelta
-
 
 
 def get_model_opts():
@@ -47,15 +45,15 @@ def loop_through_models(df):
     # move everything from below to here
 
 if __name__=="__main__":
-    if sys.argv[1]:
-        data = sys.argv[1]
 
-        
     model_opts = get_model_opts()
     feature_opts = get_feature_opts()
-    try:
 
-        df=pd.read_csv(sys.argv[1])
+    #model_opts = {'train_start': train_start, 'train_end': train_end, 'test_start': test_start, 'test_end': test_end}
+    #feature_opts = ['academic']#['financial', 'cohort', 'school_info', 'spatial', 'academic']#
+
+    try:
+        df=pd.read_csv(sys.argv[1], dtype={'cdscode':object,'cds_c':object,'CDSCode':object})
         df['closeddate'] = pd.to_datetime(df['closeddate'])
         df['pit'] = pd.to_datetime(df['pit'])
         print('using csv')
@@ -69,17 +67,10 @@ if __name__=="__main__":
         df['closeddate'] = pd.to_datetime(df['closeddate'])
         df['closeddate'].fillna(inplace=True, value=dt.datetime(2200,7,1))
         df.to_csv('queryresults.csv')    
-
-    FINANCIAL_COLS = get_feature_group_columns('financials_15_wide')
-    DEMO_COLS = get_feature_group_columns('enrollment15_wide')
-    ACADEMIC_COLS = get_feature_group_columns('catests_2015_wide')
-    COHORT_COLS = ["ged_rate", "special_ed_compl_rate", "cohort_grad_rate", "cohort_dropout_rate"]
-    #SCHOOL_INFO_COLS = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
-    #        'afilliated_organization', 'site_type', 'start_type']
-
+   
     results_list = []
     for key, val in model_opts.items():
-        for feat in [['school_info']]:
+        for feat in feature_opts:
             base = ['year', 'pit', 'closeddate', 'district']
             financial = []
             cohort = []
@@ -127,7 +118,7 @@ if __name__=="__main__":
             
             y_train = X_train[outcome_header]
             y_test = X_test[outcome_header]
-
+            print('\n\n NEXT MODEL')
             print('test_start: ', test_start_yr, 'train_end: ', train_end_yr, 'train_start: ', train_start_yr, 'test_end: ', test_end_yr)
             print(feat)
             X_train = clean(X_train, feat)
@@ -135,6 +126,11 @@ if __name__=="__main__":
 
             #X_train = feature_eng(X_train, feat)
             #X_test = feature_eng(X_test, feat)
+            print("X_test null columns, ", X_test.columns[X_test.isnull().any()].tolist()) 
+            print("X_train null columns, ", X_train.columns[X_train.isnull().any()].tolist())
+            print("Y_test null columns, ", y_train.isnull().sum()) 
+            print("Y_train null columns, ", y_test.isnull().sum())
+
             baseline = float(y_test[y_test == 1].value_counts()/ y_test.shape[0])
             results = classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline)
             '''
