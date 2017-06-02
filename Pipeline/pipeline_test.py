@@ -50,7 +50,7 @@ def main(infile, outfile):
 
 
 
-   try:
+    try:
         df=pd.read_csv(infile, dtype={'cdscode':object,'cds_c':object,'CDSCode':object})
         df['closeddate'] = pd.to_datetime(df['closeddate'])
         df['pit'] = pd.to_datetime(df['pit'])
