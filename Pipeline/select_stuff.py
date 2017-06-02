@@ -4,7 +4,7 @@ import numpy as np
 from db_config import *
 import psycopg2
 import datetime as dt
-
+from util import get_feature_group_columns
 
 def select_function(year_list):
     db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
