@@ -3,7 +3,7 @@ import pandas as pd
 import re
 from os import system
 
-def read_csv(file, parse_zipcodes=None, **kwargs):
+def read_csv(file, parse_numeric_strings=None, normalize=False, **kwargs):
 	'''
 	open a csv into dataFrame.
 	
@@ -13,17 +13,16 @@ def read_csv(file, parse_zipcodes=None, **kwargs):
 	### parse dates ... 
 	# if we have zipcodes or other administrative numbers that we want to use as strings
 	# parse them.  future question 'object' or 'categorical' ?
-	if isinstance(parse_zipcodes, list):
-		dtype = {zc: 'str' for zc in parse_zipcodes}
+	if isinstance(parse_numeric_strings, list):
+		dtype = {zc: 'str' for zc in parse_numeric_strings}
 		if kwargs.get("dtype", False):
 			kwargs['dtype'] = {**kwargs['dtype'],**dtype}
 		else:
 			kwargs['dtype'] = dtype
 
-
-
 	df = pd.read_csv(file, **kwargs)
-	df.columns = map_camel_to_snake(df.columns)
+	if normalize:
+		df.columns = map_camel_to_snake(df.columns)
 	return df
 
 

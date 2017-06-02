@@ -18,10 +18,10 @@ import matplotlib.pyplot as plt
 import time
 
 # based off Rayid's magicloops code: https://github.com/rayidghani/magicloops/blob/master/magicloops.py
-def classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline):
+def classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline, run_cnf=RUN_CNF):
     results =  pd.DataFrame(columns=('model_type', 'date_params', 'feature_groups', 'baseline', 'clf', 'parameters', 'auc-roc', 'precision_5', 'accuracy_5', 'recall_5',
                                                        'precision_10', 'accuracy_10', 'recall_10',
-                                                       'precision_20', 'accuracy_20', 'recall_20', 'runtime', 'y_pred_probs'))
+                                                       'precision_20', 'accuracy_20', 'recall_20', 'cnf','runtime', 'y_pred_probs'))
     for i, clf in enumerate([CLASSIFIERS[x] for x in TO_RUN]):
         print(TO_RUN[i])
         params = WHICH_GRID[TO_RUN[i]]
@@ -34,6 +34,11 @@ def classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline):
                 clf.set_params(**p)
                 y_pred_probs = clf.fit(X_train, y_train).predict_proba(X_test)[:,1]
                 y_pred_probs_sorted, y_test_sorted = zip(*sorted(zip(y_pred_probs, y_test), reverse=True))
+                if run_cnf:
+                    cnf = confusion_matrix(y_test, clf.predict(X_test))
+                    print(cnf)
+                else:
+                    cnf = None
                 end_time = time.time()
                 tot_time = end_time - start_time
                 print(p)
@@ -45,11 +50,10 @@ def classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline):
                                                        precision_5, accuracy_5, recall_5,
                                                        precision_10, accuracy_10, recall_10,
                                                        precision_20, accuracy_20, recall_20,
-                                                       tot_time, y_pred_probs]
-                plot_precision_recall_n(y_test,y_pred_probs,clf)
-
-                y_hat = clf.predict(X_test)
-                plot_cnf(classes=[0,1], y_test=y_test, y_hat=y_hat)
+                                                       cnf, tot_time, y_pred_probs]
+                
+                #plot_precision_recall_n(y_test,y_pred_probs,clf)
+                
             except IndexError:
                     print('Error')
                     continue
@@ -104,6 +108,7 @@ import numpy as np
 
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
+                          pretty = False
                           title='Confusion matrix',
                           cmap=pl.cm.Blues):
     """
@@ -136,15 +141,8 @@ def plot_confusion_matrix(cm, classes,
     pl.ylabel('True label')
     pl.xlabel('Predicted label')
 
-def get_accuracy(cm):
-    return (cm[0,0] + cm[1,1])/sum(sum(cm))
-def get_recall(cm):
-    return cm[0,0]/(cm[0,0] + cm[0,1])
 
-def get_precision(cm):
-    return cm[0,0]/(cm[0,0] + cm[1,0])
-
-def plot_cnf(cnf_matrix=None, classes=None, y_test=None,y_hat=None):
+def plot_cnf(cnf_matrix=None, classes=None, y_test=None,y_hat=None, pretty=False):
     if y_test is not None:
         cnf_matrix = confusion_matrix(y_test, y_hat)
         if not classes:
@@ -162,6 +160,5 @@ def plot_cnf(cnf_matrix=None, classes=None, y_test=None,y_hat=None):
     pl.figure()
     plot_confusion_matrix(cnf_matrix, classes=classes, normalize=True,
                           title='Normalized confusion matrix')
-
     pl.show()
     

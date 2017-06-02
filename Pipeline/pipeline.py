@@ -8,9 +8,11 @@ from explore import *
 from cleaning import *
 from features import *
 from model import *
+from read import read_csv as our_reader
 from sklearn.cross_validation import train_test_split
 import datetime as dt
 from dateutil.relativedelta import relativedelta
+
 
 
 def get_model_opts():
@@ -45,11 +47,14 @@ def loop_through_models(df):
     # move everything from below to here
 
 if __name__=="__main__":
-    
+    if sys.argv[1]:
+        data = sys.argv[1]
+
+        
     model_opts = get_model_opts()
     feature_opts = get_feature_opts()
     try:
-        df=pd.read_csv(sys.argv[1])
+        df=our_reader(data, parse_numeric_strings = ["cds_c","cds_code","cdscode", "CDSCode"])
         print('using csv')
     except:
         print('building sql query')
