@@ -3,12 +3,12 @@ Machine Learning Project Predicting Charter Closure
 
 https://drive.google.com/drive/folders/0B25-_v63EMbVWTEwemxybEFaZlU
 
-About
+# About
 
 Nearly 550,000 students attend over 1,200 charter schools in California.  Over the course of the past three school years, over 120 of those schools have been closed for a variety of reasons.  With each closure, students and their families are left scrambling to find a different school – sometimes in the middle of a school year. The files in the repo organize school data from California and identify schools at-risk for closure using machine learning methods. 
 
 
-Overall Pipeline
+# Overalll Pipeline
 After setting up initial databse configurations, the general process for analysis is: 
 
 I. Load data into the database using DB/clean_csv.py
