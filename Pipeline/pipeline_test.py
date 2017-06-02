@@ -139,7 +139,7 @@ if sys.argv[2]:
     TO_RUN = [sys.argv[2]]
     print(TO_RUN)   
 if sys.argv[3]:
-    OUTFILE = sys.argv[4]
+    OUTFILE = sys.argv[3]
     print(OUTFILE)
 if sys.argv[4]:
     data = sys.argv[4]
