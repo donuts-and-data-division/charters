@@ -112,6 +112,8 @@ PERCENTAGE_FEATURES = {'percent_female_2012-13': ['female_students_public_school
                            }
 '''
 
+# Add confusion matrix to output
+RUN_CNF = True
 # NOTE: the below is based on Rayid's magicloops code: https://github.com/rayidghani/magicloops/blob/master/magicloops.py
 # all classifiers and their default params
 CLASSIFIERS = {'RF': RandomForestClassifier(n_jobs=-1),
