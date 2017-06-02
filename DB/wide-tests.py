@@ -1,8 +1,9 @@
 from sqlalchemy import create_engine
 import pandas as pd 
+import numpy as np
 from os import system
-from clean_csv import load
-from clean_csv import *
+#from clean_csv import load
+#from clean_csv import *
 from db_config import *
 
 VERBOSE = True
@@ -120,6 +121,104 @@ def new_table():
         #csvs.append(newcsv)
         #return pd.read_csv(newcsv)
         load(filepaths=[newcsv], outnames=[newcsv], ending="_with_totals.csv", make_id_cols= None, db = db_string, clean=CLEAN)
+
+
+def new_acs_table():
+    """
+    For acs_data tables. 
+    Create empty rows for missing years for each school. 
+
+    """
+    db_string = 'postgresql://{}:{}@{}:{}/{}'.format(USER, PASSWORD, HOST, PORT, DATABASE)
+    engine = create_engine(db_string)
+
+    string = """SELECT *
+        FROM acs_data"""
+
+    df = pd.read_sql_query(string, engine)
+    schools = df['cdscode'].unique()
+
+
+    #add rows for missing school, year pairs 
+    df_contents = []
+    for i in range(len(df)):
+        lst = (df.loc[i]['cdscode'], df.loc[i]['year'])
+        if lst not in df_contents:
+            df_contents.append(lst)
+
+    master_list = []
+    for yr in range(2004, 2016):
+        for school in schools:
+            lst2 = (school, yr)
+            master_list.append(lst2)
+
+    to_add = [x for x in master_list if x not in df_contents]
+    #extra = [x for x in df_contents if x not in master_list] we're not including 2000
+    #print (len(extra))
+    df2 = pd.DataFrame(to_add, columns = ['cdscode', 'year'])
+    df = df.append(df2)
+    #return df
+    #print(df.loc[df['cdscode']== 30768930130765.0])
+
+    #impute missing data for added years
+    cols_to_copy = ['zip_5']
+    cols_to_impute = ['age_12_to_17_above_poverty', 'age_12_to_17_below_poverty', 'age_18_65_above_poverty', 'age_18_65_below_poverty', \
+    'age_5_above_poverty', 'age_5_below_poverty', 'age_6_to_11_above_poverty', 'age_6_to_11_below_poverty', 'under_5_above_poverty', \
+    'under_5_below_poverty', 'total_below_poverty', 'total_above_poverty']
+
+    for school in schools: 
+        print(school)
+        school_df = df.loc[df['cdscode']== school] 
+
+        for col in cols_to_copy: 
+
+            if school_df[school_df['year'] == 2011][col].values.size != 0:
+                value_2011 = school_df[school_df['year'] == 2011][col].values[0]
+                school_df[col].fillna(value_2011, inplace = True)
+
+            else:
+                value_2000 = school_df[school_df['year'] == 2000][col].values[0]
+                school_df[col].fillna(value_2000, inplace = True)
+
+
+        for col in cols_to_impute: 
+            
+            #if np.isnan(value_2011):
+                #school_df[school_df['year'] > 2007][col].fillna(value_2000, inplace = True)
+
+            #fill values for years 2008-2010
+            if school_df[school_df['year'] == 2011][col].values.size != 0:
+                value_2011 = school_df[school_df['year'] == 2011][col].values[0]
+                school_df.loc[school_df['year'] >= 2007, col] = school_df.loc[school_df['year'] >= 2007, col].fillna(value_2011)
+            else:
+                #school_df[school_df['year'] > 2007][col].fillna(value_2011, inplace = True)
+                value_2000 = school_df[school_df['year'] == 2000][col].values[0]
+                school_df.loc[school_df['year'] >= 2007, col] = school_df.loc[school_df['year'] >= 2007, col].fillna(value_2000)
+
+            
+            #fill values for years 2004 - 2006
+            if school_df[school_df['year'] == 2000][col].values.size != 0:
+                value_2000 = school_df[school_df['year'] == 2000][col].values[0]
+                school_df.loc[school_df['year'] < 2007, col] = school_df.loc[school_df['year'] < 2007, col].fillna(value_2000)
+            else: 
+                value_2011 = school_df[school_df['year'] == 2011][col].values[0]
+                school_df.loc[school_df['year'] < 2007, col] = school_df.loc[school_df['year'] < 2007, col].fillna(value_2011)
+
+        #return school_df
+
+    #return df.loc[df['cdscode']== 30768930130765.0]
+                                                                
+    newcsv = "acs_complete" 
+    df.to_csv(newcsv, index = False)
+
+    try: 
+        print ("im going to the db")
+        system("""csvsql --db "postgresql://capp30254_project1_user:bokMatofAtt.@pg.rcc.uchicago.edu:5432/capp30254_project1"  --insert {} --overwrite""".format(newcsv))
+    except: 
+        ("table didn't go to db")
+        #csvs.append(newcsv)
+        #return pd.read_csv(newcsv)
+    #load(filepaths=[newcsv], outnames=[newcsv], ending="_with_totals.csv", make_id_cols= None, db = db_string, clean=CLEAN)
 
 
 
