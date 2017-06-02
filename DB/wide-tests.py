@@ -162,6 +162,7 @@ def new_acs_table():
     for school in schools: 
         print(school)
         school_df = df.loc[df['cdscode']== school] 
+        #print (school_df)
 
         for col in cols_to_copy: 
 
@@ -197,7 +198,52 @@ def new_acs_table():
                 value_2011 = school_df[school_df['year'] == 2011][col].values[0]
                 school_df.loc[school_df['year'] < 2007, col] = school_df.loc[school_df['year'] < 2007, col].fillna(value_2011)
 
-        #return school_df
+        
+        df.loc[df['cdscode']== school] = school_df
+        #return df.loc[df['cdscode']== school] 
+
+    """
+        ***would need to fill in all school years before doing this!***
+        for zip in df['zip_5'].unique():
+        zip_df = df.loc[df['zip_5']== zip] 
+        print(zip_df)
+
+        for col in cols_to_copy: 
+
+            if zip_df[zip_df['year'] == 2011][col].values.size != 0:
+                value_2011 = zip_df[zip_df['year'] == 2011][col].values[0]
+                zip_df[col].fillna(value_2011, inplace = True)
+
+            else:
+                value_2000 = zip_df[school_df['year'] == 2000][col].values[0]
+                zip_df[col].fillna(value_2000, inplace = True)
+
+
+        for col in cols_to_impute: 
+            
+            #if np.isnan(value_2011):
+                #school_df[school_df['year'] > 2007][col].fillna(value_2000, inplace = True)
+
+            #fill values for years 2008-2010
+            if zip_df[zip_df['year'] == 2011][col].values.size != 0:
+                value_2011 = zip_df[zip_df['year'] == 2011][col].values[0]
+                zip_df.loc[zip_df['year'] >= 2007, col] = zip_df.loc[zip_df['year'] >= 2007, col].fillna(value_2011)
+            else:
+                #school_df[school_df['year'] > 2007][col].fillna(value_2011, inplace = True)
+                value_2000 = zip_df[school_df['year'] == 2000][col].values[0]
+                zip_df.loc[zip_df['year'] >= 2007, col] = zip_df.loc[zip_df['year'] >= 2007, col].fillna(value_2000)
+
+            
+            #fill values for years 2004 - 2006
+            if zip_df[school_df['year'] == 2000][col].values.size != 0:
+                value_2000 = school_df[school_df['year'] == 2000][col].values[0]
+                zip_df.loc[zip_df['year'] < 2007, col] = zip_df.loc[zip_df['year'] < 2007, col].fillna(value_2000)
+            else: 
+                value_2011 = school_df[school_df['year'] == 2011][col].values[0]
+                szip_df.loc[zip_df['year'] < 2007, col] = zip_df.loc[zip_df['year'] < 2007, col].fillna(value_2011)
+
+        return zip_df 
+    """  
 
     #return df.loc[df['cdscode']== 30768930130765.0]
                                                                 
