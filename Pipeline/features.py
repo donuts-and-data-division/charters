@@ -118,10 +118,16 @@ def make_dummies(df, cols):
     '''
     Function to make dummy features from categorical variables and concatenate with df
     '''
+    '''
     for c in cols:
+        print('making dummies for ', c)
         dummies = pd.get_dummies(df[c], prefix = c)
         print(dummies)
         df = pd.concat([df, dummies], axis = 1)
+    '''
+    print(cols)
+    dummies = pd.get_dummies(df[cols])
+    df = pd.concat([df, dummies], axis=1)
     return df
 
 def label_encode(df):

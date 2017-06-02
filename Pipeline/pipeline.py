@@ -50,7 +50,11 @@ if __name__=="__main__":
     feature_opts = get_feature_opts()
     try:
         df=pd.read_csv(sys.argv[1])
+        df['closeddate'] = pd.to_datetime(df['closeddate'])
+        df['pit'] = pd.to_datetime(df['pit'])
         print('using csv')
+        print('closeddate type ', df.closeddate.dtype)
+        print('pit type ', df.pit.dtype)
     except:
         print('building sql query')
         df = select_statement()
@@ -64,12 +68,12 @@ if __name__=="__main__":
     DEMO_COLS = get_feature_group_columns('enrollment15_wide')
     ACADEMIC_COLS = get_feature_group_columns('catests_2015_wide')
     COHORT_COLS = ["ged_rate", "special_ed_compl_rate", "cohort_grad_rate", "cohort_dropout_rate"]
-    SCHOOL_INFO_COLS = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
-            'afilliated_organization', 'site_type', 'start_type']
+    #SCHOOL_INFO_COLS = ['district', 'zip', 'fundingtype', 'charter_authorizer', 
+    #        'afilliated_organization', 'site_type', 'start_type']
 
     results_list = []
     for key, val in model_opts.items():
-        for feat in feature_opts:
+        for feat in [['school_info']]:
             base = ['year', 'pit', 'closeddate', 'district']
             financial = []
             cohort = []
@@ -83,8 +87,7 @@ if __name__=="__main__":
                 if i == 'cohort':
                     cohort = COHORT_COLS
                 if i == 'school_info':
-                    #school_info = SCHOOL_INFO_COLS
-                    school_info=[]
+                    school_info = SCHOOL_INFO_COLS
                 if i == 'spatial':
                     spatial = []
                 if i == 'academic':
@@ -120,7 +123,7 @@ if __name__=="__main__":
             y_test = X_test[outcome_header]
 
             print('test_start: ', test_start_yr, 'train_end: ', train_end_yr, 'train_start: ', train_start_yr, 'test_end: ', test_end_yr)
-            
+            print(feat)
             X_train = clean(X_train, feat)
             X_test = clean(X_test, feat, X_train.columns)
 

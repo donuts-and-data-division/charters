@@ -17,7 +17,7 @@ def clean(df, features, train_cols = None):
     if 'financial' in features:
         df = financial_features(df)
     if 'school_info' in features:
-        #df = replace_none(df, REP_NONE=REP_NONE, fill="Unknown")
+        print('working on school info')
         df = school_info_features(df)
     if 'demographic' in features:
         df = demographic_features(df)
@@ -53,10 +53,9 @@ def financial_features(df):
     return df
 
 def school_info_features(df):
-    '''
+    df = replace_none(df, REP_NONE=SCHOOL_INFO_COLS, fill="Unknown category")
     df = make_dummies(df, SCHOOL_INFO_COLS)
-    df = df.drop(SCHOOL_INFO_COLS, axis=1)
-    '''
+    df = df[~SCHOOL_INFO_COLS]
     return df
 
 def demographic_features(df):
@@ -76,7 +75,7 @@ def cohort_features(df):
         df['deciles_'+i] = pd.qcut(df[i], q=10)
         avg = df[i].mean
         df['avg_compare_'+i] = ['Above avg' if df[i]> avg else 'Below avg' for i in df[i]]
-        df = make_dummies(df['avg_compare_'+i], axis=1)
+        df = make_dummies(df[`'avg_compare_'+i], axis=1)
     '''
 
     #compare rates to district averages
@@ -184,15 +183,13 @@ def get_dummies(data,auxdf=None, prefix=None, prefix_sep='_', dummy_na=False, co
 
 
 
-def replace_none(df, REP_NONE=REP_NONE, fill="Unknown"):
+def replace_none(df, REP_NONE=REP_NONE, fill="Unknown category"):
     for colname in REP_NONE:
         try:
-            #print("Replacing None in ", colname)
-
+            print("Replacing None in ", colname)
             df[colname].fillna(value=fill, inplace=True)
         except:
-            pass
-            #print(colname, " not in df")
+            print(colname, " not in df")
     return df
 
 
