@@ -149,7 +149,7 @@ LARGE_GRID = {
        }
 
 small_grid = { 
-'RF':{'n_estimators': [10,50], 'max_depth': [3,20], 'max_features': ['sqrt','log2'],'min_samples_split': [2,10]},
+'RF':{'n_estimators': [10,50], 'max_depth': [10,20], 'max_features': ['sqrt','log2'],'min_samples_split': [2,10]},
 'LR': { 'penalty': ['l1','l2'], 'C': [0.00001,0.001,0.1,1,10]},
 'SGD': { 'loss': ['hinge','log','perceptron'], 'penalty': ['l2','l1','elasticnet']},
 'ET': { 'n_estimators': [10,50], 'criterion' : ['gini', 'entropy'] ,'max_depth': [5,50], 'max_features': ['sqrt','log2'],'min_samples_split': [2,10]},
@@ -176,16 +176,16 @@ TEST_GRID = {
 
 
 BEST_GRID = {
-  'RF':{'n_estimators': [50], 'max_depth': [3], 'max_features': ['log2'],'min_samples_split': [10]},
+  'RF':{'n_estimators': [50], 'max_depth': [50], 'max_features': ['log2'],'min_samples_split': [10]},
   'GB':{'max_depth': [5], 'subsample': [1.0], 'n_estimators': [10], 'learning_rate': [0.5]},
-  'DT': {'max_depth':[1,5], 'criterion': ['gini'], 'max_features': ['log2'], 'min_samples_split': [10]}
+  'DT': {'max_depth':[100], 'criterion': ['gini'], 'max_features': ['log2'], 'min_samples_split': [10]}
 }
 
 # which grid size to use
 WHICH_GRID = BEST_GRID
 
 # list of classifier models to run
-TO_RUN = ['RF','GB','DT']
+TO_RUN = ['DT']
 
 
 

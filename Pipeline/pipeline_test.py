@@ -48,7 +48,11 @@ def main(infile, outfile):
     model_opts = get_model_opts()
     feature_opts = get_feature_opts()
 
-
+    model_opts = {(1,1): {'test_end': dt.datetime(2015, 7, 1, 0, 0),
+                  'test_start': dt.datetime(2014, 7, 1, 0, 0),
+                  'train_end': dt.datetime(2014, 7, 1, 0, 0),
+                  'train_start': dt.datetime(2003, 7, 1, 0, 0)}}
+    feature_opts = [['financial', 'cohort', 'school_info', 'spatial', 'academic']]
 
     try:
         df=pd.read_csv(infile, dtype={'cdscode':object,'cds_c':object,'CDSCode':object})

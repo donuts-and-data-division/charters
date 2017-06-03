@@ -19,13 +19,13 @@ import time
 import pylab as pl
 import itertools
 
-
+MORE_OUTPUT = True
 
 # based off Rayid's magicloops code: https://github.com/rayidghani/magicloops/blob/master/magicloops.py
-def classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline, run_cnf=RUN_CNF):
+def classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline, run_cnf=RUN_CNF, more_output=MORE_OUTPUT):
     results =  pd.DataFrame(columns=('model_type', 'date_params', 'feature_groups', 'baseline', 'clf', 'parameters', 'auc-roc', 'precision_5', 'accuracy_5', 'recall_5',
                                                        'precision_10', 'accuracy_10', 'recall_10',
-                                                       'precision_20', 'accuracy_20', 'recall_20', 'cnf','runtime', 'y_pred_probs'))
+                                                       'precision_20', 'accuracy_20', 'recall_20', 'cnf','feat_imp','runtime', 'y_pred_probs'))
     for i, clf in enumerate([CLASSIFIERS[x] for x in TO_RUN]):
         print(TO_RUN[i])
         params = WHICH_GRID[TO_RUN[i]]
@@ -43,6 +43,10 @@ def classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline, run_
                 end_time = time.time()
                 tot_time = end_time - start_time
                 print(p)
+                if more_output and TO_RUN[i] in {'RF','GB','AB'}:
+                    feat_imp=feature_importance(clf, X_test)
+                else:
+                    feat_imp = None
                 precision_5, accuracy_5, recall_5 = scores_at_k(y_test_sorted,y_pred_probs_sorted,5.0)
                 precision_10, accuracy_10, recall_10 = scores_at_k(y_test_sorted,y_pred_probs_sorted,10.0)
                 precision_20, accuracy_20, recall_20 = scores_at_k(y_test_sorted,y_pred_probs_sorted,20.0)
@@ -51,21 +55,30 @@ def classifiers_loop(X_train, X_test, y_train, y_test, val, feat, baseline, run_
                                                        precision_5, accuracy_5, recall_5,
                                                        precision_10, accuracy_10, recall_10,
                                                        precision_20, accuracy_20, recall_20,
-                                                       cnf, tot_time, y_pred_probs]
+                                                       cnf, feat_imp, tot_time, y_pred_probs]
                 
-                #plot_precision_recall_n(y_test,y_pred_probs,clf)
+                if more_output:
+                    plot_precision_recall_n(y_test,y_pred_probs,clf)
                 
+
             except IndexError:
                     print('Error')
                     continue
+
     return results
 
 
-def feature_importance(treemodel):
+def feature_importance(treemodel, X):
     importances = treemodel.feature_importances_
-    std = np.std([treemodel.feature_importances_ for tree in treemodel.estimators_],
-                 axis=0)
+
     indices = np.argsort(importances)[::-1]
+    if X.shape[1] < 10:
+        top_10 = X.shape[1]
+    else:
+        top_10 = 11
+    for f in range(top_10):
+        print("{}. {} ({})".format(f + 1, X.columns[indices[f]], importances[indices[f]]))
+    return importances
 
 
 
