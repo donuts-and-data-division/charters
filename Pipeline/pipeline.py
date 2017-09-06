@@ -53,7 +53,7 @@ if __name__=="__main__":
                   'test_start': dt.datetime(2014, 7, 1, 0, 0),
                   'train_end': dt.datetime(2014, 7, 1, 0, 0),
                   'train_start': dt.datetime(2003, 7, 1, 0, 0)}}
-    feature_opts = [['financial', 'cohort', 'school_info', 'spatial', 'academic', 'demographic']]
+    feature_opts = [['financial', 'cohort', 'school_info', 'spatial', 'academic']]
 
     try:
         df=pd.read_csv(sys.argv[1], dtype={'cdscode':object,'cds_c':object,'CDSCode':object})
@@ -136,6 +136,6 @@ if __name__=="__main__":
             
             
     final_results = pd.concat(results_list, axis=0)
-    final_results.to_csv('results.csv')            
+    final_results.to_csv('results_2.csv')            
     
     #final_results.to_csv(f, header=False)

@@ -53,7 +53,7 @@ def main(infile, outfile):
                   'train_end': dt.datetime(2014, 7, 1, 0, 0),
                   'train_start': dt.datetime(2003, 7, 1, 0, 0)}}
     feature_opts = [['financial', 'cohort', 'school_info', 'spatial', 'academic']]
-
+    
     try:
         df=pd.read_csv(infile, dtype={'cdscode':object,'cds_c':object,'CDSCode':object})
         df['closeddate'] = pd.to_datetime(df['closeddate'])
